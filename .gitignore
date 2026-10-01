@@ -1,0 +1,11 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Vercel deployment cache and artifacts
+.vercel/
+
+# Node
+node_modules/
+npm-debug.log*
