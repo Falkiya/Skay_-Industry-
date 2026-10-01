@@ -1,6 +1,6 @@
 /**
- * SKAY Industries / PK Developers - Interactive Logic
- * Modern Architectural Website
+ * SKAY Industries - Modern uPVC Doors & Windows
+ * Interactive Architectural Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,23 +10,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 1. MOBILE MENU TOGGLE
+  // 1. SIDEBAR DRAWER TOGGLE (DESKTOP & MOBILE)
   // ==========================================
+  const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+  const sidebarOverlay = document.getElementById('sidebar-overlay');
+  const sidebarDrawer = document.getElementById('sidebar-drawer');
 
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close menu when a link is clicked
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-      });
-    });
+  function openSidebar() {
+    sidebarOverlay?.classList.add('active');
+    sidebarDrawer?.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeSidebar() {
+    sidebarOverlay?.classList.remove('active');
+    sidebarDrawer?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  sidebarToggleBtn?.addEventListener('click', openSidebar);
+  mobileMenuBtn?.addEventListener('click', openSidebar);
+  sidebarCloseBtn?.addEventListener('click', closeSidebar);
+  sidebarOverlay?.addEventListener('click', closeSidebar);
+
+  // Close sidebar when any link inside it is clicked
+  sidebarDrawer?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeSidebar);
+  });
+
 
   // ==========================================
   // 2. STICKY NAVBAR SCROLL EFFECT

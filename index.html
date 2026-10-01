@@ -101,23 +101,25 @@
           <img src="images/skay_brochure_logo_exact.png" alt="SKAY Industries - Modern uPVC Doors & Windows" class="h-12 w-auto object-contain transition-transform group-hover:scale-105">
         </a>
 
-        <!-- Desktop Navigation: Home, About, Designs, Why uPVC, Workshop, Location, Enquiry -->
+        <!-- Desktop Navigation: Exactly Home, About, Projects, Location, Enquiry -->
         <nav class="hidden lg:flex items-center space-x-7 font-semibold text-slate-700 text-sm tracking-wide">
           <a href="#home" class="text-accent transition-colors">Home</a>
           <a href="#about" class="hover:text-accent transition-colors">About</a>
-          <a href="#designs" class="hover:text-accent transition-colors">Designs</a>
-          <a href="#why-upvc" class="hover:text-accent transition-colors">Why uPVC</a>
-          <a href="#workshop" class="hover:text-accent transition-colors">Workshop & Colours</a>
+          <a href="#projects" class="hover:text-accent transition-colors">Projects</a>
           <a href="#location" class="hover:text-accent transition-colors">Location</a>
           <a href="#enquiry" class="hover:text-accent transition-colors">Enquiry</a>
         </nav>
 
-        <!-- Right Call Now CTA Button (Exact from Reference) -->
+        <!-- Right: Call Now CTA & Architectural Sidebar Drawer Button -->
         <div class="hidden sm:flex items-center space-x-3">
           <a href="tel:+919880309808" class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all transform hover:-translate-y-0.5 cursor-pointer">
             <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
             <span>Call Now</span>
           </a>
+          <button id="sidebar-toggle-btn" class="inline-flex items-center space-x-2 px-4 py-2.5 rounded-full border border-slate-200 hover:border-accent text-slate-700 hover:text-accent text-xs font-bold uppercase tracking-wider transition-all cursor-pointer" aria-label="Open Sidebar Menu">
+            <i data-lucide="menu" class="w-4 h-4"></i>
+            <span>Menu</span>
+          </button>
         </div>
 
         <!-- Mobile Menu Trigger -->
@@ -131,28 +133,103 @@
         </div>
       </div>
     </div>
+  </header>
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 pt-3 pb-6 space-y-2 text-sm shadow-xl">
-      <a href="#home" class="block py-2.5 text-accent font-bold border-b border-slate-100">Home</a>
-      <a href="#about" class="block py-2.5 text-slate-800 font-bold hover:text-accent border-b border-slate-100">About</a>
-      <a href="#designs" class="block py-2.5 text-slate-800 font-bold hover:text-accent border-b border-slate-100">Window Designs</a>
-      <a href="#why-upvc" class="block py-2.5 text-slate-800 font-bold hover:text-accent border-b border-slate-100">Why uPVC</a>
-      <a href="#workshop" class="block py-2.5 text-slate-800 font-bold hover:text-accent border-b border-slate-100">Workshop & Colours</a>
-      <a href="#location" class="block py-2.5 text-slate-800 font-bold hover:text-accent border-b border-slate-100">Location</a>
-      <a href="#enquiry" class="block py-2.5 text-slate-800 font-bold hover:text-accent">Enquiry</a>
-      <div class="pt-3 space-y-2">
-        <a href="tel:+919880309808" class="w-full py-3 rounded-full bg-accent text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow">
-          <i data-lucide="phone-call" class="w-4 h-4"></i>
-          <span>Call: +91 98803 09808</span>
-        </a>
-        <a href="tel:08212440529" class="w-full py-2.5 rounded-full bg-slate-100 text-slate-800 font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2">
+  <!-- ========================================================================= -->
+  <!-- SIDEBAR DRAWER OVERLAY & PANEL (Comprehensive Architectural Navigation)    -->
+  <!-- ========================================================================= -->
+  <div id="sidebar-overlay" class="sidebar-overlay fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50"></div>
+  
+  <aside id="sidebar-drawer" class="sidebar-drawer fixed top-0 right-0 bottom-0 w-full max-w-sm sm:max-w-md bg-white z-50 shadow-2xl flex flex-col justify-between overflow-y-auto">
+    <!-- Drawer Top -->
+    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+      <a href="#home" class="flex items-center space-x-2">
+        <img src="images/skay_brochure_logo_exact.png" alt="SKAY Industries Logo" class="h-10 w-auto object-contain">
+      </a>
+      <button id="sidebar-close-btn" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-accent hover:text-white text-slate-600 flex items-center justify-center transition-colors cursor-pointer" aria-label="Close menu">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Navigation Links -->
+    <div class="p-6 space-y-1 text-sm font-semibold flex-1">
+      <div class="text-[11px] font-bold text-accent uppercase tracking-widest px-3 mb-2">QUICK NAVIGATION</div>
+      <a href="#home" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-800 hover:text-accent transition-colors">
+        <span class="flex items-center space-x-3"><i data-lucide="home" class="w-4 h-4 text-accent"></i><span>Home</span></span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#about" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-800 hover:text-accent transition-colors">
+        <span class="flex items-center space-x-3"><i data-lucide="info" class="w-4 h-4 text-accent"></i><span>About SKAY Industries</span></span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#designs" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-800 hover:text-accent transition-colors">
+        <span class="flex items-center space-x-3"><i data-lucide="layout-grid" class="w-4 h-4 text-accent"></i><span>12 Window Typologies</span></span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#why-upvc" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-800 hover:text-accent transition-colors">
+        <span class="flex items-center space-x-3"><i data-lucide="shield-check" class="w-4 h-4 text-accent"></i><span>Why Choose uPVC?</span></span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#workshop" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-800 hover:text-accent transition-colors">
+        <span class="flex items-center space-x-3"><i data-lucide="palette" class="w-4 h-4 text-accent"></i><span>Colours & Workshop Facilities</span></span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#projects" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-800 hover:text-accent transition-colors">
+        <span class="flex items-center space-x-3"><i data-lucide="building" class="w-4 h-4 text-accent"></i><span>Featured Installations</span></span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#location" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-800 hover:text-accent transition-colors">
+        <span class="flex items-center space-x-3"><i data-lucide="map-pin" class="w-4 h-4 text-accent"></i><span>Factory Location</span></span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+      <a href="#enquiry" class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-800 hover:text-accent transition-colors">
+        <span class="flex items-center space-x-3"><i data-lucide="send" class="w-4 h-4 text-accent"></i><span>Enquire & Get Quote</span></span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </a>
+
+      <!-- Brochure Guarantee Box -->
+      <div class="mt-6 p-4 rounded-2xl bg-amber-50/60 border border-amber-200/60 flex items-center space-x-3">
+        <img src="images/warranty_15_years_seal.png" alt="15 Year Warranty" class="h-12 w-auto object-contain shrink-0">
+        <div>
+          <span class="text-xs font-bold text-slate-900 block">15-Year Profile Warranty</span>
+          <span class="text-[11px] text-slate-600 block">Guaranteed German-standard fusion welding & weather stability.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Footer Contact Details -->
+    <div class="p-6 bg-slate-50 border-t border-slate-100 space-y-3">
+      <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">DIRECT FACTORY CONTACT</div>
+      <div class="space-y-1.5 text-xs text-slate-700">
+        <p class="flex items-center space-x-2">
           <i data-lucide="phone" class="w-3.5 h-3.5 text-accent"></i>
-          <span>Landline: 0821-2440529</span>
+          <a href="tel:08212440529" class="hover:text-accent font-medium">0821-2440529</a>
+          <span class="text-slate-300">|</span>
+          <a href="tel:+919880309808" class="hover:text-accent font-medium">+91 98803 09808</a>
+        </p>
+        <p class="flex items-center space-x-2">
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-accent"></i>
+          <a href="mailto:info@skayind.com" class="hover:text-accent font-medium">info@skayind.com</a>
+        </p>
+        <p class="flex items-start space-x-2 pt-1 text-[11px] text-slate-500">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5"></i>
+          <span>Shed No.2, M.G.Road, Muneshwara Nagar, Udayagiri, Mysuru - 570019</span>
+        </p>
+      </div>
+
+      <div class="pt-2 flex items-center space-x-2">
+        <a href="tel:+919880309808" class="flex-1 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-1.5 shadow transition-all">
+          <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+          <span>Call Factory</span>
+        </a>
+        <a href="https://wa.me/919880309808?text=Hello%20SKAY%20Industries,%20I%20would%20like%20a%20quote%20for%20uPVC%20doors%20and%20windows." target="_blank" class="flex-1 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-1.5 shadow transition-all">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+          <span>WhatsApp</span>
         </a>
       </div>
     </div>
-  </header>
+  </aside>
+
 
   <!-- ========================================================================= -->
   <!-- 2. HERO SECTION (Exact Reference: Dark Atmosphere, 2-Column, Settled Visual)-->
@@ -343,19 +420,19 @@
             </div>
           </div>
 
-          <!-- 3 Stats Counter -->
+          <!-- 3 Stats Counter (Brochure Authentic Fenestration Capabilities) -->
           <div class="grid grid-cols-3 gap-6 pt-4 border-t border-slate-100">
             <div>
               <span class="text-xs text-slate-500 font-semibold block uppercase">Profile Warranty</span>
               <p class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mt-1">15<span class="text-accent"> Yrs</span></p>
             </div>
             <div>
-              <span class="text-xs text-slate-500 font-semibold block uppercase">Happy Families</span>
-              <p class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mt-1">500<span class="text-accent">+</span></p>
+              <span class="text-xs text-slate-500 font-semibold block uppercase">Window Typologies</span>
+              <p class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mt-1">12<span class="text-accent">+</span></p>
             </div>
             <div>
-              <span class="text-xs text-slate-500 font-semibold block uppercase">Years Experience</span>
-              <p class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mt-1">10<span class="text-accent">+</span></p>
+              <span class="text-xs text-slate-500 font-semibold block uppercase">CNC Machinery</span>
+              <p class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mt-1">6<span class="text-accent"> Units</span></p>
             </div>
           </div>
 
@@ -537,9 +614,12 @@
       <div id="projects" class="pt-10 border-t border-slate-200/80">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <span class="text-xs font-bold tracking-widest text-accent uppercase mb-1 block">REAL-WORLD INSTALLATIONS</span>
+            <div class="flex items-center space-x-2 text-xs font-bold tracking-widest text-accent uppercase mb-1">
+              <span class="w-6 h-px bg-accent"></span>
+              <span>REAL-WORLD INSTALLATIONS</span>
+            </div>
             <h3 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 tracking-tight">
-              Featured Project Showcase
+              Featured Fenestration Projects
             </h3>
           </div>
           <a href="#enquiry" class="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-700 hover:text-accent uppercase tracking-wider transition-colors shrink-0">
@@ -548,80 +628,92 @@
           </a>
         </div>
 
-        <!-- 3-Card Projects Grid -->
+        <!-- 3-Card Projects Grid: 100% Authentic Window & Door Installations -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
-          <!-- Project 1: PK Heights -->
+          <!-- Project 1: Luxury Villa Fenestration -->
           <div class="project-card bg-white rounded-2xl overflow-hidden border border-slate-200/80 flex flex-col shadow-sm hover:shadow-xl transition-all">
             <div class="relative h-60 overflow-hidden bg-slate-100">
-              <img src="images/project_heights.jpg" alt="SKAY Heights Apartment" class="project-img w-full h-full object-cover">
-              <div class="absolute top-4 right-4">
-                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#0d3b66] text-white shadow-md">
-                  <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
-                  <span>Ongoing</span>
-                </span>
-              </div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
-              <div>
-                <h3 class="text-xl font-bold font-serif text-slate-900">PK Heights</h3>
-                <p class="flex items-center text-xs text-accent font-semibold mt-1">
-                  <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1 shrink-0"></i>
-                  <span>Mandya, Karnataka</span>
-                </p>
-                <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
-                  Spacious 2 & 3 BHK luxury apartments designed with panoramic acoustic uPVC multi-track sliding balcony systems.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 2: PK Enclave -->
-          <div class="project-card bg-white rounded-2xl overflow-hidden border border-slate-200/80 flex flex-col shadow-sm hover:shadow-xl transition-all">
-            <div class="relative h-60 overflow-hidden bg-slate-100">
-              <img src="images/project_enclave.jpg" alt="SKAY Enclave Villa" class="project-img w-full h-full object-cover">
+              <img src="images/projects/project_yadavagiri.jpg" alt="Villa Slide and Fold Panoramic Glass Doors" class="project-img w-full h-full object-cover">
               <div class="absolute top-4 right-4">
                 <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#c49b66] text-white shadow-md">
-                  <i data-lucide="star" class="w-3 h-3"></i>
-                  <span>Featured</span>
+                  <i data-lucide="sliders" class="w-3 h-3"></i>
+                  <span>Slide & Fold</span>
                 </span>
               </div>
             </div>
             <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
               <div>
-                <h3 class="text-xl font-bold font-serif text-slate-900">PK Enclave</h3>
+                <h3 class="text-xl font-bold font-serif text-slate-900">Yadavagiri Villa Estate</h3>
                 <p class="flex items-center text-xs text-accent font-semibold mt-1">
                   <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1 shrink-0"></i>
                   <span>Mysuru, Karnataka</span>
                 </p>
                 <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
-                  Custom residential luxury villas fitted with floor-to-ceiling slide & fold patio doors opening to landscaped gardens.
+                  Bespoke floor-to-ceiling panoramic slide & fold patio systems seamlessly opening living spaces to landscaped pool deck with air-tight weather sealing.
                 </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <span class="font-medium text-slate-700">Specification:</span>
+                <span>Heavy-Duty Multi-Panel Bi-Fold</span>
               </div>
             </div>
           </div>
 
-          <!-- Project 3: PK Residency -->
+          <!-- Project 2: Contemporary Acoustic Fenestration -->
           <div class="project-card bg-white rounded-2xl overflow-hidden border border-slate-200/80 flex flex-col shadow-sm hover:shadow-xl transition-all">
             <div class="relative h-60 overflow-hidden bg-slate-100">
-              <img src="images/project_residency.jpg" alt="SKAY Residency" class="project-img w-full h-full object-cover">
+              <img src="images/projects/project_gokulam.jpg" alt="Modern Residence 3-Track Sliding Fenestration" class="project-img w-full h-full object-cover">
               <div class="absolute top-4 right-4">
-                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#2563eb] text-white shadow-md">
-                  <i data-lucide="clock" class="w-3 h-3"></i>
-                  <span>Upcoming</span>
+                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#0d3b66] text-white shadow-md">
+                  <i data-lucide="volume-x" class="w-3 h-3"></i>
+                  <span>40 dB Soundproof</span>
                 </span>
               </div>
             </div>
             <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
               <div>
-                <h3 class="text-xl font-bold font-serif text-slate-900">PK Residency</h3>
+                <h3 class="text-xl font-bold font-serif text-slate-900">Gokulam Luxury Residence</h3>
                 <p class="flex items-center text-xs text-accent font-semibold mt-1">
                   <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1 shrink-0"></i>
-                  <span>Bengaluru, Karnataka</span>
+                  <span>Mysuru, Karnataka</span>
                 </p>
                 <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
-                  Contemporary architectural homes with world-class German casement windows delivering 40 dB soundproofing.
+                  Engineered 3-track sliding window systems with integrated high-tensile stainless steel insect mesh, multi-point lock hardware, and thermal double glazing.
                 </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <span class="font-medium text-slate-700">Specification:</span>
+                <span>3-Track Sliding + Mesh</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Commercial Architectural Glazing -->
+          <div class="project-card bg-white rounded-2xl overflow-hidden border border-slate-200/80 flex flex-col shadow-sm hover:shadow-xl transition-all">
+            <div class="relative h-60 overflow-hidden bg-slate-100">
+              <img src="images/projects/project_hebbal.jpg" alt="Commercial Complex High-Performance Glazing" class="project-img w-full h-full object-cover">
+              <div class="absolute top-4 right-4">
+                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#081628] text-white shadow-md">
+                  <i data-lucide="shield-check" class="w-3 h-3"></i>
+                  <span>High Wind Load</span>
+                </span>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
+              <div>
+                <h3 class="text-xl font-bold font-serif text-slate-900">Hebbal Industrial Complex</h3>
+                <p class="flex items-center text-xs text-accent font-semibold mt-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1 shrink-0"></i>
+                  <span>Mysuru, Karnataka</span>
+                </p>
+                <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                  High-durability German uPVC casement, tilt & turn, and structural fixed glazing engineered to withstand severe wind loads and monsoon rains.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <span class="font-medium text-slate-700">Specification:</span>
+                <span>Casement, Tilt & Turn, Fixed</span>
               </div>
             </div>
           </div>
@@ -1146,7 +1238,7 @@
 
             <!-- Row 3: Message Textarea -->
             <div>
-              <textarea id="enquiry-message" rows="3" placeholder="Approximate dimensions or requirements (e.g. 3BHK villa in Mysuru, 8 sliding windows)" class="w-full px-4 py-3 rounded-lg bg-white text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-accent border-0 resize-none"></textarea>
+              <textarea id="enquiry-message" rows="3" placeholder="Approximate dimensions or requirements (e.g. 8 sliding windows and 2 slide & fold doors in Mysuru)" class="w-full px-4 py-3 rounded-lg bg-white text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-accent border-0 resize-none"></textarea>
             </div>
 
             <!-- Submit Button (Exact from Reference) -->
@@ -1178,13 +1270,11 @@
           <img src="images/skay_brochure_logo_white_solid.png" alt="SKAY Industries Logo" class="h-11 w-auto object-contain">
         </a>
 
-        <!-- Navigation Links -->
+        <!-- Navigation Links: Home, About, Projects, Location, Enquiry -->
         <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-7 text-xs font-semibold text-slate-300">
           <a href="#home" class="hover:text-accent transition-colors">Home</a>
           <a href="#about" class="hover:text-accent transition-colors">About</a>
-          <a href="#designs" class="hover:text-accent transition-colors">Designs</a>
-          <a href="#why-upvc" class="hover:text-accent transition-colors">Why uPVC</a>
-          <a href="#workshop" class="hover:text-accent transition-colors">Workshop & Colours</a>
+          <a href="#projects" class="hover:text-accent transition-colors">Projects</a>
           <a href="#location" class="hover:text-accent transition-colors">Location</a>
           <a href="#enquiry" class="hover:text-accent transition-colors">Enquiry</a>
         </div>
