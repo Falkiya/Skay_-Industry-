@@ -9,3 +9,4 @@ desktop.ini
 # Node
 node_modules/
 npm-debug.log*
+images/extracted_client_ui/
