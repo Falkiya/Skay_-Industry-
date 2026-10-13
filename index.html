@@ -24,21 +24,69 @@
 <body>
 
   <!-- ========================================================================= -->
-  <!-- 1. HEADER & NAVBAR                                                        -->
+  <!-- TOP UTILITY CONTACT BAR                                                   -->
+  <!-- ========================================================================= -->
+  <div class="top-contact-bar">
+    <div class="top-bar-container">
+      <div class="top-bar-left">
+        <a href="tel:+919880309808" class="top-bar-item">
+          <i data-lucide="phone" class="w-3.5 h-3.5" style="color: #60a5fa;"></i>
+          <span>+91 98803 09808</span>
+        </a>
+        <a href="tel:08212440529" class="top-bar-item">
+          <i data-lucide="phone-call" class="w-3.5 h-3.5" style="color: #60a5fa;"></i>
+          <span>0821-2440529</span>
+        </a>
+        <a href="mailto:info@skayind.com" class="top-bar-item">
+          <i data-lucide="mail" class="w-3.5 h-3.5" style="color: #60a5fa;"></i>
+          <span>info@skayind.com</span>
+        </a>
+      </div>
+      <div class="top-bar-right">
+        <span class="top-bar-item">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5" style="color: #60a5fa;"></i>
+          <span>Udayagiri, Mysuru - 570019</span>
+        </span>
+        <span class="top-bar-item" style="color: #60a5fa; font-weight: 700;">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+          <span>15-Year Warranty</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 1. MAIN NAVIGATION BAR (Home, About, Products, Location, Enquiry)          -->
   <!-- ========================================================================= -->
   <header class="site-header">
     <div class="header-container">
       <!-- Left: SKAY Industries Logo -->
-      <a href="#hero-carousel" class="header-logo" title="SKAY Industries">
+      <a href="#home" class="header-logo" title="SKAY Industries">
         <img src="images/ui/skay_header_logo.png" alt="SKAY INDUSTRIES MODREN uPVC DOORS & WINDOWS">
       </a>
 
-      <!-- Right: Search & Hamburger Navigation Buttons -->
+      <!-- Center: Main Navigation Menu Links -->
+      <nav class="header-nav">
+        <a href="#home" class="nav-link-item active">Home</a>
+        <a href="#about" class="nav-link-item">About</a>
+        <a href="#products" class="nav-link-item">Products</a>
+        <a href="#colours" class="nav-link-item">Colours</a>
+        <a href="#contact" class="nav-link-item">Location</a>
+        <a href="#contact" class="nav-link-item">Enquiry</a>
+      </nav>
+
+      <!-- Right: Search, Call Button, and Hamburger Toggle -->
       <div class="header-actions">
-        <button id="search-toggle-btn" class="icon-btn" aria-label="Search site" title="Search">
+        <a href="tel:+919880309808" class="header-cta-btn" title="Call SKAY Industries">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+          <span>+91 98803 09808</span>
+        </a>
+
+        <button id="search-toggle-btn" class="icon-btn" aria-label="Search website" title="Search">
           <i data-lucide="search" class="w-5 h-5"></i>
         </button>
-        <button id="nav-toggle-btn" class="icon-btn" aria-label="Open menu" title="Menu">
+
+        <button id="nav-toggle-btn" class="icon-btn" aria-label="Open navigation menu" title="Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -50,9 +98,9 @@
   <!-- ========================================================================= -->
   <div id="search-modal" class="search-modal" aria-hidden="true">
     <div class="search-box-card">
-      <div class="flex items-center justify-between" style="display: flex; justify-content: space-between; align-items: center;">
-        <h4 style="font-weight: 700; color: #0066cc; font-size: 1.1rem;">Search SKAY Industries</h4>
-        <button id="search-close-btn" class="icon-btn" style="width: 32px; height: 32px;" aria-label="Close search">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-weight: 700; color: #0066cc; font-size: 1.15rem;">Search SKAY Industries</h4>
+        <button id="search-close-btn" class="icon-btn" style="width: 34px; height: 34px;" aria-label="Close search">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -61,7 +109,7 @@
         <input type="text" id="site-search-input" placeholder="Search products, profile series, colors..." autocomplete="off">
       </div>
       <div id="search-results-list" class="search-results-list">
-        <!-- Dynamically populated -->
+        <!-- Dynamically populated by script.js -->
       </div>
     </div>
   </div>
@@ -70,7 +118,7 @@
   <!-- 3. SLIDE-OUT NAVIGATION DRAWER                                            -->
   <!-- ========================================================================= -->
   <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
-  <aside id="nav-drawer" class="nav-drawer" aria-label="Main Navigation">
+  <aside id="nav-drawer" class="nav-drawer" aria-label="Navigation Drawer">
     <div class="drawer-header">
       <h3>Menu</h3>
       <button id="drawer-close-btn" class="icon-btn" aria-label="Close menu">
@@ -78,23 +126,23 @@
       </button>
     </div>
     <nav class="drawer-nav-list">
-      <a href="#hero-carousel" class="drawer-link">Home</a>
+      <a href="#home" class="drawer-link">Home</a>
+      <a href="#about" class="drawer-link">About</a>
       <a href="#products" class="drawer-link">Our Products</a>
       <a href="#colours" class="drawer-link">Colour Options</a>
       <a href="#profiles" class="drawer-link">Profile Series</a>
-      <a href="#about" class="drawer-link">About Us</a>
       <a href="#workshop" class="drawer-link">Workshop Facilities</a>
       <a href="#why-upvc" class="drawer-link">Why Choose uPVC</a>
       <a href="#reviews" class="drawer-link">Customer Reviews</a>
       <a href="#faq" class="drawer-link">FAQs</a>
-      <a href="#contact" class="drawer-link">Contact Us</a>
+      <a href="#contact" class="drawer-link">Location & Enquiry</a>
     </nav>
-    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 0.75rem;">
-      <a href="tel:+919880309808" style="display: flex; align-items: center; gap: 0.5rem; color: #0066cc; font-weight: 700; text-decoration: none;">
+    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 0.85rem;">
+      <a href="tel:+919880309808" style="display: flex; align-items: center; gap: 0.6rem; color: #0066cc; font-weight: 700; text-decoration: none;">
         <i data-lucide="phone" class="w-4 h-4"></i>
         <span>+91 98803 09808</span>
       </a>
-      <a href="mailto:info@skayind.com" style="display: flex; align-items: center; gap: 0.5rem; color: #475569; font-size: 0.9rem; text-decoration: none;">
+      <a href="mailto:info@skayind.com" style="display: flex; align-items: center; gap: 0.6rem; color: #475569; font-size: 0.92rem; text-decoration: none;">
         <i data-lucide="mail" class="w-4 h-4"></i>
         <span>info@skayind.com</span>
       </a>
@@ -102,103 +150,118 @@
   </aside>
 
   <!-- ========================================================================= -->
-  <!-- 4. HERO PRODUCT CAROUSEL ("Slides in Header")                             -->
+  <!-- 4. COMPLETE FULL-HEADER SLIDER CAROUSEL ("Slides in Header")              -->
   <!-- ========================================================================= -->
-  <section id="hero-carousel" class="hero-carousel-section">
-    <div class="container-custom">
-      <div class="carousel-viewport">
-        <div id="carousel-track" class="carousel-track">
-          <!-- Slide 1: Tilt & Turn -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_tilt_turn.jpg" alt="Tilt & Turn uPVC Window" loading="eager">
-            </div>
-            <h3 class="carousel-slide-title">TILT & TURN</h3>
-          </div>
-
-          <!-- Slide 2: Casement -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_casement.jpg" alt="Casement uPVC Window" loading="eager">
-            </div>
-            <h3 class="carousel-slide-title">CASEMENT</h3>
-          </div>
-
-          <!-- Slide 3: Combination -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_combination.jpg" alt="Combination uPVC Window" loading="eager">
-            </div>
-            <h3 class="carousel-slide-title">COMBINATION</h3>
-          </div>
-
-          <!-- Slide 4: Sliding -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_sliding.jpg" alt="Sliding uPVC Window" loading="lazy">
-            </div>
-            <h3 class="carousel-slide-title">SLIDING</h3>
-          </div>
-
-          <!-- Slide 5: Slide & Fold -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_slide_fold.jpg" alt="Slide & Fold uPVC Window" loading="lazy">
-            </div>
-            <h3 class="carousel-slide-title">SLIDE & FOLD</h3>
-          </div>
-
-          <!-- Slide 6: Fixed -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_fixed.jpg" alt="Fixed uPVC Window" loading="lazy">
-            </div>
-            <h3 class="carousel-slide-title">FIXED</h3>
-          </div>
-
-          <!-- Slide 7: Single Hung -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_single_hung.jpg" alt="Single Hunge uPVC Window" loading="lazy">
-            </div>
-            <h3 class="carousel-slide-title">SINGLE HUNGE</h3>
-          </div>
-
-          <!-- Slide 8: Double Hung -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_double_hung.jpg" alt="Double Hunge uPVC Window" loading="lazy">
-            </div>
-            <h3 class="carousel-slide-title">DOUBLE HUNGE</h3>
-          </div>
-
-          <!-- Slide 9: L-Window -->
-          <div class="carousel-slide-item">
-            <div class="carousel-img-wrapper">
-              <img src="images/ui/prod_l_window.jpg" alt="L-Window uPVC Window" loading="lazy">
-            </div>
-            <h3 class="carousel-slide-title">L-WINDOW</h3>
+  <section id="home" class="full-hero-slider">
+    <div class="slider-track" id="hero-slider-track">
+      <!-- Slide 1: Premium uPVC Sliding Window System -->
+      <div class="hero-slide active" data-slide-index="0">
+        <div class="hero-slide-img-wrapper">
+          <img src="images/full_header_slide_2.jpg" alt="Precision 3-Panel Sliding uPVC Window" loading="eager">
+        </div>
+        <div class="hero-overlay-gradient"></div>
+        <div class="hero-slide-content">
+          <span class="hero-badge">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            German Precision Engineering
+          </span>
+          <h1 class="hero-title">Precision uPVC Doors & Windows</h1>
+          <p class="hero-description">
+            High-performance sliding and casement systems designed for extreme weather resilience, acoustic soundproofing, and effortless living.
+          </p>
+          <div class="hero-buttons-row">
+            <a href="#products" class="btn-hero-primary">Our Products</a>
+            <a href="#contact" class="btn-hero-secondary">Enquire Now</a>
           </div>
         </div>
       </div>
 
-      <!-- Controls & Dots -->
-      <div class="carousel-controls">
-        <button id="carousel-prev-btn" class="carousel-btn" aria-label="Previous slide">
-          <i data-lucide="chevron-left" class="w-5 h-5"></i>
-        </button>
-        <div id="carousel-dots-container" class="carousel-dots">
-          <!-- Populated by script.js -->
+      <!-- Slide 2: Modern Ocean View Picture Living Room -->
+      <div class="hero-slide" data-slide-index="1">
+        <div class="hero-slide-img-wrapper">
+          <img src="images/ui/living_room_sea_view.jpg" alt="Panoramic Living Room Bay and Picture Window" loading="lazy">
         </div>
-        <button id="carousel-next-btn" class="carousel-btn" aria-label="Next slide">
-          <i data-lucide="chevron-right" class="w-5 h-5"></i>
-        </button>
+        <div class="hero-overlay-gradient"></div>
+        <div class="hero-slide-content">
+          <span class="hero-badge">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            15-Year Certified Warranty
+          </span>
+          <h2 class="hero-title">Panoramic Living Room Fenestration</h2>
+          <p class="hero-description">
+            Maximize natural light and picturesque outdoor views with ultra-slim profiles, multi-point locking security, and thermal insulation.
+          </p>
+          <div class="hero-buttons-row">
+            <a href="#products" class="btn-hero-primary">Explore Designs</a>
+            <a href="#contact" class="btn-hero-secondary">Get Free Quote</a>
+          </div>
+        </div>
       </div>
+
+      <!-- Slide 3: Contemporary Slide & Fold Villa Patio Doors -->
+      <div class="hero-slide" data-slide-index="2">
+        <div class="hero-slide-img-wrapper">
+          <img src="images/full_header_slide_4.jpg" alt="Slide & Fold Contemporary Villa Patio Doors" loading="lazy">
+        </div>
+        <div class="hero-overlay-gradient"></div>
+        <div class="hero-slide-content">
+          <span class="hero-badge">
+            <i data-lucide="palette" class="w-3.5 h-3.5"></i>
+            Architectural Versatility
+          </span>
+          <h2 class="hero-title">Slide & Fold Villa Solutions</h2>
+          <p class="hero-description">
+            Seamlessly merge indoor luxury with outdoor gardens using multi-panel slide and fold systems custom-fabricated to exact architectural dimensions.
+          </p>
+          <div class="hero-buttons-row">
+            <a href="#products" class="btn-hero-primary">View Products</a>
+            <a href="#contact" class="btn-hero-secondary">Contact Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Modern Building Facade Architecture -->
+      <div class="hero-slide" data-slide-index="3">
+        <div class="hero-slide-img-wrapper">
+          <img src="images/full_header_slide_1.jpg" alt="Modern Building Facade and Balcony Architecture" loading="lazy">
+        </div>
+        <div class="hero-overlay-gradient"></div>
+        <div class="hero-slide-content">
+          <span class="hero-badge">
+            <i data-lucide="factory" class="w-3.5 h-3.5"></i>
+            Mysuru's Direct Manufacturer
+          </span>
+          <h2 class="hero-title">Residential & Commercial Excellence</h2>
+          <p class="hero-description">
+            Fabricated with advanced digital CNC double-head cutting and seamless welding machinery at our Mysuru facility.
+          </p>
+          <div class="hero-buttons-row">
+            <a href="#workshop" class="btn-hero-primary">Our Workshop</a>
+            <a href="#contact" class="btn-hero-secondary">Request Site Visit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outer Slider Controls -->
+    <button id="slider-prev-btn" class="hero-nav-arrow hero-arrow-prev" aria-label="Previous slide">
+      <i data-lucide="chevron-left" class="w-6 h-6"></i>
+    </button>
+    <button id="slider-next-btn" class="hero-nav-arrow hero-arrow-next" aria-label="Next slide">
+      <i data-lucide="chevron-right" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Slide Indicator Dots -->
+    <div id="slider-dots-wrap" class="hero-dots-wrap">
+      <button class="hero-slider-dot active" data-index="0" aria-label="Slide 1"></button>
+      <button class="hero-slider-dot" data-index="1" aria-label="Slide 2"></button>
+      <button class="hero-slider-dot" data-index="2" aria-label="Slide 3"></button>
+      <button class="hero-slider-dot" data-index="3" aria-label="Slide 4"></button>
     </div>
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 5. OUR PRODUCTS SECTION                                                   -->
+  <!-- 5. OUR PRODUCTS SECTION (Exact Client Website Layout)                     -->
   <!-- ========================================================================= -->
   <section id="products" class="products-section">
     <div class="container-custom">
@@ -611,14 +674,14 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 14. CONTACT & MESSAGE US                                                  -->
+  <!-- 14. CONTACT & MESSAGE US (Location & Enquiry)                             -->
   <!-- ========================================================================= -->
   <section id="contact" class="contact-section">
     <div class="container-custom">
       <div class="contact-layout">
         <!-- Left: Contact Details -->
         <div class="contact-info-card">
-          <h3>Contact</h3>
+          <h3>Contact & Location</h3>
           <div class="contact-info-list">
             <div class="contact-info-item">
               <div class="contact-item-icon">
@@ -640,11 +703,20 @@
 
             <div class="contact-info-item">
               <div class="contact-item-icon">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div class="contact-item-text">
+                <a href="tel:+919880309808">+91 98803 09808</a>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-item-icon">
                 <i data-lucide="map-pin" class="w-5 h-5"></i>
               </div>
               <div class="contact-item-text">
                 <address style="font-style: normal; line-height: 1.5;">
-                  Shed No.2, M.G. Road, Muneshwara Nagar, Udayagiri, Myuru- 570019
+                  Shed No.2, M.G. Road, Muneshwara Nagar, Udayagiri, Mysuru - 570019
                 </address>
               </div>
             </div>
@@ -653,7 +725,7 @@
 
         <!-- Right: Message Us Form -->
         <div class="message-us-card">
-          <h3>Message Us</h3>
+          <h3>Message Us (Enquiry)</h3>
           <form id="message-form" class="message-form" novalidate>
             <div class="form-row">
               <div class="form-group">
@@ -679,7 +751,7 @@
 
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" class="form-textarea" placeholder="How can we help you?"></textarea>
+              <textarea id="message" class="form-textarea" placeholder="Describe your window and door requirements..."></textarea>
             </div>
 
             <button type="submit" class="btn-submit-exact">
@@ -703,11 +775,11 @@
         <div class="footer-col">
           <h4 class="footer-col-title">Quick Links</h4>
           <ul class="footer-links-list">
-            <li><a href="#hero-carousel">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#products">Our Products</a></li>
             <li><a href="#workshop">Workshop Facilities</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">Location & Enquiry</a></li>
           </ul>
         </div>
 

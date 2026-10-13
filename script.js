@@ -1,6 +1,6 @@
 /**
  * SKAY INDUSTRIES - Modern uPVC Doors & Windows
- * Interactive Functionality: Product Carousel, Search Modal, Nav Drawer, FAQ Accordion, Message Form
+ * Interactive Architecture: Full-Header Slider, Active Navigation, Search Modal, Drawer, FAQs, Form
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,125 +10,113 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 2. HERO PRODUCT CAROUSEL
+  // 2. FULL-HEADER HERO SLIDER (Settled, Centered, Smooth Fades)
   // =========================================================================
-  const carouselTrack = document.getElementById('carousel-track');
-  const carouselSlides = carouselTrack ? Array.from(carouselTrack.children) : [];
-  const prevBtn = document.getElementById('carousel-prev-btn');
-  const nextBtn = document.getElementById('carousel-next-btn');
-  const dotsContainer = document.getElementById('carousel-dots-container');
+  const slides = document.querySelectorAll('.hero-slide');
+  const prevBtn = document.getElementById('slider-prev-btn');
+  const nextBtn = document.getElementById('slider-next-btn');
+  const dots = document.querySelectorAll('.hero-slider-dot');
 
-  let currentIndex = 0;
-  let autoPlayTimer = null;
+  let currentSlide = 0;
+  let autoSlideTimer = null;
+  const slideInterval = 4500; // 4.5 seconds
 
-  function getVisibleSlidesCount() {
-    const width = window.innerWidth;
-    if (width >= 1024) return 3;
-    if (width >= 640) return 2;
-    return 1;
+  function showSlide(index) {
+    if (slides.length === 0) return;
+
+    if (index >= slides.length) {
+      currentSlide = 0;
+    } else if (index < 0) {
+      currentSlide = slides.length - 1;
+    } else {
+      currentSlide = index;
+    }
+
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle('active', idx === currentSlide);
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentSlide);
+    });
   }
 
-  function getMaxIndex() {
-    const visibleCount = getVisibleSlidesCount();
-    return Math.max(0, carouselSlides.length - visibleCount);
+  function startAutoplay() {
+    stopAutoplay();
+    autoSlideTimer = setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, slideInterval);
   }
 
-  function renderDots() {
-    if (!dotsContainer) return;
-    dotsContainer.innerHTML = '';
-    const maxIndex = getMaxIndex();
+  function stopAutoplay() {
+    if (autoSlideTimer) {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
+    }
+  }
 
-    for (let i = 0; i <= maxIndex; i++) {
-      const dot = document.createElement('button');
-      dot.className = `carousel-dot ${i === currentIndex ? 'active' : ''}`;
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+  function restartAutoplay() {
+    stopAutoplay();
+    startAutoplay();
+  }
+
+  if (slides.length > 0) {
+    prevBtn?.addEventListener('click', () => {
+      showSlide(currentSlide - 1);
+      restartAutoplay();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      showSlide(currentSlide + 1);
+      restartAutoplay();
+    });
+
+    dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
-        goToSlide(i);
+        showSlide(idx);
         restartAutoplay();
       });
-      dotsContainer.appendChild(dot);
-    }
-  }
-
-  function updateCarousel() {
-    if (!carouselTrack || carouselSlides.length === 0) return;
-    const maxIndex = getMaxIndex();
-    if (currentIndex > maxIndex) currentIndex = maxIndex;
-
-    const visibleCount = getVisibleSlidesCount();
-    const slidePercent = 100 / visibleCount;
-    carouselTrack.style.transform = `translateX(-${currentIndex * slidePercent}%)`;
-
-    // Update dots
-    if (dotsContainer) {
-      const dots = dotsContainer.querySelectorAll('.carousel-dot');
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentIndex);
-      });
-    }
-  }
-
-  function goToSlide(index) {
-    const maxIndex = getMaxIndex();
-    if (index < 0) {
-      currentIndex = maxIndex;
-    } else if (index > maxIndex) {
-      currentIndex = 0;
-    } else {
-      currentIndex = index;
-    }
-    updateCarousel();
-  }
-
-  if (prevBtn && nextBtn && carouselTrack) {
-    prevBtn.addEventListener('click', () => {
-      goToSlide(currentIndex - 1);
-      restartAutoplay();
     });
 
-    nextBtn.addEventListener('click', () => {
-      goToSlide(currentIndex + 1);
-      restartAutoplay();
-    });
-
-    renderDots();
-    updateCarousel();
-
-    window.addEventListener('resize', () => {
-      renderDots();
-      updateCarousel();
-    });
-
-    // Autoplay
-    function startAutoplay() {
-      stopAutoplay();
-      autoPlayTimer = setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, 3500);
-    }
-
-    function stopAutoplay() {
-      if (autoPlayTimer) {
-        clearInterval(autoPlayTimer);
-        autoPlayTimer = null;
-      }
-    }
-
-    function restartAutoplay() {
-      stopAutoplay();
-      startAutoplay();
-    }
-
-    carouselTrack.addEventListener('mouseenter', stopAutoplay);
-    carouselTrack.addEventListener('mouseleave', startAutoplay);
-    carouselTrack.addEventListener('touchstart', stopAutoplay, { passive: true });
-    carouselTrack.addEventListener('touchend', startAutoplay, { passive: true });
+    const heroSection = document.getElementById('home');
+    heroSection?.addEventListener('mouseenter', stopAutoplay);
+    heroSection?.addEventListener('mouseleave', startAutoplay);
+    heroSection?.addEventListener('touchstart', stopAutoplay, { passive: true });
+    heroSection?.addEventListener('touchend', startAutoplay, { passive: true });
 
     startAutoplay();
   }
 
   // =========================================================================
-  // 3. SEARCH MODAL FUNCTIONALITY
+  // 3. ACTIVE NAV HIGHLIGHTING ON SCROLL
+  // =========================================================================
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.header-nav .nav-link-item');
+
+  function updateActiveNavLink() {
+    const scrollPos = window.scrollY + 140;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNavLink);
+
+  // =========================================================================
+  // 4. SEARCH MODAL OVERLAY
   // =========================================================================
   const searchToggleBtn = document.getElementById('search-toggle-btn');
   const searchModal = document.getElementById('search-modal');
@@ -136,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('site-search-input');
   const searchResultsList = document.getElementById('search-results-list');
 
-  // Search items database
   const searchDatabase = [
     { title: 'Sliding Windows & Doors', category: 'Products', anchor: '#products' },
     { title: 'Casement Windows & Doors', category: 'Products', anchor: '#products' },
@@ -154,12 +141,12 @@ document.addEventListener('DOMContentLoaded', () => {
     { title: '62, 80, 90, 99, 112 Series Sliding System', category: 'Profile Series', anchor: '#profiles' },
     { title: 'Monorail Sliding System', category: 'Profile Series', anchor: '#profiles' },
     { title: 'About SKAY Industries & Commitment', category: 'About', anchor: '#about' },
-    { title: 'Workshop Machinery & Fabrication', category: 'Workshop', anchor: '#workshop' },
-    { title: 'Why Choose uPVC Benefits', category: 'Features', anchor: '#why-upvc' },
-    { title: 'Customer Reviews & Ratings (4.8 / 5)', category: 'Reviews', anchor: '#reviews' },
-    { title: 'Customization & Installation FAQs', category: 'FAQs', anchor: '#faq' },
-    { title: 'Call 24/7 & Contact Info', category: 'Contact', anchor: '#contact' },
-    { title: 'Send Message / Enquire Now', category: 'Contact', anchor: '#contact' }
+    { title: 'Workshop Machinery & Facilities', category: 'Workshop', anchor: '#workshop' },
+    { title: 'Why Choose uPVC Benefits', category: 'Why uPVC', anchor: '#why-upvc' },
+    { title: 'Customer Reviews (4.8 / 5)', category: 'Reviews', anchor: '#reviews' },
+    { title: 'Frequently Asked Questions (FAQs)', category: 'FAQs', anchor: '#faq' },
+    { title: 'Location: Shed No.2, M.G. Road, Mysuru', category: 'Location', anchor: '#contact' },
+    { title: 'Enquiry Form & Call 24/7', category: 'Enquiry', anchor: '#contact' }
   ];
 
   function openSearch() {
@@ -190,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       : searchDatabase.slice(0, 6);
 
     if (filtered.length === 0) {
-      searchResultsList.innerHTML = `<p style="padding: 1rem; color: #64748b; font-size: 0.95rem; text-align: center;">No matches found for "${query}". Please call us at +91 98803 09808.</p>`;
+      searchResultsList.innerHTML = `<p style="padding: 1rem; color: #64748b; font-size: 0.95rem; text-align: center;">No matches found for "${query}". Call us directly at +91 98803 09808.</p>`;
       return;
     }
 
@@ -202,9 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <span>${item.title}</span>
         <span style="font-size: 0.8rem; opacity: 0.7; text-transform: uppercase;">${item.category}</span>
       `;
-      a.addEventListener('click', () => {
-        closeSearch();
-      });
+      a.addEventListener('click', closeSearch);
       searchResultsList.appendChild(a);
     });
   }
@@ -219,16 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSearchResults(e.target.value);
   });
 
-  // ESC key to close search or drawer
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeSearch();
-      closeDrawer();
-    }
-  });
-
   // =========================================================================
-  // 4. NAVIGATION DRAWER
+  // 5. SLIDE-OUT NAVIGATION DRAWER
   // =========================================================================
   const navToggleBtn = document.getElementById('nav-toggle-btn');
   const navDrawer = document.getElementById('nav-drawer');
@@ -255,8 +232,16 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', closeDrawer);
   });
 
+  // ESC key listener
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSearch();
+      closeDrawer();
+    }
+  });
+
   // =========================================================================
-  // 5. FAQ ACCORDIONS
+  // 6. FAQ ACCORDIONS
   // =========================================================================
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
@@ -264,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
     header?.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
 
-      // Close all others
       faqItems.forEach(other => {
         if (other !== item) {
           other.classList.remove('active');
@@ -272,14 +256,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Toggle current
       item.classList.toggle('active', !isActive);
       header.setAttribute('aria-expanded', !isActive ? 'true' : 'false');
     });
   });
 
   // =========================================================================
-  // 6. MESSAGE US FORM HANDLING
+  // 7. MESSAGE US / ENQUIRY FORM HANDLING
   // =========================================================================
   const messageForm = document.getElementById('message-form');
   const formStatus = document.getElementById('form-status');
@@ -306,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Submit feedback
       const submitBtn = messageForm.querySelector('.btn-submit-exact');
       const originalText = submitBtn ? submitBtn.textContent : 'SUBMIT';
       if (submitBtn) {
@@ -323,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (formStatus) {
           formStatus.style.display = 'block';
           formStatus.className = 'form-status-msg success';
-          formStatus.textContent = `Thank you, ${firstName}! Your message has been received. Our team will contact you shortly at ${phone || email || '+91 98803 09808'}.`;
+          formStatus.textContent = `Thank you, ${firstName}! Your enquiry has been received. Our team will contact you shortly at ${phone || email || '+91 98803 09808'}.`;
         }
 
         messageForm.reset();
