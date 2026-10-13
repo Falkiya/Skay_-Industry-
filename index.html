@@ -185,6 +185,84 @@
   </section>
 
   <!-- ========================================================================= -->
+  <!-- 4.5 MINI PRODUCT SHOWCASE CAROUSEL (Exact Reference Row Between Hero & Products) -->
+  <!-- ========================================================================= -->
+  <section class="mini-showcase-section" aria-label="Product Showcase Highlights">
+    <div class="mini-showcase-container">
+      <div class="mini-showcase-viewport">
+        <div class="mini-showcase-track" id="mini-showcase-track">
+          <!-- 1. DOUBLE HUNG -->
+          <a href="#products" class="mini-showcase-item">
+            <div class="mini-showcase-img">
+              <img src="images/ui/prod_double_hung.jpg" alt="Double Hung uPVC Window">
+            </div>
+            <span class="mini-showcase-label">DOUBLE HUNG</span>
+          </a>
+
+          <!-- 2. L-WINDOW -->
+          <a href="#products" class="mini-showcase-item">
+            <div class="mini-showcase-img">
+              <img src="images/ui/prod_l_window.jpg" alt="L-Window uPVC Window">
+            </div>
+            <span class="mini-showcase-label">L-WINDOW</span>
+          </a>
+
+          <!-- 3. FIXED -->
+          <a href="#products" class="mini-showcase-item">
+            <div class="mini-showcase-img">
+              <img src="images/ui/prod_fixed.jpg" alt="Fixed uPVC Window">
+            </div>
+            <span class="mini-showcase-label">FIXED</span>
+          </a>
+
+          <!-- 4. SLIDE -->
+          <a href="#products" class="mini-showcase-item">
+            <div class="mini-showcase-img">
+              <img src="images/ui/prod_sliding.jpg" alt="Slide uPVC Window">
+            </div>
+            <span class="mini-showcase-label">SLIDE</span>
+          </a>
+
+          <!-- 5. CASEMENT -->
+          <a href="#products" class="mini-showcase-item">
+            <div class="mini-showcase-img">
+              <img src="images/ui/prod_casement.jpg" alt="Casement uPVC Window">
+            </div>
+            <span class="mini-showcase-label">CASEMENT</span>
+          </a>
+
+          <!-- 6. TILT & TURN -->
+          <a href="#products" class="mini-showcase-item">
+            <div class="mini-showcase-img">
+              <img src="images/ui/prod_tilt_turn.jpg" alt="Tilt & Turn uPVC Window">
+            </div>
+            <span class="mini-showcase-label">TILT & TURN</span>
+          </a>
+
+          <!-- 7. SLIDE & FOLD -->
+          <a href="#products" class="mini-showcase-item">
+            <div class="mini-showcase-img">
+              <img src="images/ui/prod_slide_fold.jpg" alt="Slide & Fold uPVC Window">
+            </div>
+            <span class="mini-showcase-label">SLIDE & FOLD</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 7 Indicator Dots -->
+      <div class="mini-showcase-dots" id="mini-showcase-dots">
+        <button class="mini-dot active" data-index="0" aria-label="Product 1"></button>
+        <button class="mini-dot" data-index="1" aria-label="Product 2"></button>
+        <button class="mini-dot" data-index="2" aria-label="Product 3"></button>
+        <button class="mini-dot" data-index="3" aria-label="Product 4"></button>
+        <button class="mini-dot" data-index="4" aria-label="Product 5"></button>
+        <button class="mini-dot" data-index="5" aria-label="Product 6"></button>
+        <button class="mini-dot" data-index="6" aria-label="Product 7"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
   <!-- 5. OUR PRODUCTS SECTION (Exact Client Website Layout)                     -->
   <!-- ========================================================================= -->
   <section id="products" class="products-section">
@@ -192,7 +270,15 @@
       <h2 class="section-title">Our Products</h2>
 
       <div class="products-grid">
-        <!-- 1. Sliding -->
+        <!-- 1. Casement -->
+        <article class="product-card">
+          <div class="product-card-img">
+            <img src="images/ui/prod_casement.jpg" alt="Casement uPVC Window" loading="lazy">
+          </div>
+          <h3 class="product-card-title">Casement</h3>
+        </article>
+
+        <!-- 2. Sliding -->
         <article class="product-card">
           <div class="product-card-img">
             <img src="images/ui/prod_sliding.jpg" alt="Sliding uPVC Window" loading="lazy">
@@ -200,7 +286,7 @@
           <h3 class="product-card-title">Sliding</h3>
         </article>
 
-        <!-- 2. Fixed -->
+        <!-- 3. Fixed -->
         <article class="product-card">
           <div class="product-card-img">
             <img src="images/ui/prod_fixed.jpg" alt="Fixed uPVC Window" loading="lazy">
@@ -208,7 +294,7 @@
           <h3 class="product-card-title">Fixed</h3>
         </article>
 
-        <!-- 3. Slide & Fold -->
+        <!-- 4. Slide & Fold -->
         <article class="product-card">
           <div class="product-card-img">
             <img src="images/ui/prod_slide_fold.jpg" alt="Slide & Fold uPVC Window" loading="lazy">
@@ -216,7 +302,7 @@
           <h3 class="product-card-title">Slide & Fold</h3>
         </article>
 
-        <!-- 4. Tilt & Turn -->
+        <!-- 5. Tilt & Turn -->
         <article class="product-card">
           <div class="product-card-img">
             <img src="images/ui/prod_tilt_turn.jpg" alt="Tilt & Turn uPVC Window" loading="lazy">
@@ -224,7 +310,7 @@
           <h3 class="product-card-title">Tilt & Turn</h3>
         </article>
 
-        <!-- 5. Combination -->
+        <!-- 6. Combination -->
         <article class="product-card">
           <div class="product-card-img">
             <img src="images/ui/prod_combination.jpg" alt="Combination uPVC Window" loading="lazy">
@@ -232,7 +318,7 @@
           <h3 class="product-card-title">Combination</h3>
         </article>
 
-        <!-- 6. Single Hunge -->
+        <!-- 7. Single Hunge -->
         <article class="product-card">
           <div class="product-card-img">
             <img src="images/ui/prod_single_hung.jpg" alt="Single Hunge uPVC Window" loading="lazy">
@@ -240,7 +326,7 @@
           <h3 class="product-card-title">Single Hunge</h3>
         </article>
 
-        <!-- 7. Double Hunge -->
+        <!-- 8. Double Hunge -->
         <article class="product-card">
           <div class="product-card-img">
             <img src="images/ui/prod_double_hung.jpg" alt="Double Hunge uPVC Window" loading="lazy">
@@ -248,20 +334,12 @@
           <h3 class="product-card-title">Double Hunge</h3>
         </article>
 
-        <!-- 8. L-Window -->
+        <!-- 9. L-Window -->
         <article class="product-card">
           <div class="product-card-img">
             <img src="images/ui/prod_l_window.jpg" alt="L-Window uPVC Window" loading="lazy">
           </div>
           <h3 class="product-card-title">L-Window</h3>
-        </article>
-
-        <!-- 9. Casement -->
-        <article class="product-card">
-          <div class="product-card-img">
-            <img src="images/ui/prod_casement.jpg" alt="Casement uPVC Window" loading="lazy">
-          </div>
-          <h3 class="product-card-title">Casement</h3>
         </article>
       </div>
     </div>

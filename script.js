@@ -371,4 +371,42 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 700);
     });
   }
+
+  // =========================================================================
+  // 8. MINI PRODUCT SHOWCASE CAROUSEL (Between Hero & Products)
+  // =========================================================================
+  const miniTrack = document.getElementById('mini-showcase-track');
+  const miniDots = document.querySelectorAll('.mini-dot');
+  let currentMiniIndex = 0;
+
+  function updateMiniCarousel(index) {
+    if (!miniTrack || miniDots.length === 0) return;
+    const totalDots = miniDots.length;
+    currentMiniIndex = (index + totalDots) % totalDots;
+
+    const items = miniTrack.querySelectorAll('.mini-showcase-item');
+    if (items.length > 0) {
+      const itemWidth = items[0].offsetWidth + 24;
+      const maxShift = miniTrack.scrollWidth - (miniTrack.parentElement ? miniTrack.parentElement.clientWidth : 0);
+      const targetShift = Math.min(currentMiniIndex * itemWidth, Math.max(0, maxShift));
+      miniTrack.style.transform = `translateX(-${targetShift}px)`;
+    }
+
+    miniDots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentMiniIndex);
+    });
+  }
+
+  miniDots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      updateMiniCarousel(idx);
+    });
+  });
+
+  // Auto rotate every 4.5 seconds
+  if (miniDots.length > 0) {
+    setInterval(() => {
+      updateMiniCarousel(currentMiniIndex + 1);
+    }, 4500);
+  }
 });
