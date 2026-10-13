@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 2. FULL-HEADER HERO SLIDER (Settled, Centered, Smooth Fades)
+  // 2. FULL-HEADER HERO SLIDER (Exact Smooth 2-Slide System)
   // =========================================================================
-  const slides = document.querySelectorAll('.hero-slide');
+  const slides = document.querySelectorAll('.exact-slide, .hero-slide');
   const prevBtn = document.getElementById('slider-prev-btn');
   const nextBtn = document.getElementById('slider-next-btn');
-  const dots = document.querySelectorAll('.hero-slider-dot');
+  const dots = document.querySelectorAll('.exact-dot, .hero-slider-dot');
 
   let currentSlide = 0;
   let autoSlideTimer = null;
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. ACTIVE NAV HIGHLIGHTING ON SCROLL
   // =========================================================================
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.header-nav .nav-link-item');
+  const navLinks = document.querySelectorAll('.exact-nav-link, .header-nav .nav-link-item');
 
   function updateActiveNavLink() {
     const scrollPos = window.scrollY + 140;
@@ -203,6 +203,61 @@ document.addEventListener('DOMContentLoaded', () => {
   searchInput?.addEventListener('input', (e) => {
     renderSearchResults(e.target.value);
   });
+
+  // Header Inline Search Box Handler
+  const exactSearchInput = document.getElementById('exact-search-input');
+  const exactSearchBtn = document.getElementById('exact-search-btn');
+  const exactSearchDropdown = document.getElementById('exact-search-dropdown');
+
+  if (exactSearchInput && exactSearchDropdown) {
+    exactSearchInput.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q) {
+        exactSearchDropdown.innerHTML = '';
+        exactSearchDropdown.classList.remove('active');
+        return;
+      }
+      const matches = searchDatabase.filter(item =>
+        item.title.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
+      ).slice(0, 5);
+
+      if (matches.length === 0) {
+        exactSearchDropdown.innerHTML = `<div style="padding: 0.75rem; color: #64748b; font-size: 0.8rem; text-align: center;">No matches found.</div>`;
+      } else {
+        exactSearchDropdown.innerHTML = matches.map(item => `
+          <a href="${item.anchor}" class="exact-search-dropdown-item">
+            <span class="exact-search-dropdown-title">${item.title}</span>
+            <span class="exact-search-dropdown-cat">${item.category}</span>
+          </a>
+        `).join('');
+      }
+      exactSearchDropdown.classList.add('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!exactSearchInput.contains(e.target) && !exactSearchDropdown.contains(e.target)) {
+        exactSearchDropdown.classList.remove('active');
+      }
+    });
+
+    const triggerFullSearch = () => {
+      const q = exactSearchInput.value.trim();
+      if (q) {
+        openSearch();
+        if (searchInput) {
+          searchInput.value = q;
+          renderSearchResults(q);
+        }
+      }
+    };
+
+    exactSearchBtn?.addEventListener('click', triggerFullSearch);
+    exactSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        triggerFullSearch();
+      }
+    });
+  }
 
   // =========================================================================
   // 5. SLIDE-OUT NAVIGATION DRAWER
