@@ -708,25 +708,241 @@ header.exact-site-header {
 /* ========================================================================= */
 /* 6. COLOURS & TECHNICAL SPECIFICATION SECTION (Exact Reference Rebuild)    */
 /* ========================================================================= */
+/* 6. A SPECTRUM OF COLOUR OPTIONS & TECHNICAL SPECIFICATION SECTION         */
+/* ========================================================================= */
 .colours-section {
-  padding: 3.5rem 0 4rem;
+  padding: 3.5rem 0 4.5rem;
   background-color: #ffffff;
 }
 
-.colours-showcase-container {
-  max-width: 890px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.colours-spectrum-title {
+  color: #0170b8;
+  font-size: 1.85rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.75rem;
+  letter-spacing: -0.01em;
 }
 
-.colours-showcase-img {
+.colours-spectrum-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.colours-layout-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.colours-options-column {
+  flex: 1 1 58%;
+}
+
+.colours-swatches-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.swatches-group-title {
+  font-family: 'Outfit', 'Georgia', serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: #5c1e14;
+  margin-bottom: 1.15rem;
+  text-align: center;
+}
+
+.solid-colours-group {
+  flex: 0 0 110px;
+}
+
+.swatches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.laminates-group {
+  flex: 1 1 auto;
+}
+
+.laminates-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1.85rem;
+  row-gap: 1.35rem;
+}
+
+.swatch-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.swatch-item:hover {
+  transform: translateY(-3px);
+}
+
+.swatch-box {
   width: 100%;
-  max-width: 860px;
+  max-width: 110px;
+  height: 42px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.22s ease;
+  background-color: #f8fafc;
+}
+
+.swatch-item:hover .swatch-box {
+  box-shadow: 0 4px 12px rgba(1, 112, 184, 0.18), inset 0 0 0 1px #0170b8;
+}
+
+.swatch-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.swatch-name {
+  margin-top: 0.45rem;
+  font-family: 'Outfit', 'Georgia', serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #5c1e14;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* 4 Circular Teal Badges */
+.colours-badges-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.35rem;
+  margin-top: 2.25rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.colour-badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.22s ease;
+}
+
+.colour-badge-item:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.colour-badge-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 5px rgba(14, 116, 144, 0.15));
+}
+
+.colour-badge-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.colour-badge-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #0e7490;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+/* Right Column: 3D Window Frame Showcase */
+.colours-frame-column {
+  flex: 0 0 380px;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frame-showcase-card {
+  width: 100%;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.frame-showcase-card:hover {
+  transform: scale(1.025);
+}
+
+.frame-showcase-img {
+  width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.09));
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .colours-layout-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  .colours-options-column {
+    width: 100%;
+  }
+  .colours-badges-row {
+    justify-content: center;
+  }
+  .colours-frame-column {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 520px) {
+  .colours-swatches-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+  }
+  .solid-colours-group {
+    width: 100%;
+  }
+  .solid-colours-group .swatches-list {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .laminates-grid {
+    column-gap: 1.25rem;
+    row-gap: 1.15rem;
+  }
+  .colours-badges-row {
+    gap: 0.85rem;
+  }
+  .colour-badge-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .colour-badge-text {
+    font-size: 0.65rem;
+  }
 }
 
 /* Technical Specification: Window Cross Section */
