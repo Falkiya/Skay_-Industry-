@@ -1,6 +1,6 @@
 /**
  * SKAY INDUSTRIES - Modern uPVC Doors & Windows
- * Interactive Architecture: Full-Header Slider, Active Navigation, Search Modal, Drawer, FAQs, Form
+ * Interactive Architecture: Hero Slider, Mini Showcase, 17-Photo Workshop Gallery, Active Nav, Search, FAQs, Form
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,88 +10,203 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 2. FULL-HEADER HERO SLIDER (Exact Smooth 2-Slide System)
+  // 2. HERO BANNER SLIDER (2 Smooth Fade Slides)
   // =========================================================================
-  const slides = document.querySelectorAll('.exact-slide, .hero-slide');
-  const prevBtn = document.getElementById('slider-prev-btn');
-  const nextBtn = document.getElementById('slider-next-btn');
-  const dots = document.querySelectorAll('.exact-dot, .hero-slider-dot');
+  const heroSlides = document.querySelectorAll('.exact-slide');
+  const heroPrevBtn = document.getElementById('slider-prev-btn');
+  const heroNextBtn = document.getElementById('slider-next-btn');
+  const heroDots = document.querySelectorAll('.exact-dot');
 
-  let currentSlide = 0;
-  let autoSlideTimer = null;
-  const slideInterval = 4500; // 4.5 seconds
+  let currentHeroSlide = 0;
+  let heroAutoTimer = null;
+  const heroInterval = 5000; // 5 seconds matching live site
 
-  function showSlide(index) {
-    if (slides.length === 0) return;
-
-    if (index >= slides.length) {
-      currentSlide = 0;
+  function showHeroSlide(index) {
+    if (heroSlides.length === 0) return;
+    if (index >= heroSlides.length) {
+      currentHeroSlide = 0;
     } else if (index < 0) {
-      currentSlide = slides.length - 1;
+      currentHeroSlide = heroSlides.length - 1;
     } else {
-      currentSlide = index;
+      currentHeroSlide = index;
     }
 
-    slides.forEach((slide, idx) => {
-      slide.classList.toggle('active', idx === currentSlide);
+    heroSlides.forEach((slide, idx) => {
+      slide.classList.toggle('active', idx === currentHeroSlide);
     });
 
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === currentSlide);
+    heroDots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentHeroSlide);
     });
   }
 
-  function startAutoplay() {
-    stopAutoplay();
-    autoSlideTimer = setInterval(() => {
-      showSlide(currentSlide + 1);
-    }, slideInterval);
+  function startHeroAutoplay() {
+    stopHeroAutoplay();
+    heroAutoTimer = setInterval(() => {
+      showHeroSlide(currentHeroSlide + 1);
+    }, heroInterval);
   }
 
-  function stopAutoplay() {
-    if (autoSlideTimer) {
-      clearInterval(autoSlideTimer);
-      autoSlideTimer = null;
+  function stopHeroAutoplay() {
+    if (heroAutoTimer) {
+      clearInterval(heroAutoTimer);
+      heroAutoTimer = null;
     }
   }
 
-  function restartAutoplay() {
-    stopAutoplay();
-    startAutoplay();
+  function restartHeroAutoplay() {
+    stopHeroAutoplay();
+    startHeroAutoplay();
   }
 
-  if (slides.length > 0) {
-    prevBtn?.addEventListener('click', () => {
-      showSlide(currentSlide - 1);
-      restartAutoplay();
+  if (heroSlides.length > 0) {
+    heroPrevBtn?.addEventListener('click', () => {
+      showHeroSlide(currentHeroSlide - 1);
+      restartHeroAutoplay();
     });
 
-    nextBtn?.addEventListener('click', () => {
-      showSlide(currentSlide + 1);
-      restartAutoplay();
+    heroNextBtn?.addEventListener('click', () => {
+      showHeroSlide(currentHeroSlide + 1);
+      restartHeroAutoplay();
     });
 
-    dots.forEach((dot, idx) => {
+    heroDots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
-        showSlide(idx);
-        restartAutoplay();
+        showHeroSlide(idx);
+        restartHeroAutoplay();
       });
     });
 
     const heroSection = document.getElementById('home');
-    heroSection?.addEventListener('mouseenter', stopAutoplay);
-    heroSection?.addEventListener('mouseleave', startAutoplay);
-    heroSection?.addEventListener('touchstart', stopAutoplay, { passive: true });
-    heroSection?.addEventListener('touchend', startAutoplay, { passive: true });
+    heroSection?.addEventListener('mouseenter', stopHeroAutoplay);
+    heroSection?.addEventListener('mouseleave', startHeroAutoplay);
+    heroSection?.addEventListener('touchstart', stopHeroAutoplay, { passive: true });
+    heroSection?.addEventListener('touchend', startHeroAutoplay, { passive: true });
 
-    startAutoplay();
+    startHeroAutoplay();
   }
 
   // =========================================================================
-  // 3. ACTIVE NAV HIGHLIGHTING ON SCROLL
+  // 3. MINI PRODUCT SHOWCASE CAROUSEL (8 Items)
+  // =========================================================================
+  const miniTrack = document.getElementById('mini-showcase-track');
+  const miniDots = document.querySelectorAll('.mini-dot');
+  let currentMiniIndex = 0;
+
+  function updateMiniCarousel(index) {
+    if (!miniTrack || miniDots.length === 0) return;
+    const totalDots = miniDots.length;
+    currentMiniIndex = (index + totalDots) % totalDots;
+
+    const items = miniTrack.querySelectorAll('.mini-showcase-item');
+    if (items.length > 0) {
+      const itemWidth = items[0].offsetWidth + 24; // width + gap
+      const maxShift = miniTrack.scrollWidth - (miniTrack.parentElement ? miniTrack.parentElement.clientWidth : 0);
+      const targetShift = Math.min(currentMiniIndex * itemWidth, Math.max(0, maxShift));
+      miniTrack.style.transform = `translateX(-${targetShift}px)`;
+    }
+
+    miniDots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentMiniIndex);
+    });
+  }
+
+  miniDots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      updateMiniCarousel(idx);
+    });
+  });
+
+  // Auto rotate mini showcase every 4.5s
+  if (miniDots.length > 0) {
+    setInterval(() => {
+      updateMiniCarousel(currentMiniIndex + 1);
+    }, 4500);
+  }
+
+  // =========================================================================
+  // 4. WORKSHOP 17-PHOTO GALLERY CAROUSEL
+  // =========================================================================
+  const workshopTrack = document.getElementById('workshop-gallery-track');
+  const workshopPrevBtn = document.getElementById('workshop-prev-btn');
+  const workshopNextBtn = document.getElementById('workshop-next-btn');
+  const workshopDotsContainer = document.getElementById('workshop-dots');
+  const workshopSlides = document.querySelectorAll('.gallery-slide');
+
+  let currentWorkshopIndex = 0;
+  let workshopAutoTimer = null;
+
+  if (workshopSlides.length > 0 && workshopTrack) {
+    // Generate dots dynamically based on number of slides
+    const itemsPerView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+    const totalPages = Math.ceil(workshopSlides.length / itemsPerView);
+
+    if (workshopDotsContainer) {
+      workshopDotsContainer.innerHTML = '';
+      for (let i = 0; i < totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.className = `workshop-dot ${i === 0 ? 'active' : ''}`;
+        btn.setAttribute('aria-label', `Page ${i + 1}`);
+        btn.dataset.index = i;
+        btn.addEventListener('click', () => {
+          goToWorkshopPage(i);
+        });
+        workshopDotsContainer.appendChild(btn);
+      }
+    }
+
+    function updateWorkshopCarousel() {
+      const slide = workshopSlides[0];
+      if (!slide) return;
+      const slideWidth = slide.offsetWidth + 24; // item width + gap
+      const maxShift = workshopTrack.scrollWidth - (workshopTrack.parentElement ? workshopTrack.parentElement.clientWidth : 0);
+      const targetShift = Math.min(currentWorkshopIndex * slideWidth, Math.max(0, maxShift));
+      workshopTrack.style.transform = `translateX(-${targetShift}px)`;
+
+      // Update dots
+      const dots = workshopDotsContainer?.querySelectorAll('.workshop-dot');
+      if (dots && dots.length > 0) {
+        const curPage = Math.min(Math.floor(currentWorkshopIndex / (window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1))), dots.length - 1);
+        dots.forEach((d, i) => d.classList.toggle('active', i === curPage));
+      }
+    }
+
+    function goToWorkshopPage(pageIndex) {
+      const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+      currentWorkshopIndex = Math.min(pageIndex * perView, workshopSlides.length - 1);
+      updateWorkshopCarousel();
+    }
+
+    workshopPrevBtn?.addEventListener('click', () => {
+      currentWorkshopIndex = Math.max(0, currentWorkshopIndex - 1);
+      updateWorkshopCarousel();
+    });
+
+    workshopNextBtn?.addEventListener('click', () => {
+      const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+      const maxIndex = workshopSlides.length - perView;
+      currentWorkshopIndex = currentWorkshopIndex >= maxIndex ? 0 : currentWorkshopIndex + 1;
+      updateWorkshopCarousel();
+    });
+
+    // Auto rotate every 5 seconds
+    workshopAutoTimer = setInterval(() => {
+      const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+      const maxIndex = workshopSlides.length - perView;
+      currentWorkshopIndex = currentWorkshopIndex >= maxIndex ? 0 : currentWorkshopIndex + 1;
+      updateWorkshopCarousel();
+    }, 5000);
+
+    window.addEventListener('resize', () => {
+      updateWorkshopCarousel();
+    });
+  }
+
+  // =========================================================================
+  // 5. ACTIVE NAV HIGHLIGHTING ON SCROLL
   // =========================================================================
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.exact-nav-link, .header-nav .nav-link-item');
+  const navLinks = document.querySelectorAll('.exact-nav-link');
 
   function updateActiveNavLink() {
     const scrollPos = window.scrollY + 140;
@@ -113,40 +228,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  window.addEventListener('scroll', updateActiveNavLink);
+  window.addEventListener('scroll', updateActiveNavLink, { passive: true });
 
   // =========================================================================
-  // 4. SEARCH MODAL OVERLAY
+  // 6. SEARCH MODAL & INLINE SEARCH DROPDOWN
   // =========================================================================
-  const searchToggleBtn = document.getElementById('search-toggle-btn');
   const searchModal = document.getElementById('search-modal');
   const searchCloseBtn = document.getElementById('search-close-btn');
   const searchInput = document.getElementById('site-search-input');
   const searchResultsList = document.getElementById('search-results-list');
 
   const searchDatabase = [
-    { title: 'Sliding Windows & Doors', category: 'Products', anchor: '#products' },
     { title: 'Casement Windows & Doors', category: 'Products', anchor: '#products' },
-    { title: 'Tilt & Turn Windows', category: 'Products', anchor: '#products' },
+    { title: 'Sliding Windows & Doors', category: 'Products', anchor: '#products' },
+    { title: 'Fixed Windows', category: 'Products', anchor: '#products' },
     { title: 'Slide & Fold System', category: 'Products', anchor: '#products' },
-    { title: 'Fixed Glass Windows', category: 'Products', anchor: '#products' },
+    { title: 'Tilt & Turn Windows', category: 'Products', anchor: '#products' },
     { title: 'Combination Windows', category: 'Products', anchor: '#products' },
     { title: 'Single Hunge Windows', category: 'Products', anchor: '#products' },
     { title: 'Double Hunge Windows', category: 'Products', anchor: '#products' },
-    { title: 'L-Window Corner Units', category: 'Products', anchor: '#products' },
-    { title: 'Milk White & Solid Colours', category: 'Colours', anchor: '#colours' },
-    { title: 'Golden Oak & Walnut Woodgrains', category: 'Colours', anchor: '#colours' },
-    { title: 'Dark Oak & Jet Black Finishes', category: 'Colours', anchor: '#colours' },
-    { title: '60 Series Casement System', category: 'Profile Series', anchor: '#profiles' },
-    { title: '62, 80, 90, 99, 112 Series Sliding System', category: 'Profile Series', anchor: '#profiles' },
-    { title: 'Monorail Sliding System', category: 'Profile Series', anchor: '#profiles' },
+    { title: 'L-Window Corner Solutions', category: 'Products', anchor: '#products' },
+    { title: 'A Spectrum of Colour Options', category: 'Colours', anchor: '#colours' },
+    { title: 'Technical Specification (Cross Section)', category: 'Technical', anchor: '#technical-spec' },
     { title: 'About SKAY Industries & Commitment', category: 'About', anchor: '#about' },
-    { title: 'Workshop Machinery & Facilities', category: 'Workshop', anchor: '#workshop' },
-    { title: 'Why Choose uPVC Benefits', category: 'Why uPVC', anchor: '#why-upvc' },
-    { title: 'Customer Reviews (4.8 / 5)', category: 'Reviews', anchor: '#reviews' },
-    { title: 'Frequently Asked Questions (FAQs)', category: 'FAQs', anchor: '#faq' },
-    { title: 'Location: Shed No.2, M.G. Road, Mysuru', category: 'Location', anchor: '#contact' },
-    { title: 'Enquiry Form & Call 24/7', category: 'Enquiry', anchor: '#contact' }
+    { title: 'Applications (Residential, Villas, Offices)', category: 'Applications', anchor: '#about' },
+    { title: 'Workshop Machinery Facilities & Gallery', category: 'Workshop', anchor: '#workshop' },
+    { title: 'Why Choose uPVC (6 Key Advantages)', category: 'Why uPVC', anchor: '#why-upvc' },
+    { title: 'Customer Reviews (4.8 / 5 Rating)', category: 'Reviews', anchor: '#testimonials' },
+    { title: 'Frequently Asked Questions (7 FAQs)', category: 'FAQs', anchor: '#contact' },
+    { title: 'Call Now: +91 98803 09808 (24/7)', category: 'Contact', anchor: '#contact' },
+    { title: 'Location: Shed No.2, M.G. Road, Mysuru', category: 'Contact', anchor: '#contact' }
   ];
 
   function openSearch() {
@@ -194,7 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  searchToggleBtn?.addEventListener('click', openSearch);
   searchCloseBtn?.addEventListener('click', closeSearch);
   searchModal?.addEventListener('click', (e) => {
     if (e.target === searchModal) closeSearch();
@@ -226,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         exactSearchDropdown.innerHTML = matches.map(item => `
           <a href="${item.anchor}" class="exact-search-dropdown-item">
-            <span class="exact-search-dropdown-title">${item.title}</span>
+            <span>${item.title}</span>
             <span class="exact-search-dropdown-cat">${item.category}</span>
           </a>
         `).join('');
@@ -260,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 5. SLIDE-OUT NAVIGATION DRAWER
+  // 7. SLIDE-OUT MOBILE NAVIGATION DRAWER
   // =========================================================================
   const navToggleBtn = document.getElementById('nav-toggle-btn');
   const navDrawer = document.getElementById('nav-drawer');
@@ -296,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // 6. FAQ ACCORDIONS
+  // 8. FAQ ACCORDIONS (Smooth Expand/Collapse)
   // =========================================================================
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
@@ -316,8 +426,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Open first FAQ by default
+  if (faqItems.length > 0) {
+    faqItems[0].classList.add('active');
+    faqItems[0].querySelector('.faq-header')?.setAttribute('aria-expanded', 'true');
+  }
+
   // =========================================================================
-  // 7. MESSAGE US / ENQUIRY FORM HANDLING
+  // 9. MESSAGE US / ENQUIRY FORM SUBMISSION
   // =========================================================================
   const messageForm = document.getElementById('message-form');
   const formStatus = document.getElementById('form-status');
@@ -332,14 +448,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = document.getElementById('phone')?.value.trim();
       const message = document.getElementById('message')?.value.trim();
 
-      if (!firstName || !lastName) {
+      if (!firstName || !lastName || !email) {
         if (formStatus) {
           formStatus.style.display = 'block';
           formStatus.className = 'form-status-msg';
           formStatus.style.backgroundColor = '#fee2e2';
           formStatus.style.color = '#991b1b';
           formStatus.style.border = '1px solid #fecaca';
-          formStatus.textContent = 'Please fill in both First Name and Last Name.';
+          formStatus.textContent = 'Please fill in all required fields (First Name, Last Name, and Email).';
         }
         return;
       }
@@ -370,43 +486,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 8000);
       }, 700);
     });
-  }
-
-  // =========================================================================
-  // 8. MINI PRODUCT SHOWCASE CAROUSEL (Between Hero & Products)
-  // =========================================================================
-  const miniTrack = document.getElementById('mini-showcase-track');
-  const miniDots = document.querySelectorAll('.mini-dot');
-  let currentMiniIndex = 0;
-
-  function updateMiniCarousel(index) {
-    if (!miniTrack || miniDots.length === 0) return;
-    const totalDots = miniDots.length;
-    currentMiniIndex = (index + totalDots) % totalDots;
-
-    const items = miniTrack.querySelectorAll('.mini-showcase-item');
-    if (items.length > 0) {
-      const itemWidth = items[0].offsetWidth + 24;
-      const maxShift = miniTrack.scrollWidth - (miniTrack.parentElement ? miniTrack.parentElement.clientWidth : 0);
-      const targetShift = Math.min(currentMiniIndex * itemWidth, Math.max(0, maxShift));
-      miniTrack.style.transform = `translateX(-${targetShift}px)`;
-    }
-
-    miniDots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === currentMiniIndex);
-    });
-  }
-
-  miniDots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => {
-      updateMiniCarousel(idx);
-    });
-  });
-
-  // Auto rotate every 4.5 seconds
-  if (miniDots.length > 0) {
-    setInterval(() => {
-      updateMiniCarousel(currentMiniIndex + 1);
-    }, 4500);
   }
 });
