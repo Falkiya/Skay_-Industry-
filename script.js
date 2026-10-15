@@ -221,15 +221,15 @@ document.addEventListener('DOMContentLoaded', () => {
       row2Items.push(...row1Items);
     }
 
-    // Ensure at least 6 cards per track before duplicating for seamless marquee on wide screens
+    // Ensure at least 8 cards per track before duplicating for seamless edge-to-edge marquee on wide screens
     let row1List = [...row1Items];
-    while (row1List.length < 6) {
+    while (row1List.length < 8) {
       row1List = [...row1List, ...row1Items];
     }
     const row1Cards = [...row1List, ...row1List].map(it => createCardHTML(it, it.origIdx)).join('');
 
     let row2List = [...row2Items];
-    while (row2List.length < 6) {
+    while (row2List.length < 8) {
       row2List = [...row2List, ...row2Items];
     }
     const row2Cards = [...row2List, ...row2List].map(it => createCardHTML(it, it.origIdx)).join('');
