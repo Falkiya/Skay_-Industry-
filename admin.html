@@ -671,6 +671,18 @@
         </div>
       </div>
 
+      <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.85rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <i data-lucide="sparkles" style="color: #0170B9; width: 20px; height: 20px; flex-shrink: 0;"></i>
+          <span style="font-size: 0.85rem; color: #1e3a8a;">
+            <strong>Instant Live Sync Active:</strong> Photos added or reordered here update the website immediately! To make changes permanent for every visitor across the globe on GitHub/Vercel, download <strong>gallery.json</strong> from the Data Sync tab.
+          </span>
+        </div>
+        <a href="index.html#workshop" target="_blank" class="btn btn-outline btn-sm" style="background: #ffffff; border-color: #93c5fd; color: #0170B9; font-size: 0.78rem;">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Preview Live Gallery
+        </a>
+      </div>
+
       <div class="items-grid" id="workshop-items-grid">
         <!-- Dynamically rendered via JS -->
       </div>
@@ -819,6 +831,86 @@
     let defaultBackupData = null;
     const DEFAULT_PASSCODE = "skay2026";
 
+    // IndexedDB Setup for Unlimited High-Res Storage
+    const DB_NAME = 'SkayGalleryDB';
+    const DB_VERSION = 1;
+    const STORE_NAME = 'gallery_store';
+
+    function getDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME);
+          }
+        };
+        req.onsuccess = (e) => resolve(e.target.result);
+        req.onerror = (e) => reject(e.target.error);
+      });
+    }
+
+    async function saveToDB(data) {
+      try {
+        const db = await getDB();
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        tx.objectStore(STORE_NAME).put(data, 'gallery_data');
+        return new Promise(resolve => tx.oncomplete = resolve);
+      } catch (e) {
+        console.warn('IndexedDB write error:', e);
+      }
+    }
+
+    async function loadFromDB() {
+      try {
+        const db = await getDB();
+        const tx = db.transaction(STORE_NAME, 'readonly');
+        const req = tx.objectStore(STORE_NAME).get('gallery_data');
+        return new Promise((resolve) => {
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => resolve(null);
+        });
+      } catch (e) {
+        return null;
+      }
+    }
+
+    // High Quality Client-Side Image Compressor (Ensures images save instantly without hitting quotas)
+    function compressImageFile(file, maxDimension = 1200, quality = 0.82) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxDimension || height > maxDimension) {
+              if (width > height) {
+                height = Math.round((height * maxDimension) / width);
+                width = maxDimension;
+              } else {
+                width = Math.round((width * maxDimension) / height);
+                height = maxDimension;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            const compressed = canvas.toDataURL('image/jpeg', quality);
+            resolve(compressed);
+          };
+          img.onerror = reject;
+          img.src = event.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       checkAuth();
       loadInitialData();
@@ -855,24 +947,34 @@
     }
 
     // 2. Data Loading & Persistence
-    function loadInitialData() {
-      // 1. Check localStorage first
+    async function loadInitialData() {
+      // 1. Check IndexedDB first
+      const dbData = await loadFromDB();
+      if (dbData && dbData.workshop && dbData.workshop.length > 0) {
+        galleryData = dbData;
+        renderAll();
+        return;
+      }
+
+      // 2. Check localStorage
       const saved = localStorage.getItem('skay_gallery_data');
       if (saved) {
         try {
           galleryData = JSON.parse(saved);
           renderAll();
+          saveToDB(galleryData);
+          return;
         } catch(e) {
           console.error('Failed to parse saved gallery data', e);
         }
       }
 
-      // 2. Fetch gallery.json to get defaults and populate if localStorage was empty
+      // 3. Fallback to gallery.json
       fetch('gallery.json')
         .then(res => res.json())
         .then(data => {
           defaultBackupData = JSON.parse(JSON.stringify(data));
-          if (!saved) {
+          if (!galleryData.workshop || galleryData.workshop.length === 0) {
             galleryData = data;
             saveToLocalStorage();
             renderAll();
@@ -885,8 +987,19 @@
     }
 
     function saveToLocalStorage() {
-      localStorage.setItem('skay_gallery_data', JSON.stringify(galleryData));
-      updateJSONPreview();
+      try {
+        const jsonStr = JSON.stringify(galleryData);
+        localStorage.setItem('skay_gallery_data', jsonStr);
+        localStorage.setItem('skay_gallery_last_updated', Date.now().toString());
+        saveToDB(galleryData);
+        updateJSONPreview();
+        return true;
+      } catch (err) {
+        console.warn('LocalStorage limit reached, fallback saving to IndexedDB:', err);
+        saveToDB(galleryData);
+        updateJSONPreview();
+        return true;
+      }
     }
 
     function publishLiveChanges() {
@@ -1018,16 +1131,28 @@
       }
     }
 
-    function handleWorkshopFileUpload(e) {
+    async function handleWorkshopFileUpload(e) {
       const file = e.target.files?.[0];
       if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const base64 = event.target?.result;
-        document.getElementById('ws-url-input').value = base64;
-        updateWorkshopImgPreview(base64);
-      };
-      reader.readAsDataURL(file);
+      const previewWrap = document.getElementById('ws-img-preview-wrap');
+      if (previewWrap) {
+        previewWrap.innerHTML = `<span style="font-size: 0.82rem; color: var(--primary); font-weight: 600;">Optimizing & compressing image...</span>`;
+      }
+      try {
+        const compressedBase64 = await compressImageFile(file, 1200, 0.82);
+        document.getElementById('ws-url-input').value = compressedBase64;
+        updateWorkshopImgPreview(compressedBase64);
+        showToast('Image optimized & ready to save!', 'info');
+      } catch (err) {
+        console.error('Compression fallback:', err);
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const base64 = event.target?.result;
+          document.getElementById('ws-url-input').value = base64;
+          updateWorkshopImgPreview(base64);
+        };
+        reader.readAsDataURL(file);
+      }
     }
 
     function saveWorkshopPhoto(e) {
@@ -1176,16 +1301,27 @@
       }
     }
 
-    function handleProductFileUpload(e) {
+    async function handleProductFileUpload(e) {
       const file = e.target.files?.[0];
       if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const base64 = event.target?.result;
-        document.getElementById('prod-url-input').value = base64;
-        updateProductImgPreview(base64);
-      };
-      reader.readAsDataURL(file);
+      const wrap = document.getElementById('prod-img-preview-wrap');
+      if (wrap) {
+        wrap.innerHTML = `<span style="font-size: 0.82rem; color: var(--primary); font-weight: 600;">Optimizing product image...</span>`;
+      }
+      try {
+        const compressedBase64 = await compressImageFile(file, 800, 0.85);
+        document.getElementById('prod-url-input').value = compressedBase64;
+        updateProductImgPreview(compressedBase64);
+        showToast('Product image optimized & ready to save!', 'info');
+      } catch (err) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const base64 = event.target?.result;
+          document.getElementById('prod-url-input').value = base64;
+          updateProductImgPreview(base64);
+        };
+        reader.readAsDataURL(file);
+      }
     }
 
     function saveProduct(e) {

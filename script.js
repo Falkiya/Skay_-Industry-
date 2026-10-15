@@ -125,107 +125,190 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 4. WORKSHOP GALLERY CAROUSEL & DYNAMIC DATA SYNC
+  // 4. DUAL-COLUMN MOVING GALLERY (OPPOSITE MOTION) & LIGHTBOX & DYNAMIC SYNC
   // =========================================================================
-  const workshopTrack = document.getElementById('workshop-gallery-track');
-  const workshopPrevBtn = document.getElementById('workshop-prev-btn');
-  const workshopNextBtn = document.getElementById('workshop-next-btn');
-  const workshopDotsContainer = document.getElementById('workshop-dots');
+  const DB_NAME = 'SkayGalleryDB';
+  const DB_VERSION = 1;
+  const STORE_NAME = 'gallery_store';
 
-  let currentWorkshopIndex = 0;
-  let workshopAutoTimer = null;
-  let workshopListenersBound = false;
-
-  function initWorkshopCarousel() {
-    if (!workshopTrack) return;
-    const slides = workshopTrack.querySelectorAll('.gallery-slide');
-    if (slides.length === 0) return;
-
-    if (workshopAutoTimer) {
-      clearInterval(workshopAutoTimer);
-      workshopAutoTimer = null;
-    }
-
-    const itemsPerView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-    const totalPages = Math.ceil(slides.length / itemsPerView);
-
-    if (workshopDotsContainer) {
-      workshopDotsContainer.innerHTML = '';
-      for (let i = 0; i < totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.className = `workshop-dot ${i === 0 ? 'active' : ''}`;
-        btn.setAttribute('aria-label', `Page ${i + 1}`);
-        btn.dataset.index = i;
-        btn.addEventListener('click', () => {
-          goToWorkshopPage(i);
-        });
-        workshopDotsContainer.appendChild(btn);
-      }
-    }
-
-    function updateWorkshopCarousel() {
-      const liveSlides = workshopTrack.querySelectorAll('.gallery-slide');
-      const slide = liveSlides[0];
-      if (!slide) return;
-      const slideWidth = slide.offsetWidth + 24; // item width + gap
-      const maxShift = workshopTrack.scrollWidth - (workshopTrack.parentElement ? workshopTrack.parentElement.clientWidth : 0);
-      const targetShift = Math.min(currentWorkshopIndex * slideWidth, Math.max(0, maxShift));
-      workshopTrack.style.transform = `translateX(-${targetShift}px)`;
-
-      // Update dots
-      const dots = workshopDotsContainer?.querySelectorAll('.workshop-dot');
-      if (dots && dots.length > 0) {
-        const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-        const curPage = Math.min(Math.floor(currentWorkshopIndex / perView), dots.length - 1);
-        dots.forEach((d, i) => d.classList.toggle('active', i === curPage));
-      }
-    }
-
-    function goToWorkshopPage(pageIndex) {
-      const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-      const liveSlides = workshopTrack.querySelectorAll('.gallery-slide');
-      currentWorkshopIndex = Math.min(pageIndex * perView, Math.max(0, liveSlides.length - 1));
-      updateWorkshopCarousel();
-    }
-
-    if (!workshopListenersBound) {
-      workshopPrevBtn?.addEventListener('click', () => {
-        currentWorkshopIndex = Math.max(0, currentWorkshopIndex - 1);
-        updateWorkshopCarousel();
-      });
-
-      workshopNextBtn?.addEventListener('click', () => {
-        const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-        const liveSlides = workshopTrack.querySelectorAll('.gallery-slide');
-        const maxIndex = Math.max(0, liveSlides.length - perView);
-        currentWorkshopIndex = currentWorkshopIndex >= maxIndex ? 0 : currentWorkshopIndex + 1;
-        updateWorkshopCarousel();
-      });
-
-      window.addEventListener('resize', () => {
-        updateWorkshopCarousel();
-      });
-
-      workshopListenersBound = true;
-    }
-
-    // Auto rotate every 5 seconds
-    workshopAutoTimer = setInterval(() => {
-      const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-      const liveSlides = workshopTrack.querySelectorAll('.gallery-slide');
-      const maxIndex = Math.max(0, liveSlides.length - perView);
-      currentWorkshopIndex = currentWorkshopIndex >= maxIndex ? 0 : currentWorkshopIndex + 1;
-      updateWorkshopCarousel();
-    }, 5000);
-
-    updateWorkshopCarousel();
+  function getDB() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, DB_VERSION);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(STORE_NAME)) {
+          db.createObjectStore(STORE_NAME);
+        }
+      };
+      req.onsuccess = (e) => resolve(e.target.result);
+      req.onerror = (e) => reject(e.target.error);
+    });
   }
 
-  // Initialize static carousel first
-  initWorkshopCarousel();
+  async function loadFromDB() {
+    try {
+      const db = await getDB();
+      const tx = db.transaction(STORE_NAME, 'readonly');
+      const req = tx.objectStore(STORE_NAME).get('gallery_data');
+      return new Promise((resolve) => {
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => resolve(null);
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Active items in moving gallery for Lightbox navigation
+  let currentGalleryItems = [];
+  let currentLightboxIndex = 0;
+
+  // Build card markup
+  function createCardHTML(item, index) {
+    const title = item.title || item.alt || 'Workshop Facility';
+    const alt = item.alt || item.title || 'Workshop Facility';
+    return `
+      <div class="moving-gallery-card" data-index="${index}" title="${title}">
+        <div class="moving-card-inner">
+          <img src="${item.src}" alt="${alt}" loading="lazy">
+          <div class="moving-card-overlay">
+            <span class="moving-card-title">${title}</span>
+            <span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDualMovingGallery(items) {
+    if (!Array.isArray(items) || items.length === 0) return;
+    currentGalleryItems = items;
+
+    // Split items into two streams
+    const col1Items = [];
+    const col2Items = [];
+
+    items.forEach((item, idx) => {
+      if (idx % 2 === 0) {
+        col1Items.push({ ...item, origIdx: idx });
+      } else {
+        col2Items.push({ ...item, origIdx: idx });
+      }
+    });
+
+    // Ensure balanced visual flow
+    if (col2Items.length === 0 && col1Items.length > 0) {
+      col2Items.push(...col1Items);
+    }
+
+    // Duplicate for seamless infinite loop (100% smooth scroll)
+    const col1Cards = [...col1Items, ...col1Items].map(it => createCardHTML(it, it.origIdx)).join('');
+    const col2Cards = [...col2Items, ...col2Items].map(it => createCardHTML(it, it.origIdx)).join('');
+
+    // Inject into Vertical Tracks
+    const trackColUp = document.getElementById('col-up-track');
+    const trackColDown = document.getElementById('col-down-track');
+    if (trackColUp) trackColUp.innerHTML = col1Cards;
+    if (trackColDown) trackColDown.innerHTML = col2Cards;
+
+    // Inject into Horizontal Tracks
+    const trackRowLeft = document.getElementById('row-left-track');
+    const trackRowRight = document.getElementById('row-right-track');
+    if (trackRowLeft) trackRowLeft.innerHTML = col1Cards;
+    if (trackRowRight) trackRowRight.innerHTML = col2Cards;
+
+    // Attach Lightbox click handlers
+    attachLightboxTriggers();
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  }
+
+  // View Mode Switcher (Columns vs Rows)
+  const btnViewColumns = document.getElementById('btn-view-columns');
+  const btnViewRows = document.getElementById('btn-view-rows');
+  const viewportColumns = document.getElementById('gallery-columns-viewport');
+  const viewportRows = document.getElementById('gallery-rows-viewport');
+
+  btnViewColumns?.addEventListener('click', () => {
+    btnViewColumns.classList.add('active');
+    btnViewRows?.classList.remove('active');
+    if (viewportColumns) viewportColumns.style.display = 'block';
+    if (viewportRows) viewportRows.style.display = 'none';
+  });
+
+  btnViewRows?.addEventListener('click', () => {
+    btnViewRows.classList.add('active');
+    btnViewColumns?.classList.remove('active');
+    if (viewportRows) viewportRows.style.display = 'block';
+    if (viewportColumns) viewportColumns.style.display = 'none';
+  });
+
+  // Lightbox Modal Controls
+  const lightbox = document.getElementById('gallery-lightbox');
+  const lightboxOverlay = document.getElementById('lightbox-overlay');
+  const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+  const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
+  const lightboxNextBtn = document.getElementById('lightbox-next-btn');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+
+  function openLightbox(index) {
+    if (!lightbox || currentGalleryItems.length === 0) return;
+    currentLightboxIndex = (index + currentGalleryItems.length) % currentGalleryItems.length;
+    const item = currentGalleryItems[currentLightboxIndex];
+    if (item && lightboxImg) {
+      lightboxImg.src = item.src;
+      if (lightboxCaption) {
+        lightboxCaption.textContent = item.title || item.alt || 'Workshop Facility';
+      }
+      lightbox.classList.add('active');
+    }
+  }
+
+  function closeLightbox() {
+    lightbox?.classList.remove('active');
+  }
+
+  function showNextLightbox() {
+    openLightbox(currentLightboxIndex + 1);
+  }
+
+  function showPrevLightbox() {
+    openLightbox(currentLightboxIndex - 1);
+  }
+
+  function attachLightboxTriggers() {
+    const cards = document.querySelectorAll('.moving-gallery-card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.dataset.index, 10);
+        if (!isNaN(idx)) {
+          openLightbox(idx);
+        }
+      });
+    });
+  }
+
+  lightboxCloseBtn?.addEventListener('click', closeLightbox);
+  lightboxOverlay?.addEventListener('click', closeLightbox);
+  lightboxNextBtn?.addEventListener('click', showNextLightbox);
+  lightboxPrevBtn?.addEventListener('click', showPrevLightbox);
+
+  window.addEventListener('keydown', (e) => {
+    if (lightbox?.classList.contains('active')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNextLightbox();
+      if (e.key === 'ArrowLeft') showPrevLightbox();
+    }
+  });
+
+  // Initial trigger attachment for pre-rendered fallback items
+  attachLightboxTriggers();
 
   // -------------------------------------------------------------------------
-  // Dynamic Gallery & Products Loader (localStorage & gallery.json)
+  // Dynamic Gallery & Products Data Sync (IndexedDB, LocalStorage, gallery.json)
   // -------------------------------------------------------------------------
   function applyDynamicData(data) {
     if (!data) return;
@@ -245,60 +328,64 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 2. Sync Workshop & Projects Gallery Carousel
+    // 2. Sync Workshop & Projects Moving Gallery
     if (Array.isArray(data.workshop) && data.workshop.length > 0) {
-      if (workshopTrack) {
-        workshopTrack.innerHTML = data.workshop.map(item => `
-          <div class="gallery-slide"><img src="${item.src}" alt="${item.alt || item.title || 'Workshop Facility'}" loading="lazy"></div>
-        `).join('');
-        currentWorkshopIndex = 0;
-        initWorkshopCarousel();
-      }
+      renderDualMovingGallery(data.workshop);
     }
   }
 
-  function loadDynamicGalleryAndProducts() {
-    // 1. Check localStorage first (instant live preview for admin saves)
+  async function loadDynamicGalleryAndProducts() {
+    // 1. Check IndexedDB first (supports high-res uploaded images)
+    try {
+      const dbData = await loadFromDB();
+      if (dbData && dbData.workshop && dbData.workshop.length > 0) {
+        applyDynamicData(dbData);
+        return;
+      }
+    } catch (e) {
+      console.warn('IndexedDB read error:', e);
+    }
+
+    // 2. Check localStorage
     const stored = localStorage.getItem('skay_gallery_data');
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
         applyDynamicData(parsed);
+        return;
       } catch (err) {
         console.warn('Could not parse localStorage skay_gallery_data:', err);
       }
     }
 
-    // 2. Fetch gallery.json (for visitors who have not modified localStorage)
+    // 3. Fetch gallery.json (default assets)
     fetch('gallery.json')
       .then(res => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
       })
       .then(data => {
-        // If user hasn't set custom changes in localStorage, apply from gallery.json
         if (!localStorage.getItem('skay_gallery_data')) {
           applyDynamicData(data);
         }
       })
       .catch(err => {
-        // Gracefully retains static HTML in index.html
         console.log('Serving built-in static gallery assets:', err);
       });
   }
 
   loadDynamicGalleryAndProducts();
 
-  // Listen to multi-tab storage event so saving in admin.html updates index.html in real time!
+  // Multi-tab sync: updates the website immediately when saved in admin.html
   window.addEventListener('storage', (event) => {
-    if (event.key === 'skay_gallery_data' && event.newValue) {
-      try {
-        const updated = JSON.parse(event.newValue);
-        applyDynamicData(updated);
-      } catch (err) {
-        console.error('Error applying storage update:', err);
-      }
+    if (event.key === 'skay_gallery_data' || event.key === 'skay_gallery_last_updated') {
+      loadDynamicGalleryAndProducts();
     }
+  });
+
+  // Tab focus sync: when switching from admin.html tab back to index.html tab, auto-refresh!
+  window.addEventListener('focus', () => {
+    loadDynamicGalleryAndProducts();
   });
 
   // =========================================================================

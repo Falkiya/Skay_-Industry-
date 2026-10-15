@@ -482,41 +482,103 @@
         </li>
       </ul>
 
-      <!-- 17-Photo Workshop & Projects Gallery Carousel -->
-      <div class="workshop-gallery-wrap">
-        <button id="workshop-prev-btn" class="gallery-arrow gallery-arrow-prev" aria-label="Previous image">
-          <i data-lucide="chevron-left" class="w-6 h-6"></i>
-        </button>
-
-        <div class="workshop-gallery-viewport">
-          <div class="workshop-gallery-track" id="workshop-gallery-track">
-            <div class="gallery-slide"><img src="images/live/DSC2388-300x300.jpg" alt="Workshop Facility" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png" alt="Workshop Machine" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/DSC2411-300x300.jpg" alt="Welding Process" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/DSC2430-300x300.jpg" alt="Frame Assembly" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-2-e1770974992591-300x300.jpeg" alt="Window Installation" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/DSC2420-300x300.jpg" alt="Precision Cutting" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-1-e1770975140363-300x300.jpeg" alt="Finished Installation" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/DSC2474-300x300.jpg" alt="Workshop Machinery" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/DSC2433-300x300.jpg" alt="Hardware Fitting" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-300x300.jpeg" alt="Modern Architecture" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/DSC2505-300x300.jpg" alt="Factory Floor" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-1-300x300.jpeg" alt="Residential Project" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-e1770974822618-300x300.jpeg" alt="Villa Project" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-1-e1770974971677-300x300.jpeg" alt="Balcony Sliding Door" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-e1770975019767-300x300.jpeg" alt="Sliding System" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-1-e1770975087849-300x300.jpeg" alt="Commercial Facade" loading="lazy"></div>
-            <div class="gallery-slide"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-e1770975115582-300x300.jpeg" alt="Architectural uPVC Window" loading="lazy"></div>
+      <!-- Dual-Column Moving Gallery (Two Columns Moving in Opposite Directions) -->
+      <div class="dual-moving-gallery-section" id="dual-moving-gallery-section">
+        <!-- View Mode Header -->
+        <div class="gallery-motion-header">
+          <div class="gallery-live-tag">
+            <span class="live-pulse-dot"></span>
+            <span>Workshop & Project Installations</span>
+          </div>
+          <div class="gallery-view-toggle">
+            <button type="button" class="view-btn active" id="btn-view-columns" title="Two Vertical Columns Moving in Opposite Directions">
+              <i data-lucide="columns-2" class="w-4 h-4"></i>
+              <span>Dual Columns (Opposite Motion)</span>
+            </button>
+            <button type="button" class="view-btn" id="btn-view-rows" title="Two Horizontal Rows Moving in Opposite Directions">
+              <i data-lucide="rows-2" class="w-4 h-4"></i>
+              <span>Dual Rows</span>
+            </button>
           </div>
         </div>
 
-        <button id="workshop-next-btn" class="gallery-arrow gallery-arrow-next" aria-label="Next image">
-          <i data-lucide="chevron-right" class="w-6 h-6"></i>
-        </button>
-      </div>
+        <!-- 1. Two Vertical Columns Moving in Opposite Directions -->
+        <div class="moving-gallery-viewport mode-columns" id="gallery-columns-viewport">
+          <div class="gallery-fade-top"></div>
 
-      <!-- Workshop Gallery Dots -->
-      <div class="workshop-dots" id="workshop-dots"></div>
+          <div class="dual-columns-grid">
+            <!-- Column 1: Smooth Continuous Upward Motion -->
+            <div class="column-marquee-col" id="col-up-wrap" title="Hover to pause / Click to view large">
+              <div class="column-marquee-track track-move-up" id="col-up-track">
+                <!-- Static fallback pre-rendered for immediate SEO & zero layout shift -->
+                <div class="moving-gallery-card" data-src="images/live/DSC2388-300x300.jpg" data-title="Double Head Digital Cutting Area"><div class="moving-card-inner"><img src="images/live/DSC2388-300x300.jpg" alt="Double Head Digital Cutting Area" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Double Head Digital Cutting Area</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2411-300x300.jpg" data-title="Seamless Corner Welding"><div class="moving-card-inner"><img src="images/live/DSC2411-300x300.jpg" alt="Seamless Corner Welding" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Seamless Corner Welding</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-2-e1770974992591-300x300.jpeg" data-title="Architectural Project Glazing"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-2-e1770974992591-300x300.jpeg" alt="Architectural Project Glazing" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Architectural Project Glazing</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-1-e1770975140363-300x300.jpeg" data-title="Custom Balcony Enclosure"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-1-e1770975140363-300x300.jpeg" alt="Custom Balcony Enclosure" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Custom Balcony Enclosure</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2433-300x300.jpg" data-title="Multi-Point Hardware Fitting"><div class="moving-card-inner"><img src="images/live/DSC2433-300x300.jpg" alt="Multi-Point Hardware Fitting" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Multi-Point Hardware Fitting</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2505-300x300.jpg" data-title="Factory Floor"><div class="moving-card-inner"><img src="images/live/DSC2505-300x300.jpg" alt="Factory Floor" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Factory Floor</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-e1770974822618-300x300.jpeg" data-title="Villa Project"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-e1770974822618-300x300.jpeg" alt="Villa Project" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Villa Project</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-e1770975019767-300x300.jpeg" data-title="Sliding System"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-e1770975019767-300x300.jpeg" alt="Sliding System" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Sliding System</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-e1770975115582-300x300.jpeg" data-title="Architectural uPVC Window"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-e1770975115582-300x300.jpeg" alt="Architectural uPVC Window" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Architectural uPVC Window</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <!-- Seamless Infinite Duplicate -->
+                <div class="moving-gallery-card" data-src="images/live/DSC2388-300x300.jpg" data-title="Double Head Digital Cutting Area"><div class="moving-card-inner"><img src="images/live/DSC2388-300x300.jpg" alt="Double Head Digital Cutting Area" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Double Head Digital Cutting Area</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2411-300x300.jpg" data-title="Seamless Corner Welding"><div class="moving-card-inner"><img src="images/live/DSC2411-300x300.jpg" alt="Seamless Corner Welding" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Seamless Corner Welding</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-2-e1770974992591-300x300.jpeg" data-title="Architectural Project Glazing"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-2-e1770974992591-300x300.jpeg" alt="Architectural Project Glazing" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Architectural Project Glazing</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-1-e1770975140363-300x300.jpeg" data-title="Custom Balcony Enclosure"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-1-e1770975140363-300x300.jpeg" alt="Custom Balcony Enclosure" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Custom Balcony Enclosure</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2433-300x300.jpg" data-title="Multi-Point Hardware Fitting"><div class="moving-card-inner"><img src="images/live/DSC2433-300x300.jpg" alt="Multi-Point Hardware Fitting" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Multi-Point Hardware Fitting</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2505-300x300.jpg" data-title="Factory Floor"><div class="moving-card-inner"><img src="images/live/DSC2505-300x300.jpg" alt="Factory Floor" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Factory Floor</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-e1770974822618-300x300.jpeg" data-title="Villa Project"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-e1770974822618-300x300.jpeg" alt="Villa Project" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Villa Project</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-e1770975019767-300x300.jpeg" data-title="Sliding System"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-e1770975019767-300x300.jpeg" alt="Sliding System" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Sliding System</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-e1770975115582-300x300.jpeg" data-title="Architectural uPVC Window"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-e1770975115582-300x300.jpeg" alt="Architectural uPVC Window" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Architectural uPVC Window</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+              </div>
+            </div>
+
+            <!-- Column 2: Smooth Continuous Downward Motion (Opposite Direction) -->
+            <div class="column-marquee-col" id="col-down-wrap" title="Hover to pause / Click to view large">
+              <div class="column-marquee-track track-move-down" id="col-down-track">
+                <!-- Static fallback pre-rendered for immediate SEO & zero layout shift -->
+                <div class="moving-gallery-card" data-src="images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png" data-title="Precision CNC Machinery"><div class="moving-card-inner"><img src="images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png" alt="Precision CNC Machinery" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Precision CNC Machinery</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2430-300x300.jpg" data-title="Profile Reinforcement & Assembly"><div class="moving-card-inner"><img src="images/live/DSC2430-300x300.jpg" alt="Profile Reinforcement & Assembly" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Profile Reinforcement & Assembly</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2420-300x300.jpg" data-title="Profile Processing Line"><div class="moving-card-inner"><img src="images/live/DSC2420-300x300.jpg" alt="Profile Processing Line" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Profile Processing Line</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2474-300x300.jpg" data-title="End Milling Machine Operation"><div class="moving-card-inner"><img src="images/live/DSC2474-300x300.jpg" alt="End Milling Machine Operation" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">End Milling Machine Operation</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-300x300.jpeg" data-title="Modern Architecture"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-300x300.jpeg" alt="Modern Architecture" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Modern Architecture</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-1-300x300.jpeg" data-title="Residential Project"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-1-300x300.jpeg" alt="Residential Project" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Residential Project</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-1-e1770974971677-300x300.jpeg" data-title="Balcony Sliding Door"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-1-e1770974971677-300x300.jpeg" alt="Balcony Sliding Door" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Balcony Sliding Door</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-1-e1770975087849-300x300.jpeg" data-title="Commercial Facade"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-1-e1770975087849-300x300.jpeg" alt="Commercial Facade" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Commercial Facade</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <!-- Seamless Infinite Duplicate -->
+                <div class="moving-gallery-card" data-src="images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png" data-title="Precision CNC Machinery"><div class="moving-card-inner"><img src="images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png" alt="Precision CNC Machinery" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Precision CNC Machinery</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2430-300x300.jpg" data-title="Profile Reinforcement & Assembly"><div class="moving-card-inner"><img src="images/live/DSC2430-300x300.jpg" alt="Profile Reinforcement & Assembly" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Profile Reinforcement & Assembly</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2420-300x300.jpg" data-title="Profile Processing Line"><div class="moving-card-inner"><img src="images/live/DSC2420-300x300.jpg" alt="Profile Processing Line" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Profile Processing Line</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/DSC2474-300x300.jpg" data-title="End Milling Machine Operation"><div class="moving-card-inner"><img src="images/live/DSC2474-300x300.jpg" alt="End Milling Machine Operation" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">End Milling Machine Operation</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-300x300.jpeg" data-title="Modern Architecture"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.25-300x300.jpeg" alt="Modern Architecture" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Modern Architecture</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-1-300x300.jpeg" data-title="Residential Project"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.22-1-300x300.jpeg" alt="Residential Project" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Residential Project</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-1-e1770974971677-300x300.jpeg" data-title="Balcony Sliding Door"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.23-1-e1770974971677-300x300.jpeg" alt="Balcony Sliding Door" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Balcony Sliding Door</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+                <div class="moving-gallery-card" data-src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-1-e1770975087849-300x300.jpeg" data-title="Commercial Facade"><div class="moving-card-inner"><img src="images/live/WhatsApp-Image-2026-02-10-at-16.35.24-1-e1770975087849-300x300.jpeg" alt="Commercial Facade" loading="lazy"><div class="moving-card-overlay"><span class="moving-card-title">Commercial Facade</span><span class="moving-card-zoom"><i data-lucide="maximize-2" class="w-4 h-4"></i></span></div></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-fade-bottom"></div>
+        </div>
+
+        <!-- 2. Two Horizontal Rows Moving in Opposite Directions -->
+        <div class="moving-gallery-horizontal-viewport mode-rows" id="gallery-rows-viewport" style="display: none;">
+          <div class="gallery-fade-left"></div>
+          
+          <div class="dual-rows-wrap">
+            <!-- Row 1: Moves Left -->
+            <div class="row-marquee-row" title="Hover to pause / Click to view large">
+              <div class="row-marquee-track track-move-left" id="row-left-track"></div>
+            </div>
+            <!-- Row 2: Moves Right (Opposite Direction) -->
+            <div class="row-marquee-row" title="Hover to pause / Click to view large">
+              <div class="row-marquee-track track-move-right" id="row-right-track"></div>
+            </div>
+          </div>
+
+          <div class="gallery-fade-right"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -947,6 +1009,28 @@
     </span>
     <span class="floating-admin-label">Admin Portal</span>
   </a>
+
+  <!-- ========================================================================= -->
+  <!-- INTERACTIVE GALLERY LIGHTBOX MODAL                                        -->
+  <!-- ========================================================================= -->
+  <div id="gallery-lightbox" class="gallery-lightbox" aria-hidden="true">
+    <div class="lightbox-overlay" id="lightbox-overlay"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close Lightbox">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev-btn" aria-label="Previous Image">
+        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+      </button>
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Gallery Image" class="lightbox-image">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+      </div>
+      <button class="lightbox-nav-btn lightbox-next" id="lightbox-next-btn" aria-label="Next Image">
+        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </div>
 
   <!-- Custom Script -->
   <script src="script.js"></script>
