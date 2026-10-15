@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 9. MESSAGE US / ENQUIRY FORM SUBMISSION
+  // 9. MESSAGE US / ENQUIRY FORM SUBMISSION (Routes to info@skayind.com)
   // =========================================================================
   const messageForm = document.getElementById('message-form');
   const formStatus = document.getElementById('form-status');
@@ -464,10 +464,31 @@ document.addEventListener('DOMContentLoaded', () => {
       const originalText = submitBtn ? submitBtn.textContent : 'SUBMIT';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'SUBMITTING...';
+        submitBtn.textContent = 'SENDING TO OUTLOOK...';
       }
 
-      setTimeout(() => {
+      const payload = {
+        "First Name": firstName,
+        "Last Name": lastName,
+        "Full Name": `${firstName} ${lastName}`,
+        "Email": email,
+        "Phone": phone || "Not provided",
+        "Message": message || "No message provided",
+        "_subject": `New Website Enquiry from ${firstName} ${lastName} - SKAY Industries`,
+        "_template": "table",
+        "_captcha": "false"
+      };
+
+      fetch("https://formsubmit.co/ajax/info@skayind.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => {
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
@@ -476,15 +497,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (formStatus) {
           formStatus.style.display = 'block';
           formStatus.className = 'form-status-msg success';
-          formStatus.textContent = `Thank you, ${firstName}! Your enquiry has been received. Our team will contact you shortly at ${phone || email || '+91 98803 09808'}.`;
+          formStatus.style.backgroundColor = '#dcfce7';
+          formStatus.style.color = '#166534';
+          formStatus.style.border = '1px solid #bbf7d0';
+          formStatus.textContent = `Thank you, ${firstName}! Your enquiry has been sent to our Outlook inbox (info@skayind.com). We will contact you shortly.`;
         }
 
         messageForm.reset();
 
         setTimeout(() => {
           if (formStatus) formStatus.style.display = 'none';
-        }, 8000);
-      }, 700);
+        }, 10000);
+      })
+      .catch(error => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+
+        if (formStatus) {
+          formStatus.style.display = 'block';
+          formStatus.className = 'form-status-msg';
+          formStatus.style.backgroundColor = '#fee2e2';
+          formStatus.style.color = '#991b1b';
+          formStatus.style.border = '1px solid #fecaca';
+          formStatus.textContent = 'Unable to send message right now. Please call us directly at +91 98803 09808 or email info@skayind.com.';
+        }
+      });
     });
   }
 });
