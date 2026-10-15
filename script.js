@@ -406,9 +406,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.exact-nav-link');
+  const drawerNavLinks = document.querySelectorAll('.drawer-link');
 
   function updateActiveNavLink() {
     const scrollPos = window.scrollY + 140;
+
+    // Detect if user has reached the bottom of page -> activate Contact
+    if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 90)) {
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === '#contact') {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+      drawerNavLinks.forEach(link => {
+        if (link.getAttribute('href') === '#contact') {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+      return;
+    }
 
     sections.forEach(section => {
       const top = section.offsetTop;
@@ -416,8 +436,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const id = section.getAttribute('id');
 
       if (scrollPos >= top && scrollPos < top + height) {
+        let targetId = id;
+        if (id === 'colours' || id === 'technical-spec') {
+          targetId = 'products';
+        }
+
         navLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${id}`) {
+          if (link.getAttribute('href') === `#${targetId}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+
+        drawerNavLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${targetId}`) {
             link.classList.add('active');
           } else {
             link.classList.remove('active');
@@ -592,9 +625,27 @@ document.addEventListener('DOMContentLoaded', () => {
   drawerCloseBtn?.addEventListener('click', closeDrawer);
   drawerOverlay?.addEventListener('click', closeDrawer);
 
-  document.querySelectorAll('.drawer-link').forEach(link => {
-    link.addEventListener('click', closeDrawer);
+  document.querySelectorAll('.drawer-link, .drawer-sublink').forEach(link => {
+    link.addEventListener('click', (e) => {
+      // If clicking the chevron icon inside accordion toggle, don't close drawer
+      if (e.target.closest('.drawer-chevron-icon')) {
+        return;
+      }
+      closeDrawer();
+    });
   });
+
+  // Mobile drawer accordion for Products
+  const drawerAccordionToggle = document.querySelector('.drawer-accordion-toggle');
+  const drawerProductsItem = document.getElementById('drawer-products-item');
+  if (drawerAccordionToggle && drawerProductsItem) {
+    const chevron = drawerAccordionToggle.querySelector('.drawer-chevron-icon');
+    chevron?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      drawerProductsItem.classList.toggle('open');
+    });
+  }
 
   // ESC key listener
   document.addEventListener('keydown', (e) => {

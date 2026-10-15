@@ -85,16 +85,89 @@
       </div>
     </div>
 
-    <!-- 3. Centered Navigation Row: Home, Products, About, Why Choose Us, Testimonials, Contact, Projects, Admin -->
-    <nav class="exact-nav-bar">
+    <!-- 3. Centered Navigation Row: Home, Products (Dropdown), About, Projects, Why Choose Us, Testimonials, FAQ, Contact, Admin -->
+    <nav class="exact-nav-bar" aria-label="Main Navigation">
       <div class="exact-nav-container">
         <a href="#home" class="exact-nav-link active">Home</a>
-        <a href="#products" class="exact-nav-link">Products</a>
+
+        <!-- Products with Dropdown Menu -->
+        <div class="exact-nav-item exact-nav-has-dropdown">
+          <a href="#products" class="exact-nav-link exact-nav-dropdown-trigger" id="products-nav-link">
+            <span>Products</span>
+            <i data-lucide="chevron-down" class="nav-chevron-icon"></i>
+          </a>
+          <div class="exact-nav-dropdown" aria-label="Products Submenu">
+            <div class="dropdown-top-bar">
+              <span class="dropdown-heading">uPVC Profiles & Systems</span>
+              <a href="#products" class="dropdown-view-all">View All Products <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+            </div>
+            <div class="dropdown-grid">
+              <div class="dropdown-col">
+                <a href="#product-casement" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>Casement Windows & Doors</span>
+                </a>
+                <a href="#product-sliding" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>Sliding Windows & Doors</span>
+                </a>
+                <a href="#product-fixed" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>Fixed Windows</span>
+                </a>
+                <a href="#product-slide-fold" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>Slide & Fold System</span>
+                </a>
+                <a href="#product-tilt-turn" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>Tilt & Turn Windows</span>
+                </a>
+              </div>
+              <div class="dropdown-col">
+                <a href="#product-combination" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>Combination Windows</span>
+                </a>
+                <a href="#product-single-hung" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>Single Hunge Windows</span>
+                </a>
+                <a href="#product-double-hung" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>Double Hunge Windows</span>
+                </a>
+                <a href="#product-l-window" class="dropdown-link">
+                  <span class="dropdown-dot"></span>
+                  <span>L-Window Corner Solutions</span>
+                </a>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#colours" class="dropdown-feature-link">
+                <div class="feature-icon-badge"><i data-lucide="palette" class="w-4 h-4"></i></div>
+                <div class="feature-text">
+                  <span class="feature-title">Colour Options</span>
+                  <span class="feature-desc">Woodgrain & architectural foils</span>
+                </div>
+              </a>
+              <a href="#technical-spec" class="dropdown-feature-link">
+                <div class="feature-icon-badge"><i data-lucide="file-check-2" class="w-4 h-4"></i></div>
+                <div class="feature-text">
+                  <span class="feature-title">Technical Specs</span>
+                  <span class="feature-desc">Wall thickness & structural ratings</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <a href="#about" class="exact-nav-link">About</a>
+        <a href="#workshop" class="exact-nav-link">Projects</a>
         <a href="#why-upvc" class="exact-nav-link">Why Choose Us</a>
         <a href="#testimonials" class="exact-nav-link">Testimonials</a>
+        <a href="#faq" class="exact-nav-link">FAQ</a>
         <a href="#contact" class="exact-nav-link">Contact</a>
-        <a href="#workshop" class="exact-nav-link">Projects</a>
         <a href="admin.html" target="_blank" class="exact-nav-link exact-nav-admin" title="Admin Portal — Gallery & Catalog"><i data-lucide="shield-check" class="nav-admin-icon"></i>Admin</a>
       </div>
     </nav>
@@ -125,33 +198,74 @@
   <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
   <aside id="nav-drawer" class="nav-drawer" aria-label="Navigation Drawer">
     <div class="drawer-header">
-      <h3>Menu</h3>
+      <div class="drawer-brand">
+        <span class="drawer-brand-title">SKAY Industries</span>
+        <span class="drawer-brand-sub">uPVC Windows & Doors</span>
+      </div>
       <button id="drawer-close-btn" class="icon-btn" aria-label="Close menu">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
+
     <nav class="drawer-nav-list">
-      <a href="#home" class="drawer-link">Home</a>
-      <a href="#products" class="drawer-link">Products</a>
-      <a href="#about" class="drawer-link">About</a>
-      <a href="#why-upvc" class="drawer-link">Why Choose Us</a>
-      <a href="#testimonials" class="drawer-link">Testimonials</a>
-      <a href="#contact" class="drawer-link">Contact</a>
-      <a href="#workshop" class="drawer-link">Projects</a>
-      <a href="admin.html" target="_blank" class="drawer-link drawer-admin-link">
-        <i data-lucide="shield-check" class="drawer-admin-icon"></i>
-        <span>Admin Portal</span>
+      <a href="#home" class="drawer-link active">
+        <i data-lucide="home" class="drawer-icon"></i>
+        <span>Home</span>
       </a>
-      <a href="skayind-brochure.pdf" download="SKAY-Industries-Brochure.pdf" class="drawer-link" style="color: #0170B9; font-weight: 700;">Download Brochure</a>
+
+      <!-- Collapsible / Organized Products Group -->
+      <div class="drawer-accordion-item" id="drawer-products-item">
+        <a href="#products" class="drawer-link drawer-accordion-toggle">
+          <i data-lucide="grid" class="drawer-icon"></i>
+          <span>Products</span>
+          <i data-lucide="chevron-down" class="drawer-chevron-icon"></i>
+        </a>
+        <div class="drawer-submenu">
+          <a href="#products" class="drawer-sublink">All 9 Window Typologies</a>
+          <a href="#colours" class="drawer-sublink">Colour Options & Foils</a>
+          <a href="#technical-spec" class="drawer-sublink">Technical Specifications</a>
+        </div>
+      </div>
+
+      <a href="#about" class="drawer-link">
+        <i data-lucide="building-2" class="drawer-icon"></i>
+        <span>About</span>
+      </a>
+      <a href="#workshop" class="drawer-link">
+        <i data-lucide="images" class="drawer-icon"></i>
+        <span>Projects & Gallery</span>
+      </a>
+      <a href="#why-upvc" class="drawer-link">
+        <i data-lucide="award" class="drawer-icon"></i>
+        <span>Why Choose Us</span>
+      </a>
+      <a href="#testimonials" class="drawer-link">
+        <i data-lucide="message-square-quote" class="drawer-icon"></i>
+        <span>Testimonials</span>
+      </a>
+      <a href="#faq" class="drawer-link">
+        <i data-lucide="help-circle" class="drawer-icon"></i>
+        <span>FAQ</span>
+      </a>
+      <a href="#contact" class="drawer-link">
+        <i data-lucide="mail" class="drawer-icon"></i>
+        <span>Contact</span>
+      </a>
     </nav>
-    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 0.85rem;">
-      <a href="tel:+919880309808" style="display: flex; align-items: center; gap: 0.6rem; color: #0170B9; font-weight: 700; text-decoration: none;">
-        <i data-lucide="phone" class="w-4 h-4"></i>
-        <span>+91 98803 09808</span>
+
+    <!-- Bottom Action CTAs -->
+    <div class="drawer-actions-card">
+      <a href="tel:+919880309808" class="drawer-btn-call">
+        <i data-lucide="phone-call" class="w-4 h-4"></i>
+        <span>Call: +91 98803 09808</span>
       </a>
-      <a href="mailto:info@skayind.com" style="display: flex; align-items: center; gap: 0.6rem; color: #475569; font-size: 0.92rem; text-decoration: none;">
-        <i data-lucide="mail" class="w-4 h-4"></i>
-        <span>info@skayind.com</span>
+      <a href="skayind-brochure.pdf" download="SKAY-Industries-Brochure.pdf" target="_blank" class="drawer-btn-brochure">
+        <i data-lucide="file-down" class="w-4 h-4"></i>
+        <span>Download Brochure (PDF)</span>
+      </a>
+      <a href="admin.html" target="_blank" class="drawer-btn-admin">
+        <i data-lucide="shield-check" class="w-4 h-4"></i>
+        <span>Admin Portal</span>
       </a>
     </div>
   </aside>
@@ -259,7 +373,7 @@
 
       <div class="products-grid">
         <!-- 1. Casement (06.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-casement">
           <div class="product-card-img">
             <img src="images/live/06.png" alt="Casement uPVC Window" loading="lazy">
           </div>
@@ -267,7 +381,7 @@
         </article>
 
         <!-- 2. Sliding (05.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-sliding">
           <div class="product-card-img">
             <img src="images/live/05.png" alt="Sliding uPVC Window" loading="lazy">
           </div>
@@ -275,7 +389,7 @@
         </article>
 
         <!-- 3. Fixed (04.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-fixed">
           <div class="product-card-img">
             <img src="images/live/04.png" alt="Fixed uPVC Window" loading="lazy">
           </div>
@@ -283,7 +397,7 @@
         </article>
 
         <!-- 4. Slide & Fold (02.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-slide-fold">
           <div class="product-card-img">
             <img src="images/live/02.png" alt="Slide & Fold uPVC Window" loading="lazy">
           </div>
@@ -291,7 +405,7 @@
         </article>
 
         <!-- 5. Tilt & Turn (01.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-tilt-turn">
           <div class="product-card-img">
             <img src="images/live/01.png" alt="Tilt & Turn uPVC Window" loading="lazy">
           </div>
@@ -299,7 +413,7 @@
         </article>
 
         <!-- 6. Combination (07.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-combination">
           <div class="product-card-img">
             <img src="images/live/07.png" alt="Combination uPVC Window" loading="lazy">
           </div>
@@ -307,7 +421,7 @@
         </article>
 
         <!-- 7. Single Hunge (03.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-single-hung">
           <div class="product-card-img">
             <img src="images/live/03.png" alt="Single Hunge uPVC Window" loading="lazy">
           </div>
@@ -315,7 +429,7 @@
         </article>
 
         <!-- 8. Double Hunge (08.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-double-hung">
           <div class="product-card-img">
             <img src="images/live/08.png" alt="Double Hunge uPVC Window" loading="lazy">
           </div>
@@ -323,7 +437,7 @@
         </article>
 
         <!-- 9. L-Window (9.png) -->
-        <article class="product-card">
+        <article class="product-card" id="product-l-window">
           <div class="product-card-img">
             <img src="images/live/9.png" alt="L-Window uPVC Window" loading="lazy">
           </div>
