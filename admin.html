@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKAY Industries | Admin Portal — Gallery & Catalog Maintenance</title>
+  <link rel="icon" type="image/png" href="images/live/cropped-skaylogo-194x116.png">
+
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --primary: #0170B9;
+      --primary-hover: #015892;
+      --primary-light: #f0f7fc;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --border: #e2e8f0;
+      --danger: #ef4444;
+      --danger-hover: #dc2626;
+      --success: #10b981;
+      --success-hover: #059669;
+      --font-family: 'Montserrat', Arial, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .admin-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .admin-header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      height: 44px;
+      width: auto;
+    }
+
+    .brand-title-wrap h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .brand-title-wrap p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Buttons */
+    .btn {
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-success {
+      background-color: var(--success);
+      color: #ffffff;
+    }
+
+    .btn-success:hover {
+      background-color: var(--success-hover);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background-color: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .btn-danger-outline {
+      background-color: transparent;
+      border-color: #fecaca;
+      color: var(--danger);
+    }
+
+    .btn-danger-outline:hover {
+      background-color: #fee2e2;
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.78rem;
+    }
+
+    /* Main Container */
+    .admin-main {
+      max-width: 1400px;
+      margin: 1.75rem auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    /* Navigation Tabs */
+    .admin-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .tab-btn {
+      font-family: inherit;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border: none;
+      background: none;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .tab-badge {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 7px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Toolbar Row */
+    .section-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .toolbar-title h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .toolbar-title p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Cards Grid */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .item-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      border-color: #cbd5e1;
+    }
+
+    .item-img-wrap {
+      width: 100%;
+      height: 180px;
+      background-color: #f1f5f9;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .item-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .item-img-wrap.contain-img img {
+      object-fit: contain;
+      padding: 1rem;
+    }
+
+    .item-order-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+    }
+
+    .item-info {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .item-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .item-alt {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-bottom: 0.75rem;
+    }
+
+    .item-card-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .reorder-btns {
+      display: flex;
+      gap: 4px;
+    }
+
+    .reorder-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .reorder-btn:hover:not(:disabled) {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .reorder-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .edit-del-btns {
+      display: flex;
+      gap: 6px;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      animation: modalSlide 0.2s ease-out;
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .close-modal-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 4px;
+      border-radius: 4px;
+    }
+
+    .close-modal-btn:hover {
+      color: var(--text-main);
+      background: #f1f5f9;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(1, 112, 185, 0.15);
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    /* Image Preview Box */
+    .img-preview-box {
+      width: 100%;
+      height: 140px;
+      background: #f1f5f9;
+      border-radius: 6px;
+      border: 1px dashed #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+
+    .img-preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Notification Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast {
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      animation: toastIn 0.25s ease-out;
+    }
+
+    .toast-success { background-color: var(--success); }
+    .toast-danger { background-color: var(--danger); }
+    .toast-info { background-color: var(--primary); }
+
+    @keyframes toastIn {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Auth Gate Screen */
+    .auth-gate {
+      position: fixed;
+      inset: 0;
+      background: #f8fafc;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .auth-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.25rem 2rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .auth-logo {
+      height: 52px;
+      margin-bottom: 1.25rem;
+    }
+
+    .auth-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .auth-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* JSON Sync Section */
+    .json-box {
+      background: #1e293b;
+      color: #e2e8f0;
+      font-family: monospace;
+      padding: 1.25rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      overflow-x: auto;
+      max-height: 450px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================= -->
+  <!-- AUTHENTICATION GATE (PIN Gated Access)                                    -->
+  <!-- ========================================================================= -->
+  <div id="auth-gate" class="auth-gate">
+    <div class="auth-box">
+      <img src="images/live/cropped-skaylogo-194x116.png" alt="SKAY Industries" class="auth-logo">
+      <h2 class="auth-title">Admin Portal</h2>
+      <p class="auth-desc">Enter admin passcode to manage website gallery and products catalog.</p>
+
+      <form id="auth-form" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <input type="password" id="auth-pin-input" class="form-input" placeholder="Enter Admin Passcode" required autofocus style="text-align: center; font-size: 1.1rem; letter-spacing: 0.2em;">
+          <span id="auth-error-msg" style="color: var(--danger); font-size: 0.78rem; font-weight: 600; margin-top: 4px; display: none;">Invalid Passcode. Please try again.</span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem;">
+          <i data-lucide="unlock" class="w-4 h-4"></i> Unlock Portal
+        </button>
+      </form>
+      <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 1.25rem;">Default passcode: <code>skay2026</code></p>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ADMIN HEADER                                                              -->
+  <!-- ========================================================================= -->
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <div class="brand-wrap">
+        <img src="images/live/cropped-skaylogo-194x116.png" alt="SKAY Industries" class="brand-logo">
+        <div class="brand-title-wrap">
+          <h1>Gallery & Catalog Maintenance</h1>
+          <p>SKAY Industries uPVC Management Portal</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a href="index.html" target="_blank" class="btn btn-outline" title="Open live site">
+          <i data-lucide="external-link" class="w-4 h-4"></i> View Website
+        </a>
+        <button class="btn btn-success" onclick="publishLiveChanges()" title="Sync changes to live website">
+          <i data-lucide="check-check" class="w-4 h-4"></i> Save & Publish Live
+        </button>
+        <button class="btn btn-outline" onclick="logoutAdmin()" title="Lock portal">
+          <i data-lucide="lock" class="w-4 h-4"></i> Log Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN ADMIN BODY                                                           -->
+  <!-- ========================================================================= -->
+  <main class="admin-main">
+    <!-- Tabs -->
+    <nav class="admin-tabs">
+      <button class="tab-btn active" onclick="switchTab('workshop')" id="tab-btn-workshop">
+        <i data-lucide="camera" class="w-4 h-4"></i>
+        <span>Workshop & Projects Gallery</span>
+        <span class="tab-badge" id="workshop-count-badge">0</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('products')" id="tab-btn-products">
+        <i data-lucide="layers" class="w-4 h-4"></i>
+        <span>Our Products Catalog</span>
+        <span class="tab-badge" id="products-count-badge">0</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('sync')" id="tab-btn-sync">
+        <i data-lucide="database" class="w-4 h-4"></i>
+        <span>Export & Sync (JSON)</span>
+      </button>
+    </nav>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: WORKSHOP GALLERY                                                   -->
+    <!-- ========================================================================= -->
+    <section id="tab-workshop" class="tab-content">
+      <div class="section-toolbar">
+        <div class="toolbar-title">
+          <h2>Workshop Facilities & Installation Photos</h2>
+          <p>Add, edit, remove, or reorder the photos displayed in the 17-photo gallery carousel.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn btn-primary" onclick="openAddWorkshopModal()">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i> Add New Photo
+          </button>
+          <button class="btn btn-outline" onclick="resetWorkshopToDefault()">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset Defaults
+          </button>
+        </div>
+      </div>
+
+      <div class="items-grid" id="workshop-items-grid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: PRODUCTS CATALOG                                                   -->
+    <!-- ========================================================================= -->
+    <section id="tab-products" class="tab-content" style="display: none;">
+      <div class="section-toolbar">
+        <div class="toolbar-title">
+          <h2>Our Products Catalog</h2>
+          <p>Manage the 3x3 product cards displayed in the "Our Products" section.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn btn-primary" onclick="openAddProductModal()">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i> Add New Product
+          </button>
+          <button class="btn btn-outline" onclick="resetProductsToDefault()">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset Defaults
+          </button>
+        </div>
+      </div>
+
+      <div class="items-grid" id="products-items-grid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: EXPORT & SYNC                                                      -->
+    <!-- ========================================================================= -->
+    <section id="tab-sync" class="tab-content" style="display: none;">
+      <div class="section-toolbar">
+        <div class="toolbar-title">
+          <h2>Data Sync & Permanent Storage</h2>
+          <p>Download the updated <code>gallery.json</code> file or copy the raw code to commit to GitHub.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn btn-primary" onclick="downloadGalleryJSON()">
+            <i data-lucide="download" class="w-4 h-4"></i> Download gallery.json
+          </button>
+          <button class="btn btn-outline" onclick="copyJSONToClipboard()">
+            <i data-lucide="copy" class="w-4 h-4"></i> Copy JSON Code
+          </button>
+        </div>
+      </div>
+
+      <div class="json-box" id="json-preview-box"></div>
+    </section>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ADD / EDIT WORKSHOP PHOTO                                          -->
+  <!-- ========================================================================= -->
+  <div id="workshop-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="workshop-modal-title">Add Gallery Photo</h3>
+        <button class="close-modal-btn" onclick="closeWorkshopModal()"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form id="workshop-form" onsubmit="saveWorkshopPhoto(event)">
+        <input type="hidden" id="ws-edit-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="ws-file-input">Upload Photo (from your computer)</label>
+            <input type="file" id="ws-file-input" accept="image/*" class="form-input" onchange="handleWorkshopFileUpload(event)">
+          </div>
+          <div class="form-group">
+            <label for="ws-url-input">OR Image URL / Path</label>
+            <input type="text" id="ws-url-input" class="form-input" placeholder="e.g. images/live/DSC2388-300x300.jpg" oninput="updateWorkshopImgPreview(this.value)">
+          </div>
+          <div class="img-preview-box" id="ws-img-preview-wrap">
+            <span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>
+          </div>
+          <div class="form-group">
+            <label for="ws-title-input">Title / Caption</label>
+            <input type="text" id="ws-title-input" class="form-input" placeholder="e.g. Precision CNC Machinery" required>
+          </div>
+          <div class="form-group">
+            <label for="ws-alt-input">Alt Text (Accessibility / SEO)</label>
+            <input type="text" id="ws-alt-input" class="form-input" placeholder="e.g. uPVC double head digital cutting machine">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeWorkshopModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Photo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ADD / EDIT PRODUCT                                                 -->
+  <!-- ========================================================================= -->
+  <div id="product-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="product-modal-title">Add Product</h3>
+        <button class="close-modal-btn" onclick="closeProductModal()"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form id="product-form" onsubmit="saveProduct(event)">
+        <input type="hidden" id="prod-edit-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="prod-file-input">Upload Product Image (PNG/JPEG)</label>
+            <input type="file" id="prod-file-input" accept="image/*" class="form-input" onchange="handleProductFileUpload(event)">
+          </div>
+          <div class="form-group">
+            <label for="prod-url-input">OR Image URL / Path</label>
+            <input type="text" id="prod-url-input" class="form-input" placeholder="e.g. images/live/06.png" oninput="updateProductImgPreview(this.value)">
+          </div>
+          <div class="img-preview-box" id="prod-img-preview-wrap">
+            <span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>
+          </div>
+          <div class="form-group">
+            <label for="prod-title-input">Product Name</label>
+            <input type="text" id="prod-title-input" class="form-input" placeholder="e.g. Casement Window" required>
+          </div>
+          <div class="form-group">
+            <label for="prod-alt-input">Alt Description</label>
+            <input type="text" id="prod-alt-input" class="form-input" placeholder="e.g. Casement uPVC Window">
+          </div>
+          <div class="form-group">
+            <label for="prod-link-input">Link Target</label>
+            <input type="text" id="prod-link-input" class="form-input" value="#contact">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeProductModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ========================================================================= -->
+  <!-- ADMIN CONTROLLER JAVASCRIPT                                               -->
+  <!-- ========================================================================= -->
+  <script>
+    // State Store
+    let galleryData = { products: [], workshop: [] };
+    let defaultBackupData = null;
+    const DEFAULT_PASSCODE = "skay2026";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      loadInitialData();
+      if (window.lucide) window.lucide.createIcons();
+    });
+
+    // 1. Auth Gate
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem('skay_admin_authenticated') === 'true';
+      const gate = document.getElementById('auth-gate');
+      if (gate) {
+        gate.style.display = isAuth ? 'none' : 'flex';
+      }
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const pin = document.getElementById('auth-pin-input')?.value.trim();
+      const storedPin = localStorage.getItem('skay_custom_pin') || DEFAULT_PASSCODE;
+      const errorMsg = document.getElementById('auth-error-msg');
+
+      if (pin === storedPin) {
+        sessionStorage.setItem('skay_admin_authenticated', 'true');
+        document.getElementById('auth-gate').style.display = 'none';
+        showToast('Portal unlocked successfully', 'success');
+      } else {
+        if (errorMsg) errorMsg.style.display = 'block';
+      }
+    }
+
+    function logoutAdmin() {
+      sessionStorage.removeItem('skay_admin_authenticated');
+      location.reload();
+    }
+
+    // 2. Data Loading & Persistence
+    function loadInitialData() {
+      // 1. Check localStorage first
+      const saved = localStorage.getItem('skay_gallery_data');
+      if (saved) {
+        try {
+          galleryData = JSON.parse(saved);
+          renderAll();
+        } catch(e) {
+          console.error('Failed to parse saved gallery data', e);
+        }
+      }
+
+      // 2. Fetch gallery.json to get defaults and populate if localStorage was empty
+      fetch('gallery.json')
+        .then(res => res.json())
+        .then(data => {
+          defaultBackupData = JSON.parse(JSON.stringify(data));
+          if (!saved) {
+            galleryData = data;
+            saveToLocalStorage();
+            renderAll();
+          }
+          updateJSONPreview();
+        })
+        .catch(err => {
+          console.warn('Could not fetch gallery.json, relying on localStorage or defaults', err);
+        });
+    }
+
+    function saveToLocalStorage() {
+      localStorage.setItem('skay_gallery_data', JSON.stringify(galleryData));
+      updateJSONPreview();
+    }
+
+    function publishLiveChanges() {
+      saveToLocalStorage();
+      showToast('Changes saved & published live to website!', 'success');
+    }
+
+    function renderAll() {
+      renderWorkshopGrid();
+      renderProductsGrid();
+      updateBadgeCounts();
+      updateJSONPreview();
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function updateBadgeCounts() {
+      document.getElementById('workshop-count-badge').textContent = galleryData.workshop?.length || 0;
+      document.getElementById('products-count-badge').textContent = galleryData.products?.length || 0;
+    }
+
+    // Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(`tab-${tabId}`).style.display = 'block';
+      document.getElementById(`tab-btn-${tabId}`).classList.add('active');
+
+      if (tabId === 'sync') {
+        updateJSONPreview();
+      }
+    }
+
+    // 3. Workshop Gallery Rendering & Actions
+    function renderWorkshopGrid() {
+      const grid = document.getElementById('workshop-items-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      if (!galleryData.workshop || galleryData.workshop.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #ffffff; border-radius: 8px;">
+          <p style="color: var(--text-muted); font-size: 1rem;">No photos in gallery yet. Click "+ Add New Photo" to add one.</p>
+        </div>`;
+        return;
+      }
+
+      galleryData.workshop.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+          <div class="item-img-wrap">
+            <span class="item-order-badge">#${index + 1}</span>
+            <img src="${item.src}" alt="${item.alt || ''}">
+          </div>
+          <div class="item-info">
+            <h4 class="item-title">${item.title || 'Untitled Photo'}</h4>
+            <p class="item-alt">${item.alt || 'No alt description'}</p>
+            <div class="item-card-actions">
+              <div class="reorder-btns">
+                <button class="reorder-btn" title="Move Left / Earlier" onclick="moveWorkshopItem(${index}, -1)" ${index === 0 ? 'disabled' : ''}>
+                  <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                </button>
+                <button class="reorder-btn" title="Move Right / Later" onclick="moveWorkshopItem(${index}, 1)" ${index === galleryData.workshop.length - 1 ? 'disabled' : ''}>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <div class="edit-del-btns">
+                <button class="btn btn-outline btn-sm" onclick="editWorkshopItem(${index})"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i> Edit</button>
+                <button class="btn btn-danger-outline btn-sm" onclick="deleteWorkshopItem(${index})"><i data-lucide="trash" class="w-3.5 h-3.5"></i></button>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function moveWorkshopItem(index, offset) {
+      const targetIndex = index + offset;
+      if (targetIndex < 0 || targetIndex >= galleryData.workshop.length) return;
+      const [moved] = galleryData.workshop.splice(index, 1);
+      galleryData.workshop.splice(targetIndex, 0, moved);
+      saveToLocalStorage();
+      renderAll();
+    }
+
+    function deleteWorkshopItem(index) {
+      if (confirm(`Are you sure you want to delete "${galleryData.workshop[index].title || 'this photo'}"?`)) {
+        galleryData.workshop.splice(index, 1);
+        saveToLocalStorage();
+        renderAll();
+        showToast('Photo removed from gallery', 'info');
+      }
+    }
+
+    function openAddWorkshopModal() {
+      document.getElementById('workshop-modal-title').textContent = 'Add Gallery Photo';
+      document.getElementById('ws-edit-id').value = '';
+      document.getElementById('ws-url-input').value = '';
+      document.getElementById('ws-title-input').value = '';
+      document.getElementById('ws-alt-input').value = '';
+      document.getElementById('ws-file-input').value = '';
+      document.getElementById('ws-img-preview-wrap').innerHTML = `<span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>`;
+      document.getElementById('workshop-modal').classList.add('active');
+    }
+
+    function editWorkshopItem(index) {
+      const item = galleryData.workshop[index];
+      if (!item) return;
+      document.getElementById('workshop-modal-title').textContent = 'Edit Gallery Photo';
+      document.getElementById('ws-edit-id').value = index;
+      document.getElementById('ws-url-input').value = item.src;
+      document.getElementById('ws-title-input').value = item.title || '';
+      document.getElementById('ws-alt-input').value = item.alt || '';
+      updateWorkshopImgPreview(item.src);
+      document.getElementById('workshop-modal').classList.add('active');
+    }
+
+    function closeWorkshopModal() {
+      document.getElementById('workshop-modal').classList.remove('active');
+    }
+
+    function updateWorkshopImgPreview(src) {
+      const wrap = document.getElementById('ws-img-preview-wrap');
+      if (src) {
+        wrap.innerHTML = `<img src="${src}" alt="Preview" style="max-height: 100%;">`;
+      } else {
+        wrap.innerHTML = `<span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>`;
+      }
+    }
+
+    function handleWorkshopFileUpload(e) {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64 = event.target?.result;
+        document.getElementById('ws-url-input').value = base64;
+        updateWorkshopImgPreview(base64);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function saveWorkshopPhoto(e) {
+      e.preventDefault();
+      const editId = document.getElementById('ws-edit-id').value;
+      const src = document.getElementById('ws-url-input').value.trim();
+      const title = document.getElementById('ws-title-input').value.trim();
+      const alt = document.getElementById('ws-alt-input').value.trim();
+
+      if (!src) {
+        alert('Please provide an image URL or upload a photo.');
+        return;
+      }
+
+      if (editId !== '') {
+        const idx = parseInt(editId, 10);
+        galleryData.workshop[idx] = {
+          ...galleryData.workshop[idx],
+          src,
+          title,
+          alt: alt || title
+        };
+        showToast('Photo updated successfully!', 'success');
+      } else {
+        const newId = 'ws-' + Date.now();
+        galleryData.workshop.push({
+          id: newId,
+          src,
+          title,
+          alt: alt || title
+        });
+        showToast('New photo added to gallery!', 'success');
+      }
+
+      saveToLocalStorage();
+      closeWorkshopModal();
+      renderAll();
+    }
+
+    function resetWorkshopToDefault() {
+      if (defaultBackupData?.workshop && confirm('Restore original 17 workshop photos? Any added photos will be reset.')) {
+        galleryData.workshop = JSON.parse(JSON.stringify(defaultBackupData.workshop));
+        saveToLocalStorage();
+        renderAll();
+        showToast('Workshop gallery reset to original photos.', 'info');
+      }
+    }
+
+    // 4. Products Catalog Rendering & Actions
+    function renderProductsGrid() {
+      const grid = document.getElementById('products-items-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      if (!galleryData.products || galleryData.products.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #ffffff; border-radius: 8px;">
+          <p style="color: var(--text-muted); font-size: 1rem;">No products in catalog yet.</p>
+        </div>`;
+        return;
+      }
+
+      galleryData.products.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+          <div class="item-img-wrap contain-img">
+            <span class="item-order-badge">#${index + 1}</span>
+            <img src="${item.src}" alt="${item.alt || ''}">
+          </div>
+          <div class="item-info">
+            <h4 class="item-title">${item.title}</h4>
+            <p class="item-alt">${item.alt || 'uPVC Window System'}</p>
+            <div class="item-card-actions">
+              <div class="reorder-btns">
+                <button class="reorder-btn" title="Move Left / Earlier" onclick="moveProductItem(${index}, -1)" ${index === 0 ? 'disabled' : ''}>
+                  <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                </button>
+                <button class="reorder-btn" title="Move Right / Later" onclick="moveProductItem(${index}, 1)" ${index === galleryData.products.length - 1 ? 'disabled' : ''}>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <div class="edit-del-btns">
+                <button class="btn btn-outline btn-sm" onclick="editProductItem(${index})"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i> Edit</button>
+                <button class="btn btn-danger-outline btn-sm" onclick="deleteProductItem(${index})"><i data-lucide="trash" class="w-3.5 h-3.5"></i></button>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function moveProductItem(index, offset) {
+      const targetIndex = index + offset;
+      if (targetIndex < 0 || targetIndex >= galleryData.products.length) return;
+      const [moved] = galleryData.products.splice(index, 1);
+      galleryData.products.splice(targetIndex, 0, moved);
+      saveToLocalStorage();
+      renderAll();
+    }
+
+    function deleteProductItem(index) {
+      if (confirm(`Are you sure you want to delete product "${galleryData.products[index].title}"?`)) {
+        galleryData.products.splice(index, 1);
+        saveToLocalStorage();
+        renderAll();
+        showToast('Product removed from catalog', 'info');
+      }
+    }
+
+    function openAddProductModal() {
+      document.getElementById('product-modal-title').textContent = 'Add New Product';
+      document.getElementById('prod-edit-id').value = '';
+      document.getElementById('prod-url-input').value = '';
+      document.getElementById('prod-title-input').value = '';
+      document.getElementById('prod-alt-input').value = '';
+      document.getElementById('prod-link-input').value = '#contact';
+      document.getElementById('prod-file-input').value = '';
+      document.getElementById('prod-img-preview-wrap').innerHTML = `<span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>`;
+      document.getElementById('product-modal').classList.add('active');
+    }
+
+    function editProductItem(index) {
+      const item = galleryData.products[index];
+      if (!item) return;
+      document.getElementById('product-modal-title').textContent = 'Edit Product';
+      document.getElementById('prod-edit-id').value = index;
+      document.getElementById('prod-url-input').value = item.src;
+      document.getElementById('prod-title-input').value = item.title;
+      document.getElementById('prod-alt-input').value = item.alt || '';
+      document.getElementById('prod-link-input').value = item.link || '#contact';
+      updateProductImgPreview(item.src);
+      document.getElementById('product-modal').classList.add('active');
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.remove('active');
+    }
+
+    function updateProductImgPreview(src) {
+      const wrap = document.getElementById('prod-img-preview-wrap');
+      if (src) {
+        wrap.innerHTML = `<img src="${src}" alt="Preview" style="max-height: 100%; object-fit: contain;">`;
+      } else {
+        wrap.innerHTML = `<span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>`;
+      }
+    }
+
+    function handleProductFileUpload(e) {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64 = event.target?.result;
+        document.getElementById('prod-url-input').value = base64;
+        updateProductImgPreview(base64);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function saveProduct(e) {
+      e.preventDefault();
+      const editId = document.getElementById('prod-edit-id').value;
+      const src = document.getElementById('prod-url-input').value.trim();
+      const title = document.getElementById('prod-title-input').value.trim();
+      const alt = document.getElementById('prod-alt-input').value.trim();
+      const link = document.getElementById('prod-link-input').value.trim() || '#contact';
+
+      if (!src) {
+        alert('Please provide a product image URL or upload an image file.');
+        return;
+      }
+
+      if (editId !== '') {
+        const idx = parseInt(editId, 10);
+        galleryData.products[idx] = {
+          ...galleryData.products[idx],
+          src,
+          title,
+          alt: alt || `${title} uPVC Window`,
+          link
+        };
+        showToast('Product updated successfully!', 'success');
+      } else {
+        const newId = 'prod-' + Date.now();
+        galleryData.products.push({
+          id: newId,
+          src,
+          title,
+          alt: alt || `${title} uPVC Window`,
+          link
+        });
+        showToast('New product added to catalog!', 'success');
+      }
+
+      saveToLocalStorage();
+      closeProductModal();
+      renderAll();
+    }
+
+    function resetProductsToDefault() {
+      if (defaultBackupData?.products && confirm('Restore original 9 products?')) {
+        galleryData.products = JSON.parse(JSON.stringify(defaultBackupData.products));
+        saveToLocalStorage();
+        renderAll();
+        showToast('Products catalog reset to defaults.', 'info');
+      }
+    }
+
+    // 5. JSON Export & Sync
+    function updateJSONPreview() {
+      const box = document.getElementById('json-preview-box');
+      if (box) {
+        box.textContent = JSON.stringify(galleryData, null, 2);
+      }
+    }
+
+    function downloadGalleryJSON() {
+      const blob = new Blob([JSON.stringify(galleryData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'gallery.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('gallery.json file downloaded!', 'success');
+    }
+
+    function copyJSONToClipboard() {
+      navigator.clipboard.writeText(JSON.stringify(galleryData, null, 2))
+        .then(() => showToast('JSON code copied to clipboard!', 'info'))
+        .catch(() => showToast('Failed to copy code', 'danger'));
+    }
+
+    // 6. Toast System
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" class="w-4 h-4"></i> ${message}`;
+      container.appendChild(toast);
+      if (window.lucide) window.lucide.createIcons();
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

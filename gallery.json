@@ -1,0 +1,171 @@
+{
+  "products": [
+    {
+      "id": "prod-1",
+      "title": "Casement",
+      "src": "images/live/06.png",
+      "alt": "Casement uPVC Window",
+      "link": "#contact"
+    },
+    {
+      "id": "prod-2",
+      "title": "Sliding",
+      "src": "images/live/05.png",
+      "alt": "Sliding uPVC Window",
+      "link": "#contact"
+    },
+    {
+      "id": "prod-3",
+      "title": "Fixed",
+      "src": "images/live/04.png",
+      "alt": "Fixed uPVC Window",
+      "link": "#contact"
+    },
+    {
+      "id": "prod-4",
+      "title": "Slide & Fold",
+      "src": "images/live/02.png",
+      "alt": "Slide & Fold uPVC Window",
+      "link": "#contact"
+    },
+    {
+      "id": "prod-5",
+      "title": "Tilt & Turn",
+      "src": "images/live/01.png",
+      "alt": "Tilt & Turn uPVC Window",
+      "link": "#contact"
+    },
+    {
+      "id": "prod-6",
+      "title": "Combination",
+      "src": "images/live/07.png",
+      "alt": "Combination uPVC Window",
+      "link": "#contact"
+    },
+    {
+      "id": "prod-7",
+      "title": "Single Hunge",
+      "src": "images/live/03.png",
+      "alt": "Single Hunge uPVC Window",
+      "link": "#contact"
+    },
+    {
+      "id": "prod-8",
+      "title": "Double Hunge",
+      "src": "images/live/08.png",
+      "alt": "Double Hunge uPVC Window",
+      "link": "#contact"
+    },
+    {
+      "id": "prod-9",
+      "title": "L-Window",
+      "src": "images/live/9.png",
+      "alt": "L-Window uPVC Window",
+      "link": "#contact"
+    }
+  ],
+  "workshop": [
+    {
+      "id": "ws-1",
+      "src": "images/live/DSC2388-300x300.jpg",
+      "alt": "Workshop Facility",
+      "title": "Double Head Digital Cutting Area"
+    },
+    {
+      "id": "ws-2",
+      "src": "images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png",
+      "alt": "Workshop Machine",
+      "title": "Precision CNC Machinery"
+    },
+    {
+      "id": "ws-3",
+      "src": "images/live/DSC2411-300x300.jpg",
+      "alt": "Welding Process",
+      "title": "Seamless Corner Welding"
+    },
+    {
+      "id": "ws-4",
+      "src": "images/live/DSC2430-300x300.jpg",
+      "alt": "Frame Assembly",
+      "title": "Profile Reinforcement & Assembly"
+    },
+    {
+      "id": "ws-5",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.23-2-e1770974992591-300x300.jpeg",
+      "alt": "Window Installation",
+      "title": "Architectural Project Glazing"
+    },
+    {
+      "id": "ws-6",
+      "src": "images/live/DSC2420-300x300.jpg",
+      "alt": "Precision Cutting",
+      "title": "Profile Processing Line"
+    },
+    {
+      "id": "ws-7",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.25-1-e1770975140363-300x300.jpeg",
+      "alt": "Finished Installation",
+      "title": "Custom Balcony Enclosure"
+    },
+    {
+      "id": "ws-8",
+      "src": "images/live/DSC2474-300x300.jpg",
+      "alt": "Workshop Machinery",
+      "title": "End Milling Machine Operation"
+    },
+    {
+      "id": "ws-9",
+      "src": "images/live/DSC2433-300x300.jpg",
+      "alt": "Hardware Fitting",
+      "title": "Multi-Point Hardware Fitting"
+    },
+    {
+      "id": "ws-10",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.25-300x300.jpeg",
+      "alt": "Modern Architecture",
+      "title": "Villa Facade Installation"
+    },
+    {
+      "id": "ws-11",
+      "src": "images/live/DSC2505-300x300.jpg",
+      "alt": "Factory Floor",
+      "title": "Quality Inspection Station"
+    },
+    {
+      "id": "ws-12",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.22-1-300x300.jpeg",
+      "alt": "Residential Project",
+      "title": "Residential French Windows"
+    },
+    {
+      "id": "ws-13",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.22-e1770974822618-300x300.jpeg",
+      "alt": "Villa Project",
+      "title": "Luxury Villa uPVC Windows"
+    },
+    {
+      "id": "ws-14",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.23-1-e1770974971677-300x300.jpeg",
+      "alt": "Balcony Sliding Door",
+      "title": "Multi-Track Sliding Glass Doors"
+    },
+    {
+      "id": "ws-15",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.23-e1770975019767-300x300.jpeg",
+      "alt": "Sliding System",
+      "title": "Corner Window System"
+    },
+    {
+      "id": "ws-16",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.24-1-e1770975087849-300x300.jpeg",
+      "alt": "Commercial Facade",
+      "title": "Corporate Office Facade"
+    },
+    {
+      "id": "ws-17",
+      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.24-e1770975115582-300x300.jpeg",
+      "alt": "Architectural uPVC Window",
+      "title": "High-Rise Glass & Window Fitting"
+    }
+  ]
+}

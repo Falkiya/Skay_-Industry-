@@ -1746,6 +1746,49 @@ button {
   color: var(--primary-blue);
 }
 
+.footer-admin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  transition: color 0.15s ease;
+}
+
+.footer-admin-link:hover {
+  color: var(--primary-blue);
+}
+
+.footer-admin-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--primary-blue);
+}
+
+.footer-sep-dot {
+  margin: 0 0.5rem;
+  opacity: 0.4;
+  color: var(--text-light);
+}
+
+.copyright-admin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--text-light);
+  font-size: 0.82rem;
+  transition: color 0.15s ease;
+}
+
+.copyright-admin-link:hover {
+  color: var(--primary-blue);
+}
+
+.copyright-admin-icon {
+  width: 12px;
+  height: 12px;
+}
+
 /* ==========================================================================
    FLOATING WHATSAPP PILL
    ========================================================================== */

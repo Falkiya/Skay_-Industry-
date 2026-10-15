@@ -125,21 +125,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 4. WORKSHOP 17-PHOTO GALLERY CAROUSEL
+  // 4. WORKSHOP GALLERY CAROUSEL & DYNAMIC DATA SYNC
   // =========================================================================
   const workshopTrack = document.getElementById('workshop-gallery-track');
   const workshopPrevBtn = document.getElementById('workshop-prev-btn');
   const workshopNextBtn = document.getElementById('workshop-next-btn');
   const workshopDotsContainer = document.getElementById('workshop-dots');
-  const workshopSlides = document.querySelectorAll('.gallery-slide');
 
   let currentWorkshopIndex = 0;
   let workshopAutoTimer = null;
+  let workshopListenersBound = false;
 
-  if (workshopSlides.length > 0 && workshopTrack) {
-    // Generate dots dynamically based on number of slides
+  function initWorkshopCarousel() {
+    if (!workshopTrack) return;
+    const slides = workshopTrack.querySelectorAll('.gallery-slide');
+    if (slides.length === 0) return;
+
+    if (workshopAutoTimer) {
+      clearInterval(workshopAutoTimer);
+      workshopAutoTimer = null;
+    }
+
     const itemsPerView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-    const totalPages = Math.ceil(workshopSlides.length / itemsPerView);
+    const totalPages = Math.ceil(slides.length / itemsPerView);
 
     if (workshopDotsContainer) {
       workshopDotsContainer.innerHTML = '';
@@ -156,7 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateWorkshopCarousel() {
-      const slide = workshopSlides[0];
+      const liveSlides = workshopTrack.querySelectorAll('.gallery-slide');
+      const slide = liveSlides[0];
       if (!slide) return;
       const slideWidth = slide.offsetWidth + 24; // item width + gap
       const maxShift = workshopTrack.scrollWidth - (workshopTrack.parentElement ? workshopTrack.parentElement.clientWidth : 0);
@@ -166,41 +175,131 @@ document.addEventListener('DOMContentLoaded', () => {
       // Update dots
       const dots = workshopDotsContainer?.querySelectorAll('.workshop-dot');
       if (dots && dots.length > 0) {
-        const curPage = Math.min(Math.floor(currentWorkshopIndex / (window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1))), dots.length - 1);
+        const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+        const curPage = Math.min(Math.floor(currentWorkshopIndex / perView), dots.length - 1);
         dots.forEach((d, i) => d.classList.toggle('active', i === curPage));
       }
     }
 
     function goToWorkshopPage(pageIndex) {
       const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-      currentWorkshopIndex = Math.min(pageIndex * perView, workshopSlides.length - 1);
+      const liveSlides = workshopTrack.querySelectorAll('.gallery-slide');
+      currentWorkshopIndex = Math.min(pageIndex * perView, Math.max(0, liveSlides.length - 1));
       updateWorkshopCarousel();
     }
 
-    workshopPrevBtn?.addEventListener('click', () => {
-      currentWorkshopIndex = Math.max(0, currentWorkshopIndex - 1);
-      updateWorkshopCarousel();
-    });
+    if (!workshopListenersBound) {
+      workshopPrevBtn?.addEventListener('click', () => {
+        currentWorkshopIndex = Math.max(0, currentWorkshopIndex - 1);
+        updateWorkshopCarousel();
+      });
 
-    workshopNextBtn?.addEventListener('click', () => {
-      const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-      const maxIndex = workshopSlides.length - perView;
-      currentWorkshopIndex = currentWorkshopIndex >= maxIndex ? 0 : currentWorkshopIndex + 1;
-      updateWorkshopCarousel();
-    });
+      workshopNextBtn?.addEventListener('click', () => {
+        const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+        const liveSlides = workshopTrack.querySelectorAll('.gallery-slide');
+        const maxIndex = Math.max(0, liveSlides.length - perView);
+        currentWorkshopIndex = currentWorkshopIndex >= maxIndex ? 0 : currentWorkshopIndex + 1;
+        updateWorkshopCarousel();
+      });
+
+      window.addEventListener('resize', () => {
+        updateWorkshopCarousel();
+      });
+
+      workshopListenersBound = true;
+    }
 
     // Auto rotate every 5 seconds
     workshopAutoTimer = setInterval(() => {
       const perView = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-      const maxIndex = workshopSlides.length - perView;
+      const liveSlides = workshopTrack.querySelectorAll('.gallery-slide');
+      const maxIndex = Math.max(0, liveSlides.length - perView);
       currentWorkshopIndex = currentWorkshopIndex >= maxIndex ? 0 : currentWorkshopIndex + 1;
       updateWorkshopCarousel();
     }, 5000);
 
-    window.addEventListener('resize', () => {
-      updateWorkshopCarousel();
-    });
+    updateWorkshopCarousel();
   }
+
+  // Initialize static carousel first
+  initWorkshopCarousel();
+
+  // -------------------------------------------------------------------------
+  // Dynamic Gallery & Products Loader (localStorage & gallery.json)
+  // -------------------------------------------------------------------------
+  function applyDynamicData(data) {
+    if (!data) return;
+
+    // 1. Sync Our Products Grid
+    if (Array.isArray(data.products) && data.products.length > 0) {
+      const productsGrid = document.querySelector('.products-grid');
+      if (productsGrid) {
+        productsGrid.innerHTML = data.products.map(prod => `
+          <article class="product-card">
+            <div class="product-card-img">
+              <img src="${prod.src}" alt="${prod.alt || prod.title || 'uPVC Window'}" loading="lazy">
+            </div>
+            <h3 class="product-card-title"><a href="${prod.link || '#contact'}">${prod.title || 'Product'}</a></h3>
+          </article>
+        `).join('');
+      }
+    }
+
+    // 2. Sync Workshop & Projects Gallery Carousel
+    if (Array.isArray(data.workshop) && data.workshop.length > 0) {
+      if (workshopTrack) {
+        workshopTrack.innerHTML = data.workshop.map(item => `
+          <div class="gallery-slide"><img src="${item.src}" alt="${item.alt || item.title || 'Workshop Facility'}" loading="lazy"></div>
+        `).join('');
+        currentWorkshopIndex = 0;
+        initWorkshopCarousel();
+      }
+    }
+  }
+
+  function loadDynamicGalleryAndProducts() {
+    // 1. Check localStorage first (instant live preview for admin saves)
+    const stored = localStorage.getItem('skay_gallery_data');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        applyDynamicData(parsed);
+      } catch (err) {
+        console.warn('Could not parse localStorage skay_gallery_data:', err);
+      }
+    }
+
+    // 2. Fetch gallery.json (for visitors who have not modified localStorage)
+    fetch('gallery.json')
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        // If user hasn't set custom changes in localStorage, apply from gallery.json
+        if (!localStorage.getItem('skay_gallery_data')) {
+          applyDynamicData(data);
+        }
+      })
+      .catch(err => {
+        // Gracefully retains static HTML in index.html
+        console.log('Serving built-in static gallery assets:', err);
+      });
+  }
+
+  loadDynamicGalleryAndProducts();
+
+  // Listen to multi-tab storage event so saving in admin.html updates index.html in real time!
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'skay_gallery_data' && event.newValue) {
+      try {
+        const updated = JSON.parse(event.newValue);
+        applyDynamicData(updated);
+      } catch (err) {
+        console.error('Error applying storage update:', err);
+      }
+    }
+  });
 
   // =========================================================================
   // 5. ACTIVE NAV HIGHLIGHTING ON SCROLL
