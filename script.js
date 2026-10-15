@@ -625,4 +625,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // =========================================================================
+  // ADMIN SHORTCUT (Ctrl + Shift + A or Cmd + Shift + A)
+  // =========================================================================
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      e.preventDefault();
+      window.open('admin.html', '_blank');
+    }
+  });
 });

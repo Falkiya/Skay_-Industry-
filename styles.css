@@ -114,8 +114,31 @@ button {
   margin: 0 auto;
   padding: 0 1.25rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+}
+
+.top-bar-admin-link {
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  opacity: 0.95;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.top-bar-admin-link:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.top-admin-icon {
+  width: 14px;
+  height: 14px;
 }
 
 .top-social-icons {
@@ -364,6 +387,32 @@ button {
   width: 100%;
 }
 
+.exact-nav-admin {
+  background-color: var(--primary-blue-light);
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem !important;
+  color: var(--primary-blue) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700 !important;
+  transition: all 0.2s ease !important;
+}
+
+.exact-nav-admin::after {
+  display: none !important;
+}
+
+.exact-nav-admin:hover {
+  background-color: var(--primary-blue);
+  color: #ffffff !important;
+}
+
+.nav-admin-icon {
+  width: 14px;
+  height: 14px;
+}
+
 @media (max-width: 900px) {
   .exact-search-form,
   .exact-call-btn,
@@ -524,6 +573,22 @@ button {
 
 .drawer-link:hover {
   color: var(--primary-blue);
+}
+
+.drawer-admin-link {
+  color: var(--primary-blue) !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: var(--primary-blue-light);
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem !important;
+}
+
+.drawer-admin-icon {
+  width: 18px;
+  height: 18px;
 }
 
 /* ==========================================================================
@@ -1830,4 +1895,58 @@ button {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+/* ==========================================================================
+   FLOATING ADMIN ACCESS PILL (Bottom-Left)
+   ========================================================================== */
+.floating-admin-pill {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
+  transition: transform 0.25s ease;
+}
+
+.floating-admin-pill:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.floating-admin-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(1, 112, 185, 0.4);
+}
+
+.floating-admin-label {
+  background-color: #ffffff;
+  color: #1e293b;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(1, 112, 185, 0.2);
+}
+
+@media (max-width: 600px) {
+  .floating-admin-label {
+    display: none;
+  }
+  .floating-admin-icon-circle {
+    width: 44px;
+    height: 44px;
+  }
 }

@@ -28,6 +28,10 @@
   <!-- ========================================================================= -->
   <div class="top-social-bar">
     <div class="top-bar-container">
+      <a href="admin.html" target="_blank" class="top-bar-admin-link" title="Admin Portal (Gallery & Products)">
+        <i data-lucide="shield-check" class="top-admin-icon"></i>
+        <span>Admin Portal</span>
+      </a>
       <div class="top-social-icons">
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Facebook">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
@@ -81,7 +85,7 @@
       </div>
     </div>
 
-    <!-- 3. Centered Navigation Row: Home, Products, About, Why Choose Us, Testimonials, Contact, Projects -->
+    <!-- 3. Centered Navigation Row: Home, Products, About, Why Choose Us, Testimonials, Contact, Projects, Admin -->
     <nav class="exact-nav-bar">
       <div class="exact-nav-container">
         <a href="#home" class="exact-nav-link active">Home</a>
@@ -91,6 +95,7 @@
         <a href="#testimonials" class="exact-nav-link">Testimonials</a>
         <a href="#contact" class="exact-nav-link">Contact</a>
         <a href="#workshop" class="exact-nav-link">Projects</a>
+        <a href="admin.html" target="_blank" class="exact-nav-link exact-nav-admin" title="Admin Portal — Gallery & Catalog"><i data-lucide="shield-check" class="nav-admin-icon"></i>Admin</a>
       </div>
     </nav>
   </header>
@@ -133,6 +138,10 @@
       <a href="#testimonials" class="drawer-link">Testimonials</a>
       <a href="#contact" class="drawer-link">Contact</a>
       <a href="#workshop" class="drawer-link">Projects</a>
+      <a href="admin.html" target="_blank" class="drawer-link drawer-admin-link">
+        <i data-lucide="shield-check" class="drawer-admin-icon"></i>
+        <span>Admin Portal</span>
+      </a>
       <a href="skayind-brochure.pdf" download="SKAY-Industries-Brochure.pdf" class="drawer-link" style="color: #0170B9; font-weight: 700;">Download Brochure</a>
     </nav>
     <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 0.85rem;">
@@ -926,6 +935,17 @@
     <span class="floating-wa-circle">
       <i data-lucide="message-circle" class="w-6 h-6"></i>
     </span>
+  </a>
+
+  <!-- FLOATING ADMIN ACCESS PILL (Bottom Left) -->
+  <a href="admin.html" 
+     class="floating-admin-pill" 
+     target="_blank" 
+     title="Admin Portal — Gallery & Catalog Maintenance (Passcode: skay2026)">
+    <span class="floating-admin-icon-circle">
+      <i data-lucide="shield-check" class="w-5 h-5"></i>
+    </span>
+    <span class="floating-admin-label">Admin Portal</span>
   </a>
 
   <!-- Custom Script -->
