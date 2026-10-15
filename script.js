@@ -770,6 +770,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (formStatus) {
           formStatus.style.display = 'block';
+
+          if (data && (data.success === false || data.success === 'false')) {
+            if (data.message && data.message.includes('needs Activation')) {
+              formStatus.className = 'form-status-msg';
+              formStatus.style.backgroundColor = '#fef3c7';
+              formStatus.style.color = '#92400e';
+              formStatus.style.border = '1px solid #fde68a';
+              formStatus.innerHTML = `<strong>1 Step to Complete Setup:</strong> FormSubmit sent an activation email to <strong>Skayind18@gmail.com</strong>. Please open your Gmail inbox (or Spam folder) and click the <strong>"Activate Form"</strong> button to complete attaching the form.`;
+              return;
+            } else {
+              formStatus.className = 'form-status-msg';
+              formStatus.style.backgroundColor = '#fee2e2';
+              formStatus.style.color = '#991b1b';
+              formStatus.style.border = '1px solid #fecaca';
+              formStatus.textContent = data.message || 'Error sending form. Please contact Skayind18@gmail.com directly.';
+              return;
+            }
+          }
+
           formStatus.className = 'form-status-msg success';
           formStatus.style.backgroundColor = '#dcfce7';
           formStatus.style.color = '#166534';
@@ -781,7 +800,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
           if (formStatus) formStatus.style.display = 'none';
-        }, 10000);
+        }, 12000);
       })
       .catch(error => {
         if (submitBtn) {
