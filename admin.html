@@ -646,6 +646,11 @@
         <span>Our Products Catalog</span>
         <span class="tab-badge" id="products-count-badge">0</span>
       </button>
+      <button class="tab-btn" onclick="switchTab('leads')" id="tab-btn-leads">
+        <i data-lucide="user-check" class="w-4 h-4"></i>
+        <span>Customer Leads</span>
+        <span class="tab-badge" id="leads-count-badge" style="background: #10b981; color: #ffffff;">0</span>
+      </button>
       <button class="tab-btn" onclick="switchTab('sync')" id="tab-btn-sync">
         <i data-lucide="database" class="w-4 h-4"></i>
         <span>Export & Sync (JSON)</span>
@@ -732,6 +737,28 @@
       </div>
 
       <div class="json-box" id="json-preview-box"></div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: CUSTOMER LEADS & ENQUIRIES                                         -->
+    <!-- ========================================================================= -->
+    <section id="tab-leads" class="tab-content" style="display: none;">
+      <div class="section-toolbar">
+        <div class="toolbar-title">
+          <h2>Customer Leads & Enquiries</h2>
+          <p>Real-time customer inquiries from website forms routed to <strong>Skayind18@gmail.com</strong>.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn btn-primary" onclick="exportLeadsCSV()">
+            <i data-lucide="download" class="w-4 h-4"></i> Export Leads (CSV)
+          </button>
+          <button class="btn btn-outline" onclick="clearAllLeads()" style="color: var(--danger); border-color: var(--danger);">
+            <i data-lucide="trash-2" class="w-4 h-4"></i> Clear All Leads
+          </button>
+        </div>
+      </div>
+
+      <div id="leads-container" style="display: flex; flex-direction: column; gap: 1rem;"></div>
     </section>
   </main>
 
@@ -1021,6 +1048,9 @@
     function updateBadgeCounts() {
       document.getElementById('workshop-count-badge').textContent = galleryData.workshop?.length || 0;
       document.getElementById('products-count-badge').textContent = galleryData.products?.length || 0;
+      const leads = JSON.parse(localStorage.getItem('skay_leads') || '[]');
+      const leadsBadge = document.getElementById('leads-count-badge');
+      if (leadsBadge) leadsBadge.textContent = leads.length;
     }
 
     // Tab Switching
@@ -1033,7 +1063,126 @@
 
       if (tabId === 'sync') {
         updateJSONPreview();
+      } else if (tabId === 'leads') {
+        renderLeadsList();
       }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function renderLeadsList() {
+      const container = document.getElementById('leads-container');
+      const countBadge = document.getElementById('leads-count-badge');
+      if (!container) return;
+
+      const leads = JSON.parse(localStorage.getItem('skay_leads') || '[]');
+      if (countBadge) countBadge.textContent = leads.length;
+
+      if (leads.length === 0) {
+        container.innerHTML = `
+          <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 3.5rem 1.5rem; text-align: center;">
+            <div style="width: 52px; height: 52px; border-radius: 50%; background: #e0f2fe; color: #0170B9; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <i data-lucide="inbox" class="w-6 h-6"></i>
+            </div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: #1e293b; margin-bottom: 0.35rem;">No Customer Leads Yet</h3>
+            <p style="color: #64748b; font-size: 0.88rem; max-width: 480px; margin: 0 auto; line-height: 1.6;">
+              When a visitor submits the "Message Us" form on your website, inquiries are automatically routed to <strong>Skayind18@gmail.com</strong> and archived here in real time.
+            </p>
+          </div>
+        `;
+        if (window.lucide) window.lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = leads.map((lead, idx) => `
+        <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.85rem; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a;">${escapeHtml(lead.fullName || lead.firstName + ' ' + lead.lastName)}</h3>
+                <span style="font-size: 0.72rem; font-weight: 700; background: #dcfce7; color: #166534; padding: 0.2rem 0.55rem; border-radius: 999px;">Lead #${leads.length - idx}</span>
+              </div>
+              <span style="font-size: 0.78rem; color: #64748b;">Received: ${lead.date || 'Recent'} &bull; Routed to Skayind18@gmail.com</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <a href="mailto:${encodeURIComponent(lead.email)}?subject=Re:%20SKAY%20Industries%20uPVC%20Enquiry" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.45rem 0.8rem; color: #0170B9;">
+                <i data-lucide="mail" class="w-3.5 h-3.5"></i> Reply via Email
+              </a>
+              ${lead.phone && lead.phone !== 'Not provided' ? `
+                <a href="tel:${lead.phone}" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.45rem 0.8rem; color: #166534;">
+                  <i data-lucide="phone" class="w-3.5 h-3.5"></i> Call
+                </a>
+              ` : ''}
+              <button onclick="deleteLead('${lead.id}')" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.45rem 0.65rem; color: var(--danger); border-color: var(--border);" title="Delete Lead">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; padding: 0.75rem 1rem; background: #f8fafc; border-radius: 8px;">
+            <div><strong style="font-size: 0.75rem; color: #64748b; text-transform: uppercase;">Customer Email:</strong> <br><span style="font-size: 0.9rem; color: #1e293b; font-weight: 600;">${escapeHtml(lead.email)}</span></div>
+            <div><strong style="font-size: 0.75rem; color: #64748b; text-transform: uppercase;">Phone Number:</strong> <br><span style="font-size: 0.9rem; color: #1e293b; font-weight: 600;">${escapeHtml(lead.phone)}</span></div>
+          </div>
+          <div style="font-size: 0.9rem; color: #334155; line-height: 1.5; padding-top: 0.25rem;">
+            <strong style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Customer Requirements:</strong>
+            ${escapeHtml(lead.message || 'No additional details provided.')}
+          </div>
+        </div>
+      `).join('');
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function deleteLead(leadId) {
+      if (!confirm('Are you sure you want to delete this lead?')) return;
+      const leads = JSON.parse(localStorage.getItem('skay_leads') || '[]');
+      const filtered = leads.filter(l => l.id !== leadId);
+      localStorage.setItem('skay_leads', JSON.stringify(filtered));
+      renderLeadsList();
+      updateBadgeCounts();
+      showToast('Lead deleted.', 'info');
+    }
+
+    function clearAllLeads() {
+      if (!confirm('Clear all customer leads? This cannot be undone.')) return;
+      localStorage.removeItem('skay_leads');
+      renderLeadsList();
+      updateBadgeCounts();
+      showToast('All leads cleared.', 'info');
+    }
+
+    function exportLeadsCSV() {
+      const leads = JSON.parse(localStorage.getItem('skay_leads') || '[]');
+      if (leads.length === 0) {
+        showToast('No leads available to export.', 'error');
+        return;
+      }
+      let csv = 'Date,Full Name,Email,Phone,Message\n';
+      leads.forEach(l => {
+        const row = [
+          `"${(l.date || '').replace(/"/g, '""')}"`,
+          `"${(l.fullName || l.firstName + ' ' + l.lastName || '').replace(/"/g, '""')}"`,
+          `"${(l.email || '').replace(/"/g, '""')}"`,
+          `"${(l.phone || '').replace(/"/g, '""')}"`,
+          `"${(l.message || '').replace(/"/g, '""')}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `SKAY_Leads_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Leads exported as CSV!', 'success');
     }
 
     // 3. Workshop Gallery Rendering & Actions

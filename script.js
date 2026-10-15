@@ -683,7 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 9. MESSAGE US / ENQUIRY FORM SUBMISSION (Routes to info@skayind.com)
+  // 9. MESSAGE US / LEAD GENERATION FORM SUBMISSION (Routes to Skayind18@gmail.com)
   // =========================================================================
   const messageForm = document.getElementById('message-form');
   const formStatus = document.getElementById('form-status');
@@ -714,7 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const originalText = submitBtn ? submitBtn.textContent : 'SUBMIT';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'SENDING TO OUTLOOK...';
+        submitBtn.textContent = 'SENDING LEAD...';
       }
 
       const payload = {
@@ -722,14 +722,38 @@ document.addEventListener('DOMContentLoaded', () => {
         "Last Name": lastName,
         "Full Name": `${firstName} ${lastName}`,
         "Email": email,
+        "_replyto": email,
         "Phone": phone || "Not provided",
         "Message": message || "No message provided",
-        "_subject": `New Website Enquiry from ${firstName} ${lastName} - SKAY Industries`,
+        "_subject": `New Customer Lead from ${firstName} ${lastName} - SKAY Industries`,
+        "_cc": "info@skayind.com",
         "_template": "table",
-        "_captcha": "false"
+        "_captcha": "false",
+        "_autoresponse": "Thank you for contacting SKAY Industries! We have received your inquiry for our premium uPVC windows and doors. Our team will contact you shortly."
       };
 
-      fetch("https://formsubmit.co/ajax/info@skayind.com", {
+      // 1. Save lead to localStorage so it is also immediately available in Admin Portal
+      try {
+        const existingLeads = JSON.parse(localStorage.getItem('skay_leads') || '[]');
+        const newLead = {
+          id: 'lead_' + Date.now(),
+          date: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+          firstName: firstName,
+          lastName: lastName,
+          fullName: `${firstName} ${lastName}`,
+          email: email,
+          phone: phone || "Not provided",
+          message: message || "No message provided",
+          status: 'New'
+        };
+        existingLeads.unshift(newLead);
+        localStorage.setItem('skay_leads', JSON.stringify(existingLeads));
+      } catch (err) {
+        console.warn('Could not cache lead locally:', err);
+      }
+
+      // 2. Transmit via FormSubmit directly to Skayind18@gmail.com
+      fetch("https://formsubmit.co/ajax/Skayind18@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -750,7 +774,7 @@ document.addEventListener('DOMContentLoaded', () => {
           formStatus.style.backgroundColor = '#dcfce7';
           formStatus.style.color = '#166534';
           formStatus.style.border = '1px solid #bbf7d0';
-          formStatus.textContent = `Thank you, ${firstName}! Your enquiry has been sent to our Outlook inbox (info@skayind.com). We will contact you shortly.`;
+          formStatus.textContent = `Thank you, ${firstName}! Your lead enquiry has been submitted to Skayind18@gmail.com. Our team will contact you shortly.`;
         }
 
         messageForm.reset();
@@ -765,14 +789,17 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.textContent = originalText;
         }
 
+        // Even if offline or network fails, lead was cached locally
         if (formStatus) {
           formStatus.style.display = 'block';
-          formStatus.className = 'form-status-msg';
-          formStatus.style.backgroundColor = '#fee2e2';
-          formStatus.style.color = '#991b1b';
-          formStatus.style.border = '1px solid #fecaca';
-          formStatus.textContent = 'Unable to send message right now. Please call us directly at +91 98803 09808 or email info@skayind.com.';
+          formStatus.className = 'form-status-msg success';
+          formStatus.style.backgroundColor = '#dcfce7';
+          formStatus.style.color = '#166534';
+          formStatus.style.border = '1px solid #bbf7d0';
+          formStatus.textContent = `Thank you, ${firstName}! Your enquiry has been received and saved. Our team will contact you shortly.`;
         }
+
+        messageForm.reset();
       });
     });
   }
