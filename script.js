@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { title: 'Workshop Machinery Facilities & Gallery', category: 'Workshop', anchor: '#workshop' },
     { title: 'Why Choose uPVC (6 Key Advantages)', category: 'Why uPVC', anchor: '#why-upvc' },
     { title: 'Customer Reviews (4.8 / 5 Rating)', category: 'Reviews', anchor: '#testimonials' },
-    { title: 'Frequently Asked Questions (7 FAQs)', category: 'FAQs', anchor: '#contact' },
+    { title: 'Frequently Asked Questions (7 FAQs)', category: 'FAQs', anchor: '#faq' },
     { title: 'Call Now: +91 98803 09808 (24/7)', category: 'Contact', anchor: '#contact' },
     { title: 'Location: Shed No.2, M.G. Road, Mysuru', category: 'Contact', anchor: '#contact' }
   ];
