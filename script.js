@@ -180,42 +180,65 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
+  // Initialize fallback items from DOM pre-rendered cards
+  function initFallbackGalleryItems() {
+    if (currentGalleryItems.length === 0) {
+      const cards = document.querySelectorAll('#row-left-track .moving-gallery-card, #row-right-track .moving-gallery-card');
+      const seen = new Set();
+      const items = [];
+      cards.forEach(c => {
+        const src = c.getAttribute('data-src') || c.querySelector('img')?.getAttribute('src');
+        const title = c.getAttribute('data-title') || c.querySelector('img')?.getAttribute('alt') || 'Workshop Facility';
+        if (src && !seen.has(src)) {
+          seen.add(src);
+          items.push({ src, title, alt: title });
+        }
+      });
+      if (items.length > 0) {
+        currentGalleryItems = items;
+      }
+    }
+  }
+
   function renderDualMovingGallery(items) {
     if (!Array.isArray(items) || items.length === 0) return;
     currentGalleryItems = items;
 
-    // Split items into two streams
-    const col1Items = [];
-    const col2Items = [];
+    // Split items into two rows
+    const row1Items = [];
+    const row2Items = [];
 
     items.forEach((item, idx) => {
       if (idx % 2 === 0) {
-        col1Items.push({ ...item, origIdx: idx });
+        row1Items.push({ ...item, origIdx: idx });
       } else {
-        col2Items.push({ ...item, origIdx: idx });
+        row2Items.push({ ...item, origIdx: idx });
       }
     });
 
-    // Ensure balanced visual flow
-    if (col2Items.length === 0 && col1Items.length > 0) {
-      col2Items.push(...col1Items);
+    // Ensure balanced visual flow if only 1 item
+    if (row2Items.length === 0 && row1Items.length > 0) {
+      row2Items.push(...row1Items);
     }
 
-    // Duplicate for seamless infinite loop (100% smooth scroll)
-    const col1Cards = [...col1Items, ...col1Items].map(it => createCardHTML(it, it.origIdx)).join('');
-    const col2Cards = [...col2Items, ...col2Items].map(it => createCardHTML(it, it.origIdx)).join('');
+    // Ensure at least 6 cards per track before duplicating for seamless marquee on wide screens
+    let row1List = [...row1Items];
+    while (row1List.length < 6) {
+      row1List = [...row1List, ...row1Items];
+    }
+    const row1Cards = [...row1List, ...row1List].map(it => createCardHTML(it, it.origIdx)).join('');
 
-    // Inject into Vertical Tracks
-    const trackColUp = document.getElementById('col-up-track');
-    const trackColDown = document.getElementById('col-down-track');
-    if (trackColUp) trackColUp.innerHTML = col1Cards;
-    if (trackColDown) trackColDown.innerHTML = col2Cards;
+    let row2List = [...row2Items];
+    while (row2List.length < 6) {
+      row2List = [...row2List, ...row2Items];
+    }
+    const row2Cards = [...row2List, ...row2List].map(it => createCardHTML(it, it.origIdx)).join('');
 
-    // Inject into Horizontal Tracks
+    // Inject into Horizontal Tracks (Row 1 Left, Row 2 Right)
     const trackRowLeft = document.getElementById('row-left-track');
     const trackRowRight = document.getElementById('row-right-track');
-    if (trackRowLeft) trackRowLeft.innerHTML = col1Cards;
-    if (trackRowRight) trackRowRight.innerHTML = col2Cards;
+    if (trackRowLeft) trackRowLeft.innerHTML = row1Cards;
+    if (trackRowRight) trackRowRight.innerHTML = row2Cards;
 
     // Attach Lightbox click handlers
     attachLightboxTriggers();
@@ -224,26 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
       window.lucide.createIcons();
     }
   }
-
-  // View Mode Switcher (Columns vs Rows)
-  const btnViewColumns = document.getElementById('btn-view-columns');
-  const btnViewRows = document.getElementById('btn-view-rows');
-  const viewportColumns = document.getElementById('gallery-columns-viewport');
-  const viewportRows = document.getElementById('gallery-rows-viewport');
-
-  btnViewColumns?.addEventListener('click', () => {
-    btnViewColumns.classList.add('active');
-    btnViewRows?.classList.remove('active');
-    if (viewportColumns) viewportColumns.style.display = 'block';
-    if (viewportRows) viewportRows.style.display = 'none';
-  });
-
-  btnViewRows?.addEventListener('click', () => {
-    btnViewRows.classList.add('active');
-    btnViewColumns?.classList.remove('active');
-    if (viewportRows) viewportRows.style.display = 'block';
-    if (viewportColumns) viewportColumns.style.display = 'none';
-  });
 
   // Lightbox Modal Controls
   const lightbox = document.getElementById('gallery-lightbox');
@@ -255,6 +258,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxCaption = document.getElementById('lightbox-caption');
 
   function openLightbox(index) {
+    if (currentGalleryItems.length === 0) {
+      initFallbackGalleryItems();
+    }
     if (!lightbox || currentGalleryItems.length === 0) return;
     currentLightboxIndex = (index + currentGalleryItems.length) % currentGalleryItems.length;
     const item = currentGalleryItems[currentLightboxIndex];
@@ -264,11 +270,13 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxCaption.textContent = item.title || item.alt || 'Workshop Facility';
       }
       lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
   }
 
   function closeLightbox() {
     lightbox?.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
   function showNextLightbox() {
@@ -282,12 +290,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function attachLightboxTriggers() {
     const cards = document.querySelectorAll('.moving-gallery-card');
     cards.forEach(card => {
-      card.addEventListener('click', () => {
+      card.onclick = () => {
         const idx = parseInt(card.dataset.index, 10);
         if (!isNaN(idx)) {
           openLightbox(idx);
+        } else {
+          const src = card.getAttribute('data-src') || card.querySelector('img')?.getAttribute('src');
+          const foundIdx = currentGalleryItems.findIndex(it => it.src === src);
+          if (foundIdx !== -1) openLightbox(foundIdx);
         }
-      });
+      };
     });
   }
 
@@ -305,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initial trigger attachment for pre-rendered fallback items
+  initFallbackGalleryItems();
   attachLightboxTriggers();
 
   // -------------------------------------------------------------------------

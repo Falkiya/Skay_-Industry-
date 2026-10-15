@@ -1140,121 +1140,21 @@ button {
   }
 }
 
-.gallery-view-toggle {
-  display: inline-flex;
-  align-items: center;
-  background: #f1f5f9;
-  padding: 4px;
-  border-radius: 8px;
-  gap: 4px;
-}
-
-.view-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.85rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  background: transparent;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.view-btn.active {
-  background: #ffffff;
-  color: var(--primary-blue);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.view-btn:hover:not(.active) {
-  color: var(--text-main);
-}
-
-/* 1. Mode Columns (Two Columns Moving in Opposite Directions) */
-.moving-gallery-viewport {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-}
-
-.dual-columns-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  height: 560px;
-  overflow: hidden;
-  padding: 1.5rem;
-}
-
-.column-marquee-col {
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.column-marquee-track {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  will-change: transform;
-}
-
-/* Column 1: Smooth Upward Motion */
-.track-move-up {
-  animation: moveColUp 34s linear infinite;
-}
-
-/* Column 2: Smooth Downward Motion (Opposite) */
-.track-move-down {
-  animation: moveColDown 34s linear infinite;
-}
-
-@keyframes moveColUp {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-50%);
-  }
-}
-
-@keyframes moveColDown {
-  0% {
-    transform: translateY(-50%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* Pause motion on hover so user can easily inspect and click photos */
-.moving-gallery-viewport:hover .track-move-up,
-.moving-gallery-viewport:hover .track-move-down {
-  animation-play-state: paused;
-}
-
-/* 2. Mode Horizontal Rows (Two Rows Moving in Opposite Directions) */
+/* Dual-Row Moving Gallery Styles (Two Horizontal Rows Moving in Opposite Directions) */
 .moving-gallery-horizontal-viewport {
   position: relative;
   overflow: hidden;
   border-radius: 16px;
   background-color: #f8fafc;
   border: 1px solid #e2e8f0;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .dual-rows-wrap {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .row-marquee-row {
@@ -1265,17 +1165,19 @@ button {
 
 .row-marquee-track {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   width: max-content;
   will-change: transform;
 }
 
+/* Row 1: Continuous Smooth Motion to Left (←) */
 .track-move-left {
-  animation: moveRowLeft 42s linear infinite;
+  animation: moveRowLeft 45s linear infinite;
 }
 
+/* Row 2: Continuous Smooth Motion to Right (→) */
 .track-move-right {
-  animation: moveRowRight 42s linear infinite;
+  animation: moveRowRight 45s linear infinite;
 }
 
 @keyframes moveRowLeft {
@@ -1296,6 +1198,8 @@ button {
   }
 }
 
+/* Pause motion on hover so user can easily inspect and click photos */
+.row-marquee-row:hover .row-marquee-track,
 .moving-gallery-horizontal-viewport:hover .track-move-left,
 .moving-gallery-horizontal-viewport:hover .track-move-right {
   animation-play-state: paused;
@@ -1303,6 +1207,7 @@ button {
 
 /* Moving Gallery Card */
 .moving-gallery-card {
+  width: 290px;
   border-radius: 12px;
   overflow: hidden;
   background-color: #ffffff;
@@ -1313,14 +1218,8 @@ button {
   flex-shrink: 0;
 }
 
-/* Vertical sizing */
-.dual-columns-grid .moving-gallery-card {
-  width: 100%;
-}
-
-/* Horizontal sizing */
 .row-marquee-track .moving-gallery-card {
-  width: 300px;
+  width: 290px;
 }
 
 .moving-gallery-card:hover {
@@ -1351,7 +1250,7 @@ button {
 .moving-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0) 100%);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -1391,36 +1290,14 @@ button {
   background: var(--primary-blue);
 }
 
-/* Gradient Fade Masks */
-.gallery-fade-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  background: linear-gradient(to bottom, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
-  z-index: 5;
-  pointer-events: none;
-}
-
-.gallery-fade-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  background: linear-gradient(to top, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
-  z-index: 5;
-  pointer-events: none;
-}
-
+/* Gradient Fade Masks for Left & Right Edges */
 .gallery-fade-left {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 50px;
-  background: linear-gradient(to right, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+  width: 60px;
+  background: linear-gradient(to right, #f8fafc 20%, rgba(248, 250, 252, 0) 100%);
   z-index: 5;
   pointer-events: none;
 }
@@ -1430,34 +1307,36 @@ button {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 50px;
-  background: linear-gradient(to left, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+  width: 60px;
+  background: linear-gradient(to left, #f8fafc 20%, rgba(248, 250, 252, 0) 100%);
   z-index: 5;
   pointer-events: none;
 }
 
 @media (max-width: 768px) {
-  .dual-columns-grid {
-    gap: 1rem;
-    height: 480px;
-    padding: 1rem;
+  .moving-gallery-horizontal-viewport {
+    padding: 1rem 0.5rem;
   }
-  .column-marquee-track {
-    gap: 1rem;
+  .dual-rows-wrap {
+    gap: 0.85rem;
   }
+  .row-marquee-track {
+    gap: 0.85rem;
+  }
+  .moving-gallery-card,
   .row-marquee-track .moving-gallery-card {
-    width: 240px;
+    width: 230px;
+  }
+  .gallery-fade-left,
+  .gallery-fade-right {
+    width: 35px;
   }
 }
 
 @media (max-width: 480px) {
-  .dual-columns-grid {
-    gap: 0.65rem;
-    height: 420px;
-    padding: 0.65rem;
-  }
-  .column-marquee-track {
-    gap: 0.65rem;
+  .moving-gallery-card,
+  .row-marquee-track .moving-gallery-card {
+    width: 190px;
   }
   .moving-card-overlay {
     opacity: 1;

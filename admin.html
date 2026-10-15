@@ -996,6 +996,9 @@
         return true;
       } catch (err) {
         console.warn('LocalStorage limit reached, fallback saving to IndexedDB:', err);
+        try {
+          localStorage.setItem('skay_gallery_last_updated', Date.now().toString());
+        } catch (e) {}
         saveToDB(galleryData);
         updateJSONPreview();
         return true;
