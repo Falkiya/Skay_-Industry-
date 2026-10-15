@@ -181,24 +181,33 @@ button {
 .exact-header-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
 }
 
-/* Logo */
+/* Logo (Prominent Header Branding matching live skayind.com) */
 .exact-logo-link {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
+  padding: 0.25rem 0;
 }
 
 .exact-logo-img {
-  height: 60px;
-  width: auto;
+  width: 194px;
+  max-width: 194px;
+  height: auto;
   object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.exact-logo-link:hover .exact-logo-img {
+  transform: scale(1.02);
+  opacity: 0.95;
 }
 
 /* Header Right */
@@ -414,6 +423,10 @@ button {
 }
 
 @media (max-width: 900px) {
+  .exact-logo-img {
+    width: 160px;
+    max-width: 160px;
+  }
   .exact-search-form,
   .exact-call-btn,
   .exact-brochure-link,
@@ -422,6 +435,13 @@ button {
   }
   .exact-mobile-toggle {
     display: block;
+  }
+}
+
+@media (max-width: 500px) {
+  .exact-logo-img {
+    width: 125px;
+    max-width: 125px;
   }
 }
 
