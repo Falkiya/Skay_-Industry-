@@ -3054,3 +3054,467 @@ button {
     height: 44px;
   }
 }
+
+/* ==========================================================================
+   SECTION 13B: uPVC WINDOWS & DOORS IN KARNATAKA
+   ========================================================================== */
+.karnataka-section {
+  padding: 5rem 0 4.5rem;
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.karnataka-header-wrap {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 3rem;
+}
+
+.karnataka-lead-desc {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.karnataka-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eef2f6;
+}
+
+.karnataka-intro-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 900px) {
+  .karnataka-intro-row {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.karnataka-subheading {
+  font-family: var(--font-family);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+}
+
+.karnataka-text-block {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--text-main);
+}
+
+.karnataka-callout-badge {
+  background: linear-gradient(135deg, #0170B9 0%, #015289 100%);
+  color: #ffffff;
+  padding: 1.75rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(1, 112, 185, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.callout-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  color: #bae6fd;
+}
+
+.callout-price-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.callout-price-val {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #fef08a;
+  letter-spacing: -0.02em;
+}
+
+.callout-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #e0f2fe;
+}
+
+/* 3 Regional Hubs */
+.karnataka-regions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 960px) {
+  .karnataka-regions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.region-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.region-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.region-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.region-icon-pill {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #e0f2fe;
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.region-name {
+  font-family: var(--font-family);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.region-badge-active {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0284c7;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.region-cities-list {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed #cbd5e1;
+}
+
+.region-cities-list .city-highlight {
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.region-summary {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.region-action-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.city-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  background: #ffffff;
+  color: var(--primary-blue) !important;
+  border: 1px solid #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.city-btn:hover {
+  background: #f0f7ff;
+  border-color: var(--primary-blue);
+}
+
+.city-btn.primary {
+  background: var(--primary-blue);
+  color: #ffffff !important;
+  border-color: var(--primary-blue);
+}
+
+.city-btn.primary:hover {
+  background: var(--primary-blue-hover);
+}
+
+/* Disclaimer Note */
+.karnataka-disclaimer-box {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #92400e;
+  margin-bottom: 2rem;
+}
+
+/* Bottom CTA Row */
+.karnataka-footer-cta {
+  background: #0f172a;
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+@media (max-width: 850px) {
+  .karnataka-footer-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .karnataka-footer-cta-btns {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.karnataka-footer-cta-text h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 0.4rem;
+}
+
+.karnataka-footer-cta-text p {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.karnataka-footer-cta-text p strong {
+  color: #ffffff;
+}
+
+.karnataka-footer-cta-btns {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.btn-whatsapp-direct {
+  background: var(--whatsapp-green);
+  color: #ffffff !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.35rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.btn-whatsapp-direct:hover {
+  background: #1eb851;
+}
+
+/* Footer Karnataka Regional Strip */
+.footer-karnataka-bar {
+  background-color: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1.1rem 0;
+}
+
+.footer-karnataka-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  font-size: 0.88rem;
+}
+
+.footer-karnataka-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary-blue);
+  font-weight: 700;
+}
+
+.footer-karnataka-cities {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.65rem;
+  color: #475569;
+}
+
+.footer-city-link {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.footer-city-link:hover {
+  color: var(--primary-blue-hover);
+  text-decoration: underline;
+}
+
+.footer-city-link.active {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.footer-city-tag {
+  color: #64748b;
+}
+
+.footer-k-sep {
+  color: #cbd5e1;
+}
+
+/* City Page Specific Hero & Pricing Grid */
+.city-hero-section {
+  background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+  padding: 4.5rem 0 3.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.city-hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .city-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.city-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  background: #e0f2fe;
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.city-hero-title {
+  font-family: var(--font-family);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .city-hero-title {
+    font-size: 1.85rem;
+  }
+}
+
+.city-hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+}
+
+.city-hero-ctas {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.city-pricing-table-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.city-pricing-header {
+  background: var(--primary-blue);
+  color: #ffffff;
+  padding: 1.25rem 1.5rem;
+}
+
+.city-pricing-header h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.city-pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.95rem;
+}
+
+.city-pricing-row:last-child {
+  border-bottom: none;
+}
+
+.city-pricing-row strong {
+  color: var(--primary-blue);
+}

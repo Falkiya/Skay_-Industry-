@@ -503,7 +503,20 @@ document.addEventListener('DOMContentLoaded', () => {
     { title: 'Bulk uPVC Windows & Doors for Projects', category: 'B2B Commercial', anchor: '#about' },
     { title: 'Custom uPVC Window Fabrication for Architects', category: 'B2B Commercial', anchor: '#about' },
     { title: 'Customer Reviews (4.8 / 5 Rating)', category: 'Reviews', anchor: '#testimonials' },
-    { title: 'Call Now: +91 98803 09808 (24/7 Support)', category: 'Contact', anchor: '#contact' }
+    { title: 'Call Now: +91 98803 09808 (24/7 Support)', category: 'Contact', anchor: '#contact' },
+
+    // Statewide Karnataka & City Landing Hubs
+    { title: 'uPVC Windows & Doors in Karnataka | SKAY Industries', category: 'Karnataka', anchor: '#karnataka-coverage' },
+    { title: 'uPVC Windows Price in Karnataka (From ₹350/sqft)', category: 'Karnataka', anchor: '#karnataka-coverage' },
+    { title: 'uPVC Doors Price in Karnataka', category: 'Karnataka', anchor: '#karnataka-coverage' },
+    { title: 'uPVC Windows in Bengaluru (Apartments & Villas)', category: 'City Hub', anchor: 'upvc-windows-bengaluru.html' },
+    { title: 'uPVC Windows in Mysuru (HQ & Factory Direct)', category: 'City Hub', anchor: 'upvc-windows-mysuru.html' },
+    { title: 'uPVC Windows in Hubballi-Dharwad & Belagavi', category: 'City Hub', anchor: 'upvc-windows-hubballi.html' },
+    { title: 'uPVC Sliding Windows Supplier (Karnataka)', category: 'Products', anchor: '#products' },
+    { title: 'uPVC Casement Windows Manufacturer (Karnataka)', category: 'Products', anchor: '#products' },
+    { title: 'uPVC Window Replacement Services', category: 'Services', anchor: '#why-upvc' },
+    { title: 'Bulk uPVC Windows for Builders & Contractors', category: 'B2B Commercial', anchor: '#about' },
+    { title: 'uPVC Windows for Villas and Apartments', category: 'Residential', anchor: '#about' }
   ];
 
   function openSearch() {
