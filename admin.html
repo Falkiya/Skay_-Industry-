@@ -636,10 +636,15 @@
   <main class="admin-main">
     <!-- Tabs -->
     <nav class="admin-tabs">
-      <button class="tab-btn active" onclick="switchTab('workshop')" id="tab-btn-workshop">
-        <i data-lucide="camera" class="w-4 h-4"></i>
-        <span>Workshop & Projects Gallery</span>
-        <span class="tab-badge" id="workshop-count-badge">0</span>
+      <button class="tab-btn active" onclick="switchTab('factory')" id="tab-btn-factory">
+        <i data-lucide="factory" class="w-4 h-4"></i>
+        <span>Factory / Workshop Panel</span>
+        <span class="tab-badge" id="factory-count-badge">0</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('projects')" id="tab-btn-projects">
+        <i data-lucide="images" class="w-4 h-4"></i>
+        <span>Project Photos Panel (Mysuru)</span>
+        <span class="tab-badge" id="projects-count-badge">0</span>
       </button>
       <button class="tab-btn" onclick="switchTab('products')" id="tab-btn-products">
         <i data-lucide="layers" class="w-4 h-4"></i>
@@ -658,19 +663,19 @@
     </nav>
 
     <!-- ========================================================================= -->
-    <!-- TAB 1: WORKSHOP GALLERY                                                   -->
+    <!-- TAB 1: FACTORY / WORKSHOP FACILITIES PANEL                                -->
     <!-- ========================================================================= -->
-    <section id="tab-workshop" class="tab-content">
+    <section id="tab-factory" class="tab-content">
       <div class="section-toolbar">
         <div class="toolbar-title">
-          <h2>Workshop Facilities & Installation Photos</h2>
-          <p>Add, edit, remove, or reorder the photos displayed in the 17-photo gallery carousel.</p>
+          <h2>Factory & Workshop Facilities Panel</h2>
+          <p>Add, edit, reorder or remove photos of German CNC machinery, cutting, and welding stations displayed in the Workshop Facilities section.</p>
         </div>
         <div class="toolbar-actions">
-          <button class="btn btn-primary" onclick="openAddWorkshopModal()">
-            <i data-lucide="plus-circle" class="w-4 h-4"></i> Add New Photo
+          <button class="btn btn-primary" onclick="openAddPhotoModal('factory')">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i> Add Factory Photo
           </button>
-          <button class="btn btn-outline" onclick="resetWorkshopToDefault()">
+          <button class="btn btn-outline" onclick="resetFactoryToDefault()">
             <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset Defaults
           </button>
         </div>
@@ -680,21 +685,57 @@
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <i data-lucide="sparkles" style="color: #0170B9; width: 20px; height: 20px; flex-shrink: 0;"></i>
           <span style="font-size: 0.85rem; color: #1e3a8a;">
-            <strong>Instant Live Sync Active:</strong> Photos added or reordered here update the website immediately! To make changes permanent for every visitor across the globe on GitHub/Vercel, download <strong>gallery.json</strong> from the Data Sync tab.
+            <strong>Instant Live Sync Active:</strong> Factory photos update the website's Workshop Facilities two-row moving gallery immediately!
           </span>
         </div>
         <a href="index.html#workshop" target="_blank" class="btn btn-outline btn-sm" style="background: #ffffff; border-color: #93c5fd; color: #0170B9; font-size: 0.78rem;">
-          <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Preview Live Gallery
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Preview Workshop Section
         </a>
       </div>
 
-      <div class="items-grid" id="workshop-items-grid">
+      <div class="items-grid" id="factory-items-grid">
         <!-- Dynamically rendered via JS -->
       </div>
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 2: PRODUCTS CATALOG                                                   -->
+    <!-- TAB 2: INSTALLATION PROJECTS IN MYSURU PANEL                              -->
+    <!-- ========================================================================= -->
+    <section id="tab-projects" class="tab-content" style="display: none;">
+      <div class="section-toolbar">
+        <div class="toolbar-title">
+          <h2>Installation Projects Panel (Mysuru)</h2>
+          <p>Add, edit, reorder or remove verified project photos (luxury villas, balcony enclosures, architectural glazing, facades) displayed in the Mysuru Projects section.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn btn-primary" onclick="openAddPhotoModal('projects')">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i> Add Project Photo
+          </button>
+          <button class="btn btn-outline" onclick="resetProjectsToDefault()">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset Defaults
+          </button>
+        </div>
+      </div>
+
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 0.85rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <i data-lucide="check-circle" style="color: #16a34a; width: 20px; height: 20px; flex-shrink: 0;"></i>
+          <span style="font-size: 0.85rem; color: #14532d;">
+            <strong>Instant Live Sync Active:</strong> Project photos update the Installation Projects in Mysuru two-row moving gallery immediately!
+          </span>
+        </div>
+        <a href="index.html#projects" target="_blank" class="btn btn-outline btn-sm" style="background: #ffffff; border-color: #86efac; color: #16a34a; font-size: 0.78rem;">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Preview Projects Section
+        </a>
+      </div>
+
+      <div class="items-grid" id="projects-items-grid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: PRODUCTS CATALOG                                                   -->
     <!-- ========================================================================= -->
     <section id="tab-products" class="tab-content" style="display: none;">
       <div class="section-toolbar">
@@ -718,7 +759,7 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 3: EXPORT & SYNC                                                      -->
+    <!-- TAB 4: EXPORT & SYNC                                                      -->
     <!-- ========================================================================= -->
     <section id="tab-sync" class="tab-content" style="display: none;">
       <div class="section-toolbar">
@@ -740,7 +781,7 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 4: CUSTOMER LEADS & ENQUIRIES                                         -->
+    <!-- TAB 5: CUSTOMER LEADS & ENQUIRIES                                         -->
     <!-- ========================================================================= -->
     <section id="tab-leads" class="tab-content" style="display: none;">
       <div class="section-toolbar">
@@ -763,40 +804,41 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- MODAL: ADD / EDIT WORKSHOP PHOTO                                          -->
+  <!-- MODAL: ADD / EDIT PHOTO (FACTORY OR PROJECTS)                             -->
   <!-- ========================================================================= -->
-  <div id="workshop-modal" class="modal-backdrop">
+  <div id="photo-modal" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 id="workshop-modal-title">Add Gallery Photo</h3>
-        <button class="close-modal-btn" onclick="closeWorkshopModal()"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <h3 id="photo-modal-title">Add Photo</h3>
+        <button class="close-modal-btn" onclick="closePhotoModal()"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-      <form id="workshop-form" onsubmit="saveWorkshopPhoto(event)">
-        <input type="hidden" id="ws-edit-id">
+      <form id="photo-form" onsubmit="savePhoto(event)">
+        <input type="hidden" id="photo-target-section" value="factory">
+        <input type="hidden" id="photo-edit-id" value="">
         <div class="modal-body">
           <div class="form-group">
-            <label for="ws-file-input">Upload Photo (from your computer)</label>
-            <input type="file" id="ws-file-input" accept="image/*" class="form-input" onchange="handleWorkshopFileUpload(event)">
+            <label for="photo-file-input">Upload Photo (from your computer)</label>
+            <input type="file" id="photo-file-input" accept="image/*" class="form-input" onchange="handlePhotoFileUpload(event)">
           </div>
           <div class="form-group">
-            <label for="ws-url-input">OR Image URL / Path</label>
-            <input type="text" id="ws-url-input" class="form-input" placeholder="e.g. images/live/DSC2388-300x300.jpg" oninput="updateWorkshopImgPreview(this.value)">
+            <label for="photo-url-input">OR Image URL / Path</label>
+            <input type="text" id="photo-url-input" class="form-input" placeholder="e.g. images/live/DSC2388-300x300.jpg" oninput="updatePhotoImgPreview(this.value)">
           </div>
-          <div class="img-preview-box" id="ws-img-preview-wrap">
+          <div class="img-preview-box" id="photo-img-preview-wrap">
             <span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>
           </div>
           <div class="form-group">
-            <label for="ws-title-input">Title / Caption</label>
-            <input type="text" id="ws-title-input" class="form-input" placeholder="e.g. Precision CNC Machinery" required>
+            <label for="photo-title-input">Title / Caption</label>
+            <input type="text" id="photo-title-input" class="form-input" placeholder="e.g. Precision CNC Machinery" required>
           </div>
           <div class="form-group">
-            <label for="ws-alt-input">Alt Text (Accessibility / SEO)</label>
-            <input type="text" id="ws-alt-input" class="form-input" placeholder="e.g. uPVC double head digital cutting machine">
+            <label for="photo-alt-input">Alt Text (Accessibility / SEO)</label>
+            <input type="text" id="photo-alt-input" class="form-input" placeholder="e.g. uPVC double head digital cutting machine">
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline" onclick="closeWorkshopModal()">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Photo</button>
+          <button type="button" class="btn btn-outline" onclick="closePhotoModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="photo-save-btn">Save Photo</button>
         </div>
       </form>
     </div>
@@ -854,7 +896,7 @@
   <!-- ========================================================================= -->
   <script>
     // State Store
-    let galleryData = { products: [], workshop: [] };
+    let galleryData = { products: [], factory: [], projects: [], workshop: [] };
     let defaultBackupData = null;
     const DEFAULT_PASSCODE = "skay2026";
 
@@ -973,11 +1015,28 @@
       location.reload();
     }
 
-    // 2. Data Loading & Persistence
+    // 2. Data Normalization & Persistence
+    function normalizeData(data) {
+      if (!data) return;
+      if (!Array.isArray(data.products)) data.products = [];
+      
+      // If factory or projects are missing, but legacy workshop exists:
+      if ((!Array.isArray(data.factory) || data.factory.length === 0) && Array.isArray(data.workshop) && data.workshop.length > 0) {
+        data.factory = data.workshop.slice(0, 8);
+        data.projects = data.workshop.slice(8);
+      }
+      if (!Array.isArray(data.factory)) data.factory = [];
+      if (!Array.isArray(data.projects)) data.projects = [];
+      
+      // Keep legacy workshop alias updated
+      data.workshop = [...data.factory, ...data.projects];
+    }
+
     async function loadInitialData() {
       // 1. Check IndexedDB first
       const dbData = await loadFromDB();
-      if (dbData && dbData.workshop && dbData.workshop.length > 0) {
+      if (dbData && (dbData.factory || dbData.projects || dbData.workshop)) {
+        normalizeData(dbData);
         galleryData = dbData;
         renderAll();
         return;
@@ -987,7 +1046,9 @@
       const saved = localStorage.getItem('skay_gallery_data');
       if (saved) {
         try {
-          galleryData = JSON.parse(saved);
+          const parsed = JSON.parse(saved);
+          normalizeData(parsed);
+          galleryData = parsed;
           renderAll();
           saveToDB(galleryData);
           return;
@@ -1000,12 +1061,11 @@
       fetch('gallery.json')
         .then(res => res.json())
         .then(data => {
+          normalizeData(data);
           defaultBackupData = JSON.parse(JSON.stringify(data));
-          if (!galleryData.workshop || galleryData.workshop.length === 0) {
-            galleryData = data;
-            saveToLocalStorage();
-            renderAll();
-          }
+          galleryData = data;
+          saveToLocalStorage();
+          renderAll();
           updateJSONPreview();
         })
         .catch(err => {
@@ -1015,6 +1075,7 @@
 
     function saveToLocalStorage() {
       try {
+        galleryData.workshop = [...(galleryData.factory || []), ...(galleryData.projects || [])];
         const jsonStr = JSON.stringify(galleryData);
         localStorage.setItem('skay_gallery_data', jsonStr);
         localStorage.setItem('skay_gallery_last_updated', Date.now().toString());
@@ -1038,7 +1099,8 @@
     }
 
     function renderAll() {
-      renderWorkshopGrid();
+      renderFactoryGrid();
+      renderProjectsGrid();
       renderProductsGrid();
       updateBadgeCounts();
       updateJSONPreview();
@@ -1046,20 +1108,29 @@
     }
 
     function updateBadgeCounts() {
-      document.getElementById('workshop-count-badge').textContent = galleryData.workshop?.length || 0;
-      document.getElementById('products-count-badge').textContent = galleryData.products?.length || 0;
+      const facBadge = document.getElementById('factory-count-badge');
+      if (facBadge) facBadge.textContent = galleryData.factory?.length || 0;
+
+      const proBadge = document.getElementById('projects-count-badge');
+      if (proBadge) proBadge.textContent = galleryData.projects?.length || 0;
+
+      const prodBadge = document.getElementById('products-count-badge');
+      if (prodBadge) prodBadge.textContent = galleryData.products?.length || 0;
+
       const leads = JSON.parse(localStorage.getItem('skay_leads') || '[]');
       const leadsBadge = document.getElementById('leads-count-badge');
       if (leadsBadge) leadsBadge.textContent = leads.length;
     }
 
-    // Tab Switching
+    // Tab Switching (supports factory, projects, products, leads, sync)
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
 
-      document.getElementById(`tab-${tabId}`).style.display = 'block';
-      document.getElementById(`tab-btn-${tabId}`).classList.add('active');
+      const targetSection = document.getElementById(`tab-${tabId}`);
+      if (targetSection) targetSection.style.display = 'block';
+      const targetBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (targetBtn) targetBtn.classList.add('active');
 
       if (tabId === 'sync') {
         updateJSONPreview();
@@ -1185,42 +1256,43 @@
       showToast('Leads exported as CSV!', 'success');
     }
 
-    // 3. Workshop Gallery Rendering & Actions
-    function renderWorkshopGrid() {
-      const grid = document.getElementById('workshop-items-grid');
+    // 3. Dual Photo Grid Rendering & Handlers (Factory & Projects)
+    function renderPhotoGrid(section, gridId) {
+      const grid = document.getElementById(gridId);
       if (!grid) return;
       grid.innerHTML = '';
+      const list = galleryData[section] || [];
 
-      if (!galleryData.workshop || galleryData.workshop.length === 0) {
+      if (list.length === 0) {
         grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #ffffff; border-radius: 8px;">
-          <p style="color: var(--text-muted); font-size: 1rem;">No photos in gallery yet. Click "+ Add New Photo" to add one.</p>
+          <p style="color: var(--text-muted); font-size: 1rem;">No photos in this section yet. Click "+ Add Photo" to add one.</p>
         </div>`;
         return;
       }
 
-      galleryData.workshop.forEach((item, index) => {
+      list.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'item-card';
         card.innerHTML = `
           <div class="item-img-wrap">
             <span class="item-order-badge">#${index + 1}</span>
-            <img src="${item.src}" alt="${item.alt || ''}">
+            <img src="${item.src}" alt="${escapeHtml(item.alt || '')}">
           </div>
           <div class="item-info">
-            <h4 class="item-title">${item.title || 'Untitled Photo'}</h4>
-            <p class="item-alt">${item.alt || 'No alt description'}</p>
+            <h4 class="item-title">${escapeHtml(item.title || 'Untitled Photo')}</h4>
+            <p class="item-alt">${escapeHtml(item.alt || 'No alt description')}</p>
             <div class="item-card-actions">
               <div class="reorder-btns">
-                <button class="reorder-btn" title="Move Left / Earlier" onclick="moveWorkshopItem(${index}, -1)" ${index === 0 ? 'disabled' : ''}>
+                <button class="reorder-btn" title="Move Left / Earlier" onclick="movePhotoItem('${section}', ${index}, -1)" ${index === 0 ? 'disabled' : ''}>
                   <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
                 </button>
-                <button class="reorder-btn" title="Move Right / Later" onclick="moveWorkshopItem(${index}, 1)" ${index === galleryData.workshop.length - 1 ? 'disabled' : ''}>
+                <button class="reorder-btn" title="Move Right / Later" onclick="movePhotoItem('${section}', ${index}, 1)" ${index === list.length - 1 ? 'disabled' : ''}>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
               <div class="edit-del-btns">
-                <button class="btn btn-outline btn-sm" onclick="editWorkshopItem(${index})"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i> Edit</button>
-                <button class="btn btn-danger-outline btn-sm" onclick="deleteWorkshopItem(${index})"><i data-lucide="trash" class="w-3.5 h-3.5"></i></button>
+                <button class="btn btn-outline btn-sm" onclick="editPhotoItem('${section}', ${index})"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i> Edit</button>
+                <button class="btn btn-danger-outline btn-sm" onclick="deletePhotoItem('${section}', ${index})"><i data-lucide="trash" class="w-3.5 h-3.5"></i></button>
               </div>
             </div>
           </div>
@@ -1229,53 +1301,71 @@
       });
     }
 
-    function moveWorkshopItem(index, offset) {
+    function renderFactoryGrid() {
+      renderPhotoGrid('factory', 'factory-items-grid');
+    }
+
+    function renderProjectsGrid() {
+      renderPhotoGrid('projects', 'projects-items-grid');
+    }
+
+    function movePhotoItem(section, index, offset) {
+      const list = galleryData[section];
+      if (!list) return;
       const targetIndex = index + offset;
-      if (targetIndex < 0 || targetIndex >= galleryData.workshop.length) return;
-      const [moved] = galleryData.workshop.splice(index, 1);
-      galleryData.workshop.splice(targetIndex, 0, moved);
+      if (targetIndex < 0 || targetIndex >= list.length) return;
+      const [moved] = list.splice(index, 1);
+      list.splice(targetIndex, 0, moved);
       saveToLocalStorage();
       renderAll();
     }
 
-    function deleteWorkshopItem(index) {
-      if (confirm(`Are you sure you want to delete "${galleryData.workshop[index].title || 'this photo'}"?`)) {
-        galleryData.workshop.splice(index, 1);
+    function deletePhotoItem(section, index) {
+      const list = galleryData[section];
+      if (!list || !list[index]) return;
+      const name = list[index].title || 'this photo';
+      if (confirm(`Are you sure you want to delete "${name}"?`)) {
+        list.splice(index, 1);
         saveToLocalStorage();
         renderAll();
         showToast('Photo removed from gallery', 'info');
       }
     }
 
-    function openAddWorkshopModal() {
-      document.getElementById('workshop-modal-title').textContent = 'Add Gallery Photo';
-      document.getElementById('ws-edit-id').value = '';
-      document.getElementById('ws-url-input').value = '';
-      document.getElementById('ws-title-input').value = '';
-      document.getElementById('ws-alt-input').value = '';
-      document.getElementById('ws-file-input').value = '';
-      document.getElementById('ws-img-preview-wrap').innerHTML = `<span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>`;
-      document.getElementById('workshop-modal').classList.add('active');
+    function openAddPhotoModal(section) {
+      const sectionName = section === 'factory' ? 'Factory / Workshop' : 'Installation Project';
+      document.getElementById('photo-modal-title').textContent = `Add ${sectionName} Photo`;
+      document.getElementById('photo-target-section').value = section;
+      document.getElementById('photo-edit-id').value = '';
+      document.getElementById('photo-url-input').value = '';
+      document.getElementById('photo-title-input').value = '';
+      document.getElementById('photo-alt-input').value = '';
+      document.getElementById('photo-file-input').value = '';
+      document.getElementById('photo-img-preview-wrap').innerHTML = `<span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>`;
+      document.getElementById('photo-modal').classList.add('active');
     }
 
-    function editWorkshopItem(index) {
-      const item = galleryData.workshop[index];
-      if (!item) return;
-      document.getElementById('workshop-modal-title').textContent = 'Edit Gallery Photo';
-      document.getElementById('ws-edit-id').value = index;
-      document.getElementById('ws-url-input').value = item.src;
-      document.getElementById('ws-title-input').value = item.title || '';
-      document.getElementById('ws-alt-input').value = item.alt || '';
-      updateWorkshopImgPreview(item.src);
-      document.getElementById('workshop-modal').classList.add('active');
+    function editPhotoItem(section, index) {
+      const list = galleryData[section];
+      if (!list || !list[index]) return;
+      const item = list[index];
+      const sectionName = section === 'factory' ? 'Factory / Workshop' : 'Installation Project';
+      document.getElementById('photo-modal-title').textContent = `Edit ${sectionName} Photo`;
+      document.getElementById('photo-target-section').value = section;
+      document.getElementById('photo-edit-id').value = index;
+      document.getElementById('photo-url-input').value = item.src;
+      document.getElementById('photo-title-input').value = item.title || '';
+      document.getElementById('photo-alt-input').value = item.alt || '';
+      updatePhotoImgPreview(item.src);
+      document.getElementById('photo-modal').classList.add('active');
     }
 
-    function closeWorkshopModal() {
-      document.getElementById('workshop-modal').classList.remove('active');
+    function closePhotoModal() {
+      document.getElementById('photo-modal').classList.remove('active');
     }
 
-    function updateWorkshopImgPreview(src) {
-      const wrap = document.getElementById('ws-img-preview-wrap');
+    function updatePhotoImgPreview(src) {
+      const wrap = document.getElementById('photo-img-preview-wrap');
       if (src) {
         wrap.innerHTML = `<img src="${src}" alt="Preview" style="max-height: 100%;">`;
       } else {
@@ -1283,75 +1373,95 @@
       }
     }
 
-    async function handleWorkshopFileUpload(e) {
+    async function handlePhotoFileUpload(e) {
       const file = e.target.files?.[0];
       if (!file) return;
-      const previewWrap = document.getElementById('ws-img-preview-wrap');
+      const previewWrap = document.getElementById('photo-img-preview-wrap');
       if (previewWrap) {
         previewWrap.innerHTML = `<span style="font-size: 0.82rem; color: var(--primary); font-weight: 600;">Optimizing & compressing image...</span>`;
       }
       try {
         const compressedBase64 = await compressImageFile(file, 1200, 0.82);
-        document.getElementById('ws-url-input').value = compressedBase64;
-        updateWorkshopImgPreview(compressedBase64);
+        document.getElementById('photo-url-input').value = compressedBase64;
+        updatePhotoImgPreview(compressedBase64);
         showToast('Image optimized & ready to save!', 'info');
       } catch (err) {
         console.error('Compression fallback:', err);
         const reader = new FileReader();
         reader.onload = (event) => {
           const base64 = event.target?.result;
-          document.getElementById('ws-url-input').value = base64;
-          updateWorkshopImgPreview(base64);
+          document.getElementById('photo-url-input').value = base64;
+          updatePhotoImgPreview(base64);
         };
         reader.readAsDataURL(file);
       }
     }
 
-    function saveWorkshopPhoto(e) {
+    function savePhoto(e) {
       e.preventDefault();
-      const editId = document.getElementById('ws-edit-id').value;
-      const src = document.getElementById('ws-url-input').value.trim();
-      const title = document.getElementById('ws-title-input').value.trim();
-      const alt = document.getElementById('ws-alt-input').value.trim();
+      const section = document.getElementById('photo-target-section').value || 'factory';
+      const editId = document.getElementById('photo-edit-id').value;
+      const src = document.getElementById('photo-url-input').value.trim();
+      const title = document.getElementById('photo-title-input').value.trim();
+      const alt = document.getElementById('photo-alt-input').value.trim();
 
       if (!src) {
         alert('Please provide an image URL or upload a photo.');
         return;
       }
 
+      if (!Array.isArray(galleryData[section])) {
+        galleryData[section] = [];
+      }
+
       if (editId !== '') {
         const idx = parseInt(editId, 10);
-        galleryData.workshop[idx] = {
-          ...galleryData.workshop[idx],
+        galleryData[section][idx] = {
+          ...galleryData[section][idx],
           src,
           title,
           alt: alt || title
         };
         showToast('Photo updated successfully!', 'success');
       } else {
-        const newId = 'ws-' + Date.now();
-        galleryData.workshop.push({
+        const prefix = section === 'factory' ? 'fac-' : 'proj-';
+        const newId = prefix + Date.now();
+        galleryData[section].push({
           id: newId,
           src,
           title,
           alt: alt || title
         });
-        showToast('New photo added to gallery!', 'success');
+        showToast('New photo added!', 'success');
       }
 
       saveToLocalStorage();
-      closeWorkshopModal();
+      closePhotoModal();
       renderAll();
     }
 
-    function resetWorkshopToDefault() {
-      if (defaultBackupData?.workshop && confirm('Restore original 17 workshop photos? Any added photos will be reset.')) {
-        galleryData.workshop = JSON.parse(JSON.stringify(defaultBackupData.workshop));
+    function resetFactoryToDefault() {
+      if (defaultBackupData?.factory && confirm('Restore original 8 factory / workshop photos? Any custom photos added will be reset.')) {
+        galleryData.factory = JSON.parse(JSON.stringify(defaultBackupData.factory));
         saveToLocalStorage();
         renderAll();
-        showToast('Workshop gallery reset to original photos.', 'info');
+        showToast('Factory photos reset to defaults.', 'info');
       }
     }
+
+    function resetProjectsToDefault() {
+      if (defaultBackupData?.projects && confirm('Restore original 9 installation project photos? Any custom photos added will be reset.')) {
+        galleryData.projects = JSON.parse(JSON.stringify(defaultBackupData.projects));
+        saveToLocalStorage();
+        renderAll();
+        showToast('Project photos reset to defaults.', 'info');
+      }
+    }
+
+    // Legacy function aliases for backwards compatibility
+    function openAddWorkshopModal() { openAddPhotoModal('factory'); }
+    function resetWorkshopToDefault() { resetFactoryToDefault(); }
+    function renderWorkshopGrid() { renderFactoryGrid(); renderProjectsGrid(); }
 
     // 4. Products Catalog Rendering & Actions
     function renderProductsGrid() {

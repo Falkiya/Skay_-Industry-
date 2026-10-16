@@ -200,23 +200,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function renderDualMovingGallery(items) {
-    if (!Array.isArray(items) || items.length === 0) return;
-    currentGalleryItems = items;
+  function renderDualMovingTrack(trackLeftId, trackRightId, items) {
+    const trackLeft = document.getElementById(trackLeftId);
+    const trackRight = document.getElementById(trackRightId);
+    if (!trackLeft || !trackRight || !Array.isArray(items) || items.length === 0) return;
 
-    // Split items into two rows
+    // Split items into Row 1 (even index) and Row 2 (odd index)
     const row1Items = [];
     const row2Items = [];
 
     items.forEach((item, idx) => {
       if (idx % 2 === 0) {
-        row1Items.push({ ...item, origIdx: idx });
+        row1Items.push(item);
       } else {
-        row2Items.push({ ...item, origIdx: idx });
+        row2Items.push(item);
       }
     });
 
-    // Ensure balanced visual flow if only 1 item
     if (row2Items.length === 0 && row1Items.length > 0) {
       row2Items.push(...row1Items);
     }
@@ -226,26 +226,16 @@ document.addEventListener('DOMContentLoaded', () => {
     while (row1List.length < 8) {
       row1List = [...row1List, ...row1Items];
     }
-    const row1Cards = [...row1List, ...row1List].map(it => createCardHTML(it, it.origIdx)).join('');
+    const row1Cards = [...row1List, ...row1List].map(it => createCardHTML(it)).join('');
 
     let row2List = [...row2Items];
     while (row2List.length < 8) {
       row2List = [...row2List, ...row2Items];
     }
-    const row2Cards = [...row2List, ...row2List].map(it => createCardHTML(it, it.origIdx)).join('');
+    const row2Cards = [...row2List, ...row2List].map(it => createCardHTML(it)).join('');
 
-    // Inject into Horizontal Tracks (Row 1 Left, Row 2 Right)
-    const trackRowLeft = document.getElementById('row-left-track') || document.getElementById('workshop-track');
-    const trackRowRight = document.getElementById('row-right-track') || document.getElementById('projects-track');
-    if (trackRowLeft) trackRowLeft.innerHTML = row1Cards;
-    if (trackRowRight) trackRowRight.innerHTML = row2Cards;
-
-    // Attach Lightbox click handlers
-    attachLightboxTriggers();
-
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
+    trackLeft.innerHTML = row1Cards;
+    trackRight.innerHTML = row2Cards;
   }
 
   // Lightbox Modal Controls
@@ -267,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (item && lightboxImg) {
       lightboxImg.src = item.src;
       if (lightboxCaption) {
-        lightboxCaption.textContent = item.title || item.alt || 'Workshop Facility';
+        lightboxCaption.textContent = item.title || item.alt || 'SKAY Showcase';
       }
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -300,7 +290,11 @@ document.addEventListener('DOMContentLoaded', () => {
           openLightbox(foundIdx);
         } else {
           const idx = parseInt(card.dataset.index, 10);
-          if (!isNaN(idx)) openLightbox(idx);
+          if (!isNaN(idx)) {
+            openLightbox(idx);
+          } else {
+            openLightbox(0);
+          }
         }
       };
     });
@@ -344,9 +338,34 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 2. Sync Workshop & Projects Moving Gallery
-    if (Array.isArray(data.workshop) && data.workshop.length > 0) {
-      renderDualMovingGallery(data.workshop);
+    // Split factory vs projects if only legacy workshop array was provided
+    let factoryList = data.factory;
+    let projectsList = data.projects;
+    if ((!Array.isArray(factoryList) || factoryList.length === 0) && Array.isArray(data.workshop)) {
+      factoryList = data.workshop.slice(0, 8);
+      projectsList = data.workshop.slice(8);
+    }
+
+    // 2. Sync Workshop Facilities Moving Gallery (Dual Rows)
+    if (Array.isArray(factoryList) && factoryList.length > 0) {
+      renderDualMovingTrack('workshop-track-1', 'workshop-track-2', factoryList);
+    }
+
+    // 3. Sync Installation Projects in Mysuru Moving Gallery (Dual Rows)
+    if (Array.isArray(projectsList) && projectsList.length > 0) {
+      renderDualMovingTrack('projects-track-1', 'projects-track-2', projectsList);
+    }
+
+    // Update active items for Lightbox navigation
+    const allGalleryItems = [...(factoryList || []), ...(projectsList || [])];
+    if (allGalleryItems.length > 0) {
+      currentGalleryItems = allGalleryItems;
+    }
+
+    // Reattach Lightbox triggers & Lucide icons
+    attachLightboxTriggers();
+    if (window.lucide) {
+      window.lucide.createIcons();
     }
   }
 
@@ -354,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Check IndexedDB first (supports high-res uploaded images)
     try {
       const dbData = await loadFromDB();
-      if (dbData && dbData.workshop && dbData.workshop.length > 0) {
+      if (dbData && (dbData.factory || dbData.projects || dbData.workshop)) {
         applyDynamicData(dbData);
         return;
       }
