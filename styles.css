@@ -1231,6 +1231,15 @@ button {
   color: var(--primary-blue-hover);
 }
 
+.product-card-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #64748b;
+  text-align: center;
+  margin-top: 0.45rem;
+  padding: 0 0.5rem;
+}
+
 /* ==========================================================================
    SECTION 4 & 5: SPECTRUM OF COLOUR OPTIONS & 3D WINDOW FRAME
    ========================================================================== */
@@ -1340,6 +1349,75 @@ button {
   color: var(--text-main);
 }
 
+.about-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e0f2fe;
+  color: #0284c7;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.85rem;
+}
+
+.about-cta-quote-box {
+  margin-top: 2rem;
+  padding: 1.35rem 1.75rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-left: 4px solid var(--primary-blue);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: 0 4px 14px rgba(1, 112, 185, 0.08);
+}
+
+.about-cta-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #0f172a;
+  margin: 0;
+}
+
+.about-quote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  background: var(--primary-blue);
+  color: #ffffff !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(1, 112, 185, 0.25);
+  flex-shrink: 0;
+}
+
+.about-quote-btn:hover {
+  background: var(--primary-blue-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(1, 112, 185, 0.35);
+}
+
+@media (max-width: 768px) {
+  .about-cta-quote-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .about-quote-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* ==========================================================================
    SECTION 9: OUR COMMITMENT & APPLICATIONS
    ========================================================================== */
@@ -1401,6 +1479,74 @@ button {
   height: 18px;
   color: var(--primary-blue);
   flex-shrink: 0;
+}
+
+/* B2B Builder & Commercial Solutions Banner (Tier 4) */
+.b2b-builder-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+  margin-top: 1.5rem;
+}
+
+.b2b-builder-info h4 {
+  font-family: var(--font-family);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 0.65rem;
+}
+
+.b2b-builder-info p {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.b2b-builder-info p strong {
+  color: #ffffff;
+}
+
+.b2b-builder-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  background: #38bdf8;
+  color: #0f172a !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+}
+
+.b2b-builder-btn:hover {
+  background: #7dd3fc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.45);
+}
+
+@media (max-width: 850px) {
+  .b2b-builder-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem 1.5rem;
+  }
+  .b2b-builder-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ==========================================================================

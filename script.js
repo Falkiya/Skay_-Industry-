@@ -471,25 +471,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchResultsList = document.getElementById('search-results-list');
 
   const searchDatabase = [
-    { title: 'Casement Windows & Doors', category: 'Products', anchor: '#products' },
-    { title: 'Sliding Windows & Doors', category: 'Products', anchor: '#products' },
-    { title: 'Fixed Windows', category: 'Products', anchor: '#products' },
-    { title: 'Slide & Fold System', category: 'Products', anchor: '#products' },
-    { title: 'Tilt & Turn Windows', category: 'Products', anchor: '#products' },
-    { title: 'Combination Windows', category: 'Products', anchor: '#products' },
-    { title: 'Single Hunge Windows', category: 'Products', anchor: '#products' },
-    { title: 'Double Hunge Windows', category: 'Products', anchor: '#products' },
-    { title: 'L-Window Corner Solutions', category: 'Products', anchor: '#products' },
-    { title: 'A Spectrum of Colour Options', category: 'Colours', anchor: '#colours' },
-    { title: 'Technical Specification (Cross Section)', category: 'Technical', anchor: '#technical-spec' },
-    { title: 'About SKAY Industries & Commitment', category: 'About', anchor: '#about' },
-    { title: 'Applications (Residential, Villas, Offices)', category: 'Applications', anchor: '#about' },
-    { title: 'Workshop Machinery Facilities & Gallery', category: 'Workshop', anchor: '#workshop' },
-    { title: 'Why Choose uPVC (6 Key Advantages)', category: 'Why uPVC', anchor: '#why-upvc' },
+    // Tier 1: Local Mysuru
+    { title: 'uPVC Windows & Doors in Mysuru', category: 'Local Mysuru', anchor: '#home' },
+    { title: 'Best uPVC Windows Manufacturer in Mysuru', category: 'Local Mysuru', anchor: '#about' },
+    { title: 'uPVC Window Price in Mysuru (Starting ₹350/sqft)', category: 'Pricing', anchor: '#faq' },
+    { title: 'uPVC Window Installation Projects in Mysuru', category: 'Projects', anchor: '#workshop' },
+    { title: 'uPVC Doors & Windows Supplier Mysuru (Near Me)', category: 'Contact', anchor: '#contact' },
+
+    // Tier 2: Product Typologies
+    { title: 'uPVC Casement Windows & French Doors', category: 'Products', anchor: '#product-casement' },
+    { title: 'uPVC Sliding Windows & Balcony Doors', category: 'Products', anchor: '#product-sliding' },
+    { title: 'Fixed Architectural uPVC Windows', category: 'Products', anchor: '#product-fixed' },
+    { title: 'uPVC Folding Doors (Slide & Fold Systems)', category: 'Products', anchor: '#product-slide-fold' },
+    { title: 'uPVC Tilt and Turn Windows', category: 'Products', anchor: '#product-tilt-turn' },
+    { title: 'Combination & Custom-Sized uPVC Windows', category: 'Products', anchor: '#product-combination' },
+    { title: 'Single Hung Vertical Sliding Windows', category: 'Products', anchor: '#product-single-hung' },
+    { title: 'Double Hung Traditional uPVC Windows', category: 'Products', anchor: '#product-double-hung' },
+    { title: 'L-Window Corner & Bay Solutions', category: 'Products', anchor: '#product-l-window' },
+
+    // Tier 3: Benefits & Maintenance
+    { title: 'Weather-Resistant Windows & Doors (Monsoon Proof)', category: 'Benefits', anchor: '#why-upvc' },
+    { title: 'Low-Maintenance uPVC Windows (Termite-Proof)', category: 'Benefits', anchor: '#why-upvc' },
+    { title: 'Energy-Efficient Windows (Thermal Insulation)', category: 'Benefits', anchor: '#why-upvc' },
+    { title: 'Noise-Reducing uPVC Windows (Double-Glazed)', category: 'Benefits', anchor: '#why-upvc' },
+    { title: 'uPVC Window Replacement (Apartments & Villas)', category: 'Replacement', anchor: '#faq' },
+    { title: 'A Spectrum of Colour Options & Woodgrain Foils', category: 'Colours', anchor: '#colours' },
+    { title: 'Technical Specifications (Cross Section Profiles)', category: 'Technical', anchor: '#technical-spec' },
+
+    // Tier 4: B2B & Commercial Projects
+    { title: 'uPVC Windows Manufacturer for Builders & Developers', category: 'B2B Commercial', anchor: '#about' },
+    { title: 'Bulk uPVC Windows & Doors for Projects', category: 'B2B Commercial', anchor: '#about' },
+    { title: 'Custom uPVC Window Fabrication for Architects', category: 'B2B Commercial', anchor: '#about' },
     { title: 'Customer Reviews (4.8 / 5 Rating)', category: 'Reviews', anchor: '#testimonials' },
-    { title: 'Frequently Asked Questions (7 FAQs)', category: 'FAQs', anchor: '#faq' },
-    { title: 'Call Now: +91 98803 09808 (24/7)', category: 'Contact', anchor: '#contact' },
-    { title: 'Location: Shed No.2, M.G. Road, Mysuru', category: 'Contact', anchor: '#contact' }
+    { title: 'Call Now: +91 98803 09808 (24/7 Support)', category: 'Contact', anchor: '#contact' }
   ];
 
   function openSearch() {
