@@ -183,12 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize fallback items from DOM pre-rendered cards
   function initFallbackGalleryItems() {
     if (currentGalleryItems.length === 0) {
-      const cards = document.querySelectorAll('#row-left-track .moving-gallery-card, #row-right-track .moving-gallery-card');
+      const cards = document.querySelectorAll('.moving-gallery-card');
       const seen = new Set();
       const items = [];
       cards.forEach(c => {
         const src = c.getAttribute('data-src') || c.querySelector('img')?.getAttribute('src');
-        const title = c.getAttribute('data-title') || c.querySelector('img')?.getAttribute('alt') || 'Workshop Facility';
+        const title = c.getAttribute('data-title') || c.querySelector('img')?.getAttribute('alt') || 'SKAY Showcase';
         if (src && !seen.has(src)) {
           seen.add(src);
           items.push({ src, title, alt: title });
@@ -235,8 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const row2Cards = [...row2List, ...row2List].map(it => createCardHTML(it, it.origIdx)).join('');
 
     // Inject into Horizontal Tracks (Row 1 Left, Row 2 Right)
-    const trackRowLeft = document.getElementById('row-left-track');
-    const trackRowRight = document.getElementById('row-right-track');
+    const trackRowLeft = document.getElementById('row-left-track') || document.getElementById('workshop-track');
+    const trackRowRight = document.getElementById('row-right-track') || document.getElementById('projects-track');
     if (trackRowLeft) trackRowLeft.innerHTML = row1Cards;
     if (trackRowRight) trackRowRight.innerHTML = row2Cards;
 
@@ -291,13 +291,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.moving-gallery-card');
     cards.forEach(card => {
       card.onclick = () => {
-        const idx = parseInt(card.dataset.index, 10);
-        if (!isNaN(idx)) {
-          openLightbox(idx);
+        if (currentGalleryItems.length === 0) {
+          initFallbackGalleryItems();
+        }
+        const src = card.getAttribute('data-src') || card.querySelector('img')?.getAttribute('src');
+        const foundIdx = currentGalleryItems.findIndex(it => it.src === src);
+        if (foundIdx !== -1) {
+          openLightbox(foundIdx);
         } else {
-          const src = card.getAttribute('data-src') || card.querySelector('img')?.getAttribute('src');
-          const foundIdx = currentGalleryItems.findIndex(it => it.src === src);
-          if (foundIdx !== -1) openLightbox(foundIdx);
+          const idx = parseInt(card.dataset.index, 10);
+          if (!isNaN(idx)) openLightbox(idx);
         }
       };
     });
@@ -475,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { title: 'uPVC Windows & Doors in Mysuru', category: 'Local Mysuru', anchor: '#home' },
     { title: 'Best uPVC Windows Manufacturer in Mysuru', category: 'Local Mysuru', anchor: '#about' },
     { title: 'uPVC Window Price in Mysuru (Starting ₹350/sqft)', category: 'Pricing', anchor: '#faq' },
-    { title: 'uPVC Window Installation Projects in Mysuru', category: 'Projects', anchor: '#workshop' },
+    { title: 'uPVC Window Installation Projects in Mysuru', category: 'Projects', anchor: '#projects' },
     { title: 'uPVC Doors & Windows Supplier Mysuru (Near Me)', category: 'Contact', anchor: '#contact' },
 
     // Tier 2: Product Typologies
@@ -505,16 +508,12 @@ document.addEventListener('DOMContentLoaded', () => {
     { title: 'Customer Reviews (4.8 / 5 Rating)', category: 'Reviews', anchor: '#testimonials' },
     { title: 'Call Now: +91 98803 09808 (24/7 Support)', category: 'Contact', anchor: '#contact' },
 
-    // Statewide Karnataka & City Landing Hubs
-    { title: 'uPVC Windows & Doors in Karnataka | SKAY Industries', category: 'Karnataka', anchor: '#karnataka-coverage' },
-    { title: 'uPVC Windows Price in Karnataka (From ₹350/sqft)', category: 'Karnataka', anchor: '#karnataka-coverage' },
-    { title: 'uPVC Doors Price in Karnataka', category: 'Karnataka', anchor: '#karnataka-coverage' },
-    { title: 'uPVC Windows in Bengaluru (Apartments & Villas)', category: 'City Hub', anchor: 'upvc-windows-bengaluru.html' },
-    { title: 'uPVC Windows in Mysuru (HQ & Factory Direct)', category: 'City Hub', anchor: 'upvc-windows-mysuru.html' },
-    { title: 'uPVC Windows in Hubballi-Dharwad & Belagavi', category: 'City Hub', anchor: 'upvc-windows-hubballi.html' },
-    { title: 'uPVC Sliding Windows Supplier (Karnataka)', category: 'Products', anchor: '#products' },
-    { title: 'uPVC Casement Windows Manufacturer (Karnataka)', category: 'Products', anchor: '#products' },
-    { title: 'uPVC Window Replacement Services', category: 'Services', anchor: '#why-upvc' },
+    // Workshop Facilities & Verified Projects
+    { title: 'Workshop Facilities & In-House Fabrication Plant', category: 'Workshop', anchor: '#workshop' },
+    { title: 'Verified Installation Projects in Mysuru', category: 'Projects', anchor: '#projects' },
+    { title: 'uPVC Sliding Windows Supplier Mysuru', category: 'Products', anchor: '#product-sliding' },
+    { title: 'uPVC Casement Windows Manufacturer Mysuru', category: 'Products', anchor: '#product-casement' },
+    { title: 'uPVC Window Replacement Services Mysuru', category: 'Services', anchor: '#why-upvc' },
     { title: 'Bulk uPVC Windows for Builders & Contractors', category: 'B2B Commercial', anchor: '#about' },
     { title: 'uPVC Windows for Villas and Apartments', category: 'Residential', anchor: '#about' }
   ];

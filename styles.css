@@ -1558,6 +1558,13 @@ button {
   overflow-x: hidden;
 }
 
+.projects-gallery-section {
+  padding: 4.5rem 0 3.5rem;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  border-top: 1px solid #eef2f6;
+}
+
 .workshop-facilities-list {
   max-width: 900px;
   margin: 0 auto 3rem;
