@@ -117,107 +117,329 @@
   "projects": [
     {
       "id": "proj-1",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.23-2-e1770974992591-300x300.jpeg",
-      "alt": "Architectural Project Glazing",
-      "title": "Architectural Project Glazing"
+      "src": "images/projects/project_site_01.jpg",
+      "alt": "Modern Villa Facade uPVC Sliding Windows with Stone Clad Elevation",
+      "title": "Modern Villa Facade uPVC Sliding Windows"
     },
     {
       "id": "proj-2",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.25-1-e1770975140363-300x300.jpeg",
-      "alt": "Custom Balcony Enclosure",
-      "title": "Custom Balcony Enclosure"
+      "src": "images/projects/project_site_02.jpg",
+      "alt": "Classic White Georgian Grid French Windows Overlooking Garden",
+      "title": "Georgian Bar French uPVC Garden Windows"
     },
     {
       "id": "proj-3",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.25-300x300.jpeg",
-      "alt": "Villa Facade Installation",
-      "title": "Villa Facade Installation"
+      "src": "images/projects/project_site_03.jpg",
+      "alt": "Modern Multi-Storey Residential Building with uPVC Sliding Windows",
+      "title": "Multi-Storey Residential Apartment Glazing"
     },
     {
       "id": "proj-4",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.22-1-300x300.jpeg",
-      "alt": "Residential French Windows",
-      "title": "Residential French Windows"
+      "src": "images/projects/project_site_04.jpg",
+      "alt": "Vertical Staircase Well Frosted Glass Window System",
+      "title": "Staircase Frosted Glazing System"
     },
     {
       "id": "proj-5",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.22-e1770974822618-300x300.jpeg",
-      "alt": "Luxury Villa uPVC Windows",
-      "title": "Luxury Villa uPVC Windows"
+      "src": "images/projects/project_site_05.jpg",
+      "alt": "Primetec Architectural Corner Bay Window with Safety Grill",
+      "title": "Architectural Corner Bay uPVC Window"
     },
     {
       "id": "proj-6",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.23-1-e1770974971677-300x300.jpeg",
-      "alt": "Multi-Track Sliding Glass Doors",
-      "title": "Multi-Track Sliding Glass Doors"
+      "src": "images/projects/project_site_06.jpg",
+      "alt": "Panoramic Terrace Balcony Sliding Glass Doors at Dusk",
+      "title": "Balcony Terrace uPVC Sliding Doors"
     },
     {
       "id": "proj-7",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.23-e1770975019767-300x300.jpeg",
-      "alt": "Corner Window System",
-      "title": "Corner Window System"
+      "src": "images/projects/project_site_07.jpg",
+      "alt": "Acoustic Frosted Glass Ventilator Window with Top Louvers",
+      "title": "Bathroom Ventilator & Louver Window"
     },
     {
       "id": "proj-8",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.24-1-e1770975087849-300x300.jpeg",
-      "alt": "Commercial Building Facade",
-      "title": "Commercial Building Facade"
+      "src": "images/projects/project_site_08.jpg",
+      "alt": "Modern Multi-Floor Residential Building with Designer Woodgrain Accents",
+      "title": "Contemporary Apartment Window Elevation"
     },
     {
       "id": "proj-9",
-      "src": "images/live/WhatsApp-Image-2026-02-10-at-16.35.24-e1770975115582-300x300.jpeg",
-      "alt": "High-Rise Glass & Window Fitting",
-      "title": "High-Rise Glass & Window Fitting"
+      "src": "images/projects/project_site_09.jpg",
+      "alt": "Custom Interior White uPVC Privacy Door with Frosted Glazing",
+      "title": "Interior uPVC Privacy Door with Frosted Panel"
+    },
+    {
+      "id": "proj-10",
+      "src": "images/projects/project_site_10.jpg",
+      "alt": "Contemporary High-Rise Building with Thermal Insulated uPVC Windows",
+      "title": "High-Rise Apartment uPVC Facade Windows"
+    },
+    {
+      "id": "proj-11",
+      "src": "images/projects/project_site_11.jpg",
+      "alt": "Greenfortune Geometric Grill Frosted Window for Stairwells & Bathrooms",
+      "title": "Geometric Grill Frosted uPVC Window"
+    },
+    {
+      "id": "proj-12",
+      "src": "images/projects/project_site_12.jpg",
+      "alt": "5-Storey Residential Complex with Architectural Charcoal Accent Bands",
+      "title": "Modern Multi-Level Residential Complex"
+    },
+    {
+      "id": "proj-13",
+      "src": "images/projects/project_site_13.jpg",
+      "alt": "Exterior Facade of Residential Complex with uPVC Sliding Sash Windows",
+      "title": "Apartment Exterior Sliding Windows"
+    },
+    {
+      "id": "proj-14",
+      "src": "images/projects/project_site_14.jpg",
+      "alt": "Geometric Pattern Ventilator Window with Frosted Glass",
+      "title": "Decorative Architectural Ventilator Window"
+    },
+    {
+      "id": "proj-15",
+      "src": "images/projects/project_site_15.jpg",
+      "alt": "Upper Elevation Perspective of Multi-Floor Modern Building",
+      "title": "Commercial & Residential Facade Glazing"
+    },
+    {
+      "id": "proj-16",
+      "src": "images/projects/project_site_16.jpg",
+      "alt": "Contemporary Architectural White Villa with Tall Vertical Windows",
+      "title": "Floor-to-Ceiling Vertical Slit Windows"
+    },
+    {
+      "id": "proj-17",
+      "src": "images/projects/project_site_17.jpg",
+      "alt": "Dual Track Georgian Grid uPVC Sliding Window System",
+      "title": "Multi-Pane Georgian Grid Sliding Window"
+    },
+    {
+      "id": "proj-18",
+      "src": "images/projects/project_site_18.jpg",
+      "alt": "Venesta Bathroom Ventilator Window with Adjustable Glass Louvers",
+      "title": "Adjustable Glass Louver Ventilator Window"
+    },
+    {
+      "id": "proj-19",
+      "src": "images/projects/project_site_19.jpg",
+      "alt": "Multi-Floor Building with Central Structural Glass & Flanking uPVC Windows",
+      "title": "Architectural Glass Curtain Wall & uPVC Windows"
+    },
+    {
+      "id": "proj-20",
+      "src": "images/projects/project_site_20.jpg",
+      "alt": "Interior Installation of Smooth Two-Track Sliding Window with Granite Sill",
+      "title": "Two-Track uPVC Sliding Window with Granite Sill"
+    },
+    {
+      "id": "proj-21",
+      "src": "images/projects/project_site_21.jpg",
+      "alt": "Villa Elevation with Full-Height Dual uPVC Windows and Cladded Columns",
+      "title": "Luxury Villa Exterior Elevation Windows"
+    },
+    {
+      "id": "proj-22",
+      "src": "images/projects/project_site_22.jpg",
+      "alt": "6-Storey Residential Project with Energy-Efficient uPVC Casements",
+      "title": "Multi-Unit Residential Development Installation"
+    },
+    {
+      "id": "proj-23",
+      "src": "images/projects/project_site_23.jpg",
+      "alt": "Comprehensive Window & Balcony Enclosure Glazing for Gated Complex",
+      "title": "Gated Residential Community Window Systems"
     }
   ],
   "workshop": [
     {
-      "id": "ws-1",
+      "id": "fac-1",
       "src": "images/live/DSC2388-300x300.jpg",
-      "alt": "Workshop Facility",
+      "alt": "Double Head Digital Cutting Area",
       "title": "Double Head Digital Cutting Area"
     },
     {
-      "id": "ws-2",
+      "id": "fac-2",
       "src": "images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png",
-      "alt": "Workshop Machine",
+      "alt": "Precision CNC Machinery",
       "title": "Precision CNC Machinery"
     },
     {
-      "id": "ws-3",
+      "id": "fac-3",
       "src": "images/live/DSC2411-300x300.jpg",
-      "alt": "Welding Process",
+      "alt": "Seamless Corner Welding",
       "title": "Seamless Corner Welding"
     },
     {
-      "id": "ws-4",
+      "id": "fac-4",
       "src": "images/live/DSC2430-300x300.jpg",
-      "alt": "Frame Assembly",
+      "alt": "Profile Reinforcement & Assembly",
       "title": "Profile Reinforcement & Assembly"
     },
     {
-      "id": "ws-5",
+      "id": "fac-5",
       "src": "images/live/DSC2420-300x300.jpg",
-      "alt": "Precision Cutting",
+      "alt": "Profile Processing Line",
       "title": "Profile Processing Line"
     },
     {
-      "id": "ws-6",
+      "id": "fac-6",
       "src": "images/live/DSC2474-300x300.jpg",
-      "alt": "Workshop Machinery",
+      "alt": "End Milling Machine Operation",
       "title": "End Milling Machine Operation"
     },
     {
-      "id": "ws-7",
+      "id": "fac-7",
       "src": "images/live/DSC2433-300x300.jpg",
-      "alt": "Hardware Fitting",
+      "alt": "Multi-Point Hardware Fitting",
       "title": "Multi-Point Hardware Fitting"
     },
     {
-      "id": "ws-8",
+      "id": "fac-8",
       "src": "images/live/DSC2505-300x300.jpg",
-      "alt": "Factory Floor",
+      "alt": "Factory Floor & Quality Station",
       "title": "Factory Floor & Quality Station"
+    },
+    {
+      "id": "proj-1",
+      "src": "images/projects/project_site_01.jpg",
+      "alt": "Modern Villa Facade uPVC Sliding Windows with Stone Clad Elevation",
+      "title": "Modern Villa Facade uPVC Sliding Windows"
+    },
+    {
+      "id": "proj-2",
+      "src": "images/projects/project_site_02.jpg",
+      "alt": "Classic White Georgian Grid French Windows Overlooking Garden",
+      "title": "Georgian Bar French uPVC Garden Windows"
+    },
+    {
+      "id": "proj-3",
+      "src": "images/projects/project_site_03.jpg",
+      "alt": "Modern Multi-Storey Residential Building with uPVC Sliding Windows",
+      "title": "Multi-Storey Residential Apartment Glazing"
+    },
+    {
+      "id": "proj-4",
+      "src": "images/projects/project_site_04.jpg",
+      "alt": "Vertical Staircase Well Frosted Glass Window System",
+      "title": "Staircase Frosted Glazing System"
+    },
+    {
+      "id": "proj-5",
+      "src": "images/projects/project_site_05.jpg",
+      "alt": "Primetec Architectural Corner Bay Window with Safety Grill",
+      "title": "Architectural Corner Bay uPVC Window"
+    },
+    {
+      "id": "proj-6",
+      "src": "images/projects/project_site_06.jpg",
+      "alt": "Panoramic Terrace Balcony Sliding Glass Doors at Dusk",
+      "title": "Balcony Terrace uPVC Sliding Doors"
+    },
+    {
+      "id": "proj-7",
+      "src": "images/projects/project_site_07.jpg",
+      "alt": "Acoustic Frosted Glass Ventilator Window with Top Louvers",
+      "title": "Bathroom Ventilator & Louver Window"
+    },
+    {
+      "id": "proj-8",
+      "src": "images/projects/project_site_08.jpg",
+      "alt": "Modern Multi-Floor Residential Building with Designer Woodgrain Accents",
+      "title": "Contemporary Apartment Window Elevation"
+    },
+    {
+      "id": "proj-9",
+      "src": "images/projects/project_site_09.jpg",
+      "alt": "Custom Interior White uPVC Privacy Door with Frosted Glazing",
+      "title": "Interior uPVC Privacy Door with Frosted Panel"
+    },
+    {
+      "id": "proj-10",
+      "src": "images/projects/project_site_10.jpg",
+      "alt": "Contemporary High-Rise Building with Thermal Insulated uPVC Windows",
+      "title": "High-Rise Apartment uPVC Facade Windows"
+    },
+    {
+      "id": "proj-11",
+      "src": "images/projects/project_site_11.jpg",
+      "alt": "Greenfortune Geometric Grill Frosted Window for Stairwells & Bathrooms",
+      "title": "Geometric Grill Frosted uPVC Window"
+    },
+    {
+      "id": "proj-12",
+      "src": "images/projects/project_site_12.jpg",
+      "alt": "5-Storey Residential Complex with Architectural Charcoal Accent Bands",
+      "title": "Modern Multi-Level Residential Complex"
+    },
+    {
+      "id": "proj-13",
+      "src": "images/projects/project_site_13.jpg",
+      "alt": "Exterior Facade of Residential Complex with uPVC Sliding Sash Windows",
+      "title": "Apartment Exterior Sliding Windows"
+    },
+    {
+      "id": "proj-14",
+      "src": "images/projects/project_site_14.jpg",
+      "alt": "Geometric Pattern Ventilator Window with Frosted Glass",
+      "title": "Decorative Architectural Ventilator Window"
+    },
+    {
+      "id": "proj-15",
+      "src": "images/projects/project_site_15.jpg",
+      "alt": "Upper Elevation Perspective of Multi-Floor Modern Building",
+      "title": "Commercial & Residential Facade Glazing"
+    },
+    {
+      "id": "proj-16",
+      "src": "images/projects/project_site_16.jpg",
+      "alt": "Contemporary Architectural White Villa with Tall Vertical Windows",
+      "title": "Floor-to-Ceiling Vertical Slit Windows"
+    },
+    {
+      "id": "proj-17",
+      "src": "images/projects/project_site_17.jpg",
+      "alt": "Dual Track Georgian Grid uPVC Sliding Window System",
+      "title": "Multi-Pane Georgian Grid Sliding Window"
+    },
+    {
+      "id": "proj-18",
+      "src": "images/projects/project_site_18.jpg",
+      "alt": "Venesta Bathroom Ventilator Window with Adjustable Glass Louvers",
+      "title": "Adjustable Glass Louver Ventilator Window"
+    },
+    {
+      "id": "proj-19",
+      "src": "images/projects/project_site_19.jpg",
+      "alt": "Multi-Floor Building with Central Structural Glass & Flanking uPVC Windows",
+      "title": "Architectural Glass Curtain Wall & uPVC Windows"
+    },
+    {
+      "id": "proj-20",
+      "src": "images/projects/project_site_20.jpg",
+      "alt": "Interior Installation of Smooth Two-Track Sliding Window with Granite Sill",
+      "title": "Two-Track uPVC Sliding Window with Granite Sill"
+    },
+    {
+      "id": "proj-21",
+      "src": "images/projects/project_site_21.jpg",
+      "alt": "Villa Elevation with Full-Height Dual uPVC Windows and Cladded Columns",
+      "title": "Luxury Villa Exterior Elevation Windows"
+    },
+    {
+      "id": "proj-22",
+      "src": "images/projects/project_site_22.jpg",
+      "alt": "6-Storey Residential Project with Energy-Efficient uPVC Casements",
+      "title": "Multi-Unit Residential Development Installation"
+    },
+    {
+      "id": "proj-23",
+      "src": "images/projects/project_site_23.jpg",
+      "alt": "Comprehensive Window & Balcony Enclosure Glazing for Gated Complex",
+      "title": "Gated Residential Community Window Systems"
     }
   ]
 }

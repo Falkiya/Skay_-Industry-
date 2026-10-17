@@ -370,43 +370,57 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function loadDynamicGalleryAndProducts() {
-    // 1. Check IndexedDB first (supports high-res uploaded images)
+    // 1. Fetch gallery.json to get canonical data
+    try {
+      const res = await fetch('gallery.json');
+      if (res.ok) {
+        const canonical = await res.json();
+
+        // Check IndexedDB / LocalStorage for custom admin changes
+        let localData = null;
+        try {
+          localData = await loadFromDB();
+        } catch (e) {}
+        if (!localData) {
+          const stored = localStorage.getItem('skay_gallery_data');
+          if (stored) {
+            try { localData = JSON.parse(stored); } catch (e) {}
+          }
+        }
+
+        // If localData has custom edits with as many or more projects, use it
+        if (localData && Array.isArray(localData.projects) && localData.projects.length >= canonical.projects.length) {
+          applyDynamicData(localData);
+          return;
+        }
+
+        // Otherwise apply canonical gallery.json and update local cache
+        applyDynamicData(canonical);
+        try {
+          localStorage.setItem('skay_gallery_data', JSON.stringify(canonical));
+          saveToDB(canonical);
+        } catch (e) {}
+        return;
+      }
+    } catch (err) {
+      console.log('Serving local/fallback gallery data:', err);
+    }
+
+    // Fallback to IndexedDB / localStorage if fetch failed (offline)
     try {
       const dbData = await loadFromDB();
-      if (dbData && (dbData.factory || dbData.projects || dbData.workshop)) {
+      if (dbData && (dbData.factory || dbData.projects)) {
         applyDynamicData(dbData);
         return;
       }
-    } catch (e) {
-      console.warn('IndexedDB read error:', e);
-    }
+    } catch (e) {}
 
-    // 2. Check localStorage
     const stored = localStorage.getItem('skay_gallery_data');
     if (stored) {
       try {
-        const parsed = JSON.parse(stored);
-        applyDynamicData(parsed);
-        return;
-      } catch (err) {
-        console.warn('Could not parse localStorage skay_gallery_data:', err);
-      }
+        applyDynamicData(JSON.parse(stored));
+      } catch (e) {}
     }
-
-    // 3. Fetch gallery.json (default assets)
-    fetch('gallery.json')
-      .then(res => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      })
-      .then(data => {
-        if (!localStorage.getItem('skay_gallery_data')) {
-          applyDynamicData(data);
-        }
-      })
-      .catch(err => {
-        console.log('Serving built-in static gallery assets:', err);
-      });
   }
 
   loadDynamicGalleryAndProducts();

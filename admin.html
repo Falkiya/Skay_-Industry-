@@ -1033,7 +1033,44 @@
     }
 
     async function loadInitialData() {
-      // 1. Check IndexedDB first
+      // 1. Fetch gallery.json first to ensure latest canonical defaults are available
+      try {
+        const res = await fetch('gallery.json');
+        if (res.ok) {
+          const canonical = await res.json();
+          normalizeData(canonical);
+          defaultBackupData = JSON.parse(JSON.stringify(canonical));
+
+          // Check if local cache has custom user edits
+          let localData = await loadFromDB();
+          if (!localData) {
+            const saved = localStorage.getItem('skay_gallery_data');
+            if (saved) {
+              try { localData = JSON.parse(saved); } catch(e) {}
+            }
+          }
+
+          if (localData) {
+            normalizeData(localData);
+            // If local data has at least as many projects as canonical, keep local data
+            if (Array.isArray(localData.projects) && localData.projects.length >= canonical.projects.length) {
+              galleryData = localData;
+              renderAll();
+              return;
+            }
+          }
+
+          // Otherwise use canonical gallery.json
+          galleryData = canonical;
+          saveToLocalStorage();
+          renderAll();
+          return;
+        }
+      } catch (err) {
+        console.warn('Could not fetch gallery.json, falling back to local DB/storage:', err);
+      }
+
+      // Offline / fallback to IndexedDB or localStorage
       const dbData = await loadFromDB();
       if (dbData && (dbData.factory || dbData.projects || dbData.workshop)) {
         normalizeData(dbData);
@@ -1042,7 +1079,6 @@
         return;
       }
 
-      // 2. Check localStorage
       const saved = localStorage.getItem('skay_gallery_data');
       if (saved) {
         try {
@@ -1051,26 +1087,8 @@
           galleryData = parsed;
           renderAll();
           saveToDB(galleryData);
-          return;
-        } catch(e) {
-          console.error('Failed to parse saved gallery data', e);
-        }
+        } catch(e) {}
       }
-
-      // 3. Fallback to gallery.json
-      fetch('gallery.json')
-        .then(res => res.json())
-        .then(data => {
-          normalizeData(data);
-          defaultBackupData = JSON.parse(JSON.stringify(data));
-          galleryData = data;
-          saveToLocalStorage();
-          renderAll();
-          updateJSONPreview();
-        })
-        .catch(err => {
-          console.warn('Could not fetch gallery.json, relying on localStorage or defaults', err);
-        });
     }
 
     function saveToLocalStorage() {
