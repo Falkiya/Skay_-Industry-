@@ -342,8 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let factoryList = data.factory;
     let projectsList = data.projects;
     if ((!Array.isArray(factoryList) || factoryList.length === 0) && Array.isArray(data.workshop)) {
-      factoryList = data.workshop.slice(0, 8);
-      projectsList = data.workshop.slice(8);
+      factoryList = data.workshop.slice(0, 19);
+      projectsList = data.workshop.slice(19);
     }
 
     // 2. Sync Workshop Facilities Moving Gallery (Dual Rows)
@@ -388,8 +388,12 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
 
-        // If localData has custom edits with as many or more projects, use it
-        if (localData && Array.isArray(localData.projects) && localData.projects.length >= canonical.projects.length) {
+        // If localData has custom edits with current canonical counts and no legacy scraped images, use it
+        const hasEnoughProjects = localData && Array.isArray(localData.projects) && localData.projects.length >= canonical.projects.length;
+        const hasEnoughFactory = localData && Array.isArray(localData.factory) && localData.factory.length >= canonical.factory.length;
+        const hasLegacyFactory = localData && Array.isArray(localData.factory) && localData.factory.some(f => f.src && f.src.includes('images/live/'));
+
+        if (localData && hasEnoughProjects && hasEnoughFactory && !hasLegacyFactory) {
           applyDynamicData(localData);
           return;
         }

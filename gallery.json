@@ -67,51 +67,117 @@
   "factory": [
     {
       "id": "fac-1",
-      "src": "images/live/DSC2388-300x300.jpg",
-      "alt": "Double Head Digital Cutting Area",
-      "title": "Double Head Digital Cutting Area"
+      "src": "images/workshop/workshop_facility_1.jpg",
+      "alt": "Double-Head Precision Mitre Cutting Saw for uPVC Profiles",
+      "title": "Double-Head Precision Mitre Cutting Saw"
     },
     {
       "id": "fac-2",
-      "src": "images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png",
-      "alt": "Precision CNC Machinery",
-      "title": "Precision CNC Machinery"
+      "src": "images/workshop/workshop_facility_2.jpg",
+      "alt": "High-Speed Dual Angle Profile Cutting Station",
+      "title": "High-Speed Dual Angle Profile Cutting Station"
     },
     {
       "id": "fac-3",
-      "src": "images/live/DSC2411-300x300.jpg",
-      "alt": "Seamless Corner Welding",
-      "title": "Seamless Corner Welding"
+      "src": "images/workshop/workshop_facility_3.jpg",
+      "alt": "Multi-Point uPVC Corner Fusion Welding Machine with Technician",
+      "title": "Multi-Point uPVC Corner Fusion Welding Machine"
     },
     {
       "id": "fac-4",
-      "src": "images/live/DSC2430-300x300.jpg",
-      "alt": "Profile Reinforcement & Assembly",
-      "title": "Profile Reinforcement & Assembly"
+      "src": "images/workshop/workshop_facility_4.jpg",
+      "alt": "Precision Temperature-Controlled Seamless Welder in Operation",
+      "title": "Precision Seamless Corner Welder in Operation"
     },
     {
       "id": "fac-5",
-      "src": "images/live/DSC2420-300x300.jpg",
-      "alt": "Profile Processing Line",
-      "title": "Profile Processing Line"
+      "src": "images/workshop/workshop_facility_5.jpg",
+      "alt": "Vertical and Horizontal Profile End Milling Station",
+      "title": "Vertical and Horizontal Profile End Milling Station"
     },
     {
       "id": "fac-6",
-      "src": "images/live/DSC2474-300x300.jpg",
-      "alt": "End Milling Machine Operation",
-      "title": "End Milling Machine Operation"
+      "src": "images/workshop/workshop_facility_6.jpg",
+      "alt": "High-Precision Transom and Mullion End Milling Machine",
+      "title": "High-Precision Transom and Mullion End Milling Machine"
     },
     {
       "id": "fac-7",
-      "src": "images/live/DSC2433-300x300.jpg",
-      "alt": "Multi-Point Hardware Fitting",
-      "title": "Multi-Point Hardware Fitting"
+      "src": "images/workshop/workshop_facility_7.jpg",
+      "alt": "Water Slot Drainage and Hardware Lock Hole Routing Machine",
+      "title": "Water Slot and Lock Hole Copy Routing Machine"
     },
     {
       "id": "fac-8",
-      "src": "images/live/DSC2505-300x300.jpg",
-      "alt": "Factory Floor & Quality Station",
-      "title": "Factory Floor & Quality Station"
+      "src": "images/workshop/workshop_facility_8.jpg",
+      "alt": "Heavy-Duty V-Notch and Profile Cleat Cutting Saw Machine",
+      "title": "Heavy-Duty V-Notch and Profile Cleat Cutting Saw"
+    },
+    {
+      "id": "fac-9",
+      "src": "images/workshop/workshop_facility_9.jpg",
+      "alt": "Precision 45-Degree Glazing Bead Saw for Glass Mounting",
+      "title": "Precision 45-Degree Glazing Bead Cutting Machine"
+    },
+    {
+      "id": "fac-10",
+      "src": "images/workshop/workshop_facility_10.jpg",
+      "alt": "Finished Custom uPVC Doors and Windows Inventory Bay",
+      "title": "Finished Custom Doors and Windows Inventory Bay"
+    },
+    {
+      "id": "fac-11",
+      "src": "images/workshop/workshop_facility_11.jpg",
+      "alt": "High-Capacity Industrial Pneumatic Air Compressor Station",
+      "title": "High-Capacity Industrial Air Compressor Station"
+    },
+    {
+      "id": "fac-12",
+      "src": "images/workshop/workshop_facility_12.jpg",
+      "alt": "Fabricated Multi-Chamber White uPVC Door Frames Ready for Quality Check",
+      "title": "Multi-Chamber uPVC Door Frames Ready for QC"
+    },
+    {
+      "id": "fac-13",
+      "src": "images/workshop/workshop_facility_13.jpg",
+      "alt": "Workshop Fabrication Floor and Material Processing Line",
+      "title": "Workshop Fabrication Floor and Assembly Line"
+    },
+    {
+      "id": "fac-14",
+      "src": "images/workshop/workshop_facility_14.jpg",
+      "alt": "Assembled Large-Span Sliding Window and Door Frames Staging Area",
+      "title": "Large-Span Sliding Frames Staging Area"
+    },
+    {
+      "id": "fac-15",
+      "src": "images/workshop/workshop_facility_15.jpg",
+      "alt": "Heavy-Duty Assembly Worktables and Custom Window Sash Production",
+      "title": "Heavy-Duty Assembly Worktables and Sash Production"
+    },
+    {
+      "id": "fac-16",
+      "src": "images/workshop/workshop_facility_16.jpg",
+      "alt": "Technicians Assembling Multi-Chamber Greenfortune uPVC Profiles",
+      "title": "Technicians Assembling Greenfortune uPVC Profiles"
+    },
+    {
+      "id": "fac-17",
+      "src": "images/workshop/workshop_facility_17.jpg",
+      "alt": "SKAY Industries Workshop Frontage and Manufacturing Unit in Mysuru",
+      "title": "SKAY Industries Workshop and Manufacturing Plant, Mysuru"
+    },
+    {
+      "id": "fac-18",
+      "src": "images/workshop/workshop_facility_18.jpg",
+      "alt": "High-Pressure Pneumatic Station with Stacked Window Sashes",
+      "title": "Pneumatic Tool Station and Stacked Window Sashes"
+    },
+    {
+      "id": "fac-19",
+      "src": "images/workshop/workshop_facility_19.jpg",
+      "alt": "Plant Quality Office and Precision Manufactured uPVC Window Storage",
+      "title": "Plant Quality Office and Finished Frame Storage"
     }
   ],
   "projects": [
@@ -252,56 +318,272 @@
       "src": "images/projects/project_site_23.jpg",
       "alt": "Comprehensive Window & Balcony Enclosure Glazing for Gated Complex",
       "title": "Gated Residential Community Window Systems"
+    },
+    {
+      "id": "proj-24",
+      "src": "images/projects/project_site_24.jpg",
+      "alt": "Four-Track White uPVC Sliding Window with Integrated Safety Grills",
+      "title": "Four-Track uPVC Sliding Window System"
+    },
+    {
+      "id": "proj-25",
+      "src": "images/projects/project_site_25.jpg",
+      "alt": "Two-Track uPVC Sliding Window in Red Accent Border Overlooking Staircase",
+      "title": "Two-Track Sliding Window in Feature Wall"
+    },
+    {
+      "id": "proj-26",
+      "src": "images/projects/project_site_26.jpg",
+      "alt": "Vertical Corner Ventilator with Adjustable Glass Louvers and Frosted Pane",
+      "title": "Corner Bathroom Ventilator Window"
+    },
+    {
+      "id": "proj-27",
+      "src": "images/projects/project_site_27.jpg",
+      "alt": "Four-Storey White Residential Building with Modern uPVC Sliding Windows",
+      "title": "Multi-Storey Residential Facade Glazing"
+    },
+    {
+      "id": "proj-28",
+      "src": "images/projects/project_site_28.jpg",
+      "alt": "Close-Up of Multi-Panel Horizontal uPVC Sliding Window System on White Facade",
+      "title": "Continuous Multi-Panel Horizontal Sliding Window"
+    },
+    {
+      "id": "proj-29",
+      "src": "images/projects/project_site_29.jpg",
+      "alt": "Multi-Storey Apartment Complex with Full-Bleed Balconies and uPVC Windows",
+      "title": "Residential Apartment Building Exterior"
+    },
+    {
+      "id": "proj-30",
+      "src": "images/projects/project_site_30.jpg",
+      "alt": "Upper Facade Perspective Showing Symmetrical uPVC Window Alignment",
+      "title": "Upper Elevation Architectural Window Alignment"
+    },
+    {
+      "id": "proj-31",
+      "src": "images/projects/project_site_31.jpg",
+      "alt": "High-Rise Balcony Corner Enclosure with Greenfortune uPVC Profile",
+      "title": "Corner Balcony Enclosure with Safety Mesh"
+    },
+    {
+      "id": "proj-32",
+      "src": "images/projects/project_site_32.jpg",
+      "alt": "Contemporary Multi-Floor Building with Wood Accent Panels and uPVC Windows",
+      "title": "Four-Storey Modern Residential Enclave"
+    },
+    {
+      "id": "proj-33",
+      "src": "images/projects/project_site_33.jpg",
+      "alt": "Square Ventilator Window with Dark Grey Border and Glass Louvers",
+      "title": "Architectural Square Ventilator Window"
+    },
+    {
+      "id": "proj-34",
+      "src": "images/projects/project_site_34.jpg",
+      "alt": "Three-Storey Contemporary Villa with Textured Stone Cladding and uPVC Casements",
+      "title": "Three-Storey Contemporary Villa with Stone Accents"
+    },
+    {
+      "id": "proj-35",
+      "src": "images/projects/project_site_35.jpg",
+      "alt": "Four-Storey Building with Vertical Timber Finish Accents and uPVC Windows",
+      "title": "Modern Four-Storey Apartment Elevation"
+    },
+    {
+      "id": "proj-36",
+      "src": "images/projects/project_site_36.jpg",
+      "alt": "Luxury Multi-Level Balconies Featuring Sliding Glass Doors and False Ceiling Lights",
+      "title": "Luxury Multi-Level Balconies with Glass Railings"
+    },
+    {
+      "id": "proj-37",
+      "src": "images/projects/project_site_37.jpg",
+      "alt": "Contemporary White Facade with Geometric Balconies and Warm Architectural Downlights",
+      "title": "Modern Apartment with Geometric Balconies & Downlights"
+    },
+    {
+      "id": "proj-38",
+      "src": "images/projects/project_site_38.jpg",
+      "alt": "In-House Workshop Assembly of Large Architectural Multi-Bay Window Structure",
+      "title": "In-House Precision Multi-Bay Fabrication"
+    },
+    {
+      "id": "proj-39",
+      "src": "images/projects/project_site_39.jpg",
+      "alt": "Two-Track uPVC Sliding Window with Greenfortune Protective Tape on Grey Exterior",
+      "title": "Two-Track Sliding Window on Grey Exterior Wall"
+    },
+    {
+      "id": "proj-40",
+      "src": "images/projects/project_site_40.jpg",
+      "alt": "Tall Vertical Frosted Ventilator Window in Interior Staircase",
+      "title": "Vertical Architectural Ventilator Window"
+    },
+    {
+      "id": "proj-41",
+      "src": "images/projects/project_site_41.jpg",
+      "alt": "Stairwell Featuring Three Vertical Frosted Windows Providing Natural Daylight",
+      "title": "Triple-Window Stairwell Natural Lighting Array"
+    },
+    {
+      "id": "proj-42",
+      "src": "images/projects/project_site_42.jpg",
+      "alt": "Full-Height uPVC Sliding Balcony Door with Integrated Mosquito Mesh Track",
+      "title": "Full-Height Sliding Balcony Door with Mesh"
+    },
+    {
+      "id": "proj-43",
+      "src": "images/projects/project_site_43.jpg",
+      "alt": "White uPVC Window Unit Installed in Raw Brick Masonry Structure",
+      "title": "Direct Masonry Window Installation in Progress"
+    },
+    {
+      "id": "proj-44",
+      "src": "images/projects/project_site_44.jpg",
+      "alt": "Interior Perspective of Sliding Glass Door Overlooking Balcony with Floral CNC Railing",
+      "title": "Balcony Sliding Glass Door with Laser-Cut CNC Railing"
+    },
+    {
+      "id": "proj-45",
+      "src": "images/projects/project_site_45.jpg",
+      "alt": "High-Gloss Floor Reflection of Multi-Track Balcony Sliding Glass Door System",
+      "title": "Panoramic Sliding Glass Door Reflection"
+    },
+    {
+      "id": "proj-46",
+      "src": "images/projects/project_site_46.jpg",
+      "alt": "Frosted Glass Louver Ventilator with Heavy-Duty Security Grill",
+      "title": "Acoustic Frosted Glass Bathroom Ventilator"
+    },
+    {
+      "id": "proj-47",
+      "src": "images/projects/project_site_47.jpg",
+      "alt": "Five-Storey White Residential Building Featuring Uniform uPVC Sliding Windows",
+      "title": "Five-Storey Residential Complex with Golden Gate"
+    },
+    {
+      "id": "proj-48",
+      "src": "images/projects/project_site_48.jpg",
+      "alt": "Upper Floor Terrace uPVC Casement Window with Evening Sky and Rooftop View",
+      "title": "Upper Terrace Casement Window Overlooking Skyline"
     }
   ],
   "workshop": [
     {
       "id": "fac-1",
-      "src": "images/live/DSC2388-300x300.jpg",
-      "alt": "Double Head Digital Cutting Area",
-      "title": "Double Head Digital Cutting Area"
+      "src": "images/workshop/workshop_facility_1.jpg",
+      "alt": "Double-Head Precision Mitre Cutting Saw for uPVC Profiles",
+      "title": "Double-Head Precision Mitre Cutting Saw"
     },
     {
       "id": "fac-2",
-      "src": "images/live/Screenshot-2026-02-09-at-1.45.09-PM-300x300.png",
-      "alt": "Precision CNC Machinery",
-      "title": "Precision CNC Machinery"
+      "src": "images/workshop/workshop_facility_2.jpg",
+      "alt": "High-Speed Dual Angle Profile Cutting Station",
+      "title": "High-Speed Dual Angle Profile Cutting Station"
     },
     {
       "id": "fac-3",
-      "src": "images/live/DSC2411-300x300.jpg",
-      "alt": "Seamless Corner Welding",
-      "title": "Seamless Corner Welding"
+      "src": "images/workshop/workshop_facility_3.jpg",
+      "alt": "Multi-Point uPVC Corner Fusion Welding Machine with Technician",
+      "title": "Multi-Point uPVC Corner Fusion Welding Machine"
     },
     {
       "id": "fac-4",
-      "src": "images/live/DSC2430-300x300.jpg",
-      "alt": "Profile Reinforcement & Assembly",
-      "title": "Profile Reinforcement & Assembly"
+      "src": "images/workshop/workshop_facility_4.jpg",
+      "alt": "Precision Temperature-Controlled Seamless Welder in Operation",
+      "title": "Precision Seamless Corner Welder in Operation"
     },
     {
       "id": "fac-5",
-      "src": "images/live/DSC2420-300x300.jpg",
-      "alt": "Profile Processing Line",
-      "title": "Profile Processing Line"
+      "src": "images/workshop/workshop_facility_5.jpg",
+      "alt": "Vertical and Horizontal Profile End Milling Station",
+      "title": "Vertical and Horizontal Profile End Milling Station"
     },
     {
       "id": "fac-6",
-      "src": "images/live/DSC2474-300x300.jpg",
-      "alt": "End Milling Machine Operation",
-      "title": "End Milling Machine Operation"
+      "src": "images/workshop/workshop_facility_6.jpg",
+      "alt": "High-Precision Transom and Mullion End Milling Machine",
+      "title": "High-Precision Transom and Mullion End Milling Machine"
     },
     {
       "id": "fac-7",
-      "src": "images/live/DSC2433-300x300.jpg",
-      "alt": "Multi-Point Hardware Fitting",
-      "title": "Multi-Point Hardware Fitting"
+      "src": "images/workshop/workshop_facility_7.jpg",
+      "alt": "Water Slot Drainage and Hardware Lock Hole Routing Machine",
+      "title": "Water Slot and Lock Hole Copy Routing Machine"
     },
     {
       "id": "fac-8",
-      "src": "images/live/DSC2505-300x300.jpg",
-      "alt": "Factory Floor & Quality Station",
-      "title": "Factory Floor & Quality Station"
+      "src": "images/workshop/workshop_facility_8.jpg",
+      "alt": "Heavy-Duty V-Notch and Profile Cleat Cutting Saw Machine",
+      "title": "Heavy-Duty V-Notch and Profile Cleat Cutting Saw"
+    },
+    {
+      "id": "fac-9",
+      "src": "images/workshop/workshop_facility_9.jpg",
+      "alt": "Precision 45-Degree Glazing Bead Saw for Glass Mounting",
+      "title": "Precision 45-Degree Glazing Bead Cutting Machine"
+    },
+    {
+      "id": "fac-10",
+      "src": "images/workshop/workshop_facility_10.jpg",
+      "alt": "Finished Custom uPVC Doors and Windows Inventory Bay",
+      "title": "Finished Custom Doors and Windows Inventory Bay"
+    },
+    {
+      "id": "fac-11",
+      "src": "images/workshop/workshop_facility_11.jpg",
+      "alt": "High-Capacity Industrial Pneumatic Air Compressor Station",
+      "title": "High-Capacity Industrial Air Compressor Station"
+    },
+    {
+      "id": "fac-12",
+      "src": "images/workshop/workshop_facility_12.jpg",
+      "alt": "Fabricated Multi-Chamber White uPVC Door Frames Ready for Quality Check",
+      "title": "Multi-Chamber uPVC Door Frames Ready for QC"
+    },
+    {
+      "id": "fac-13",
+      "src": "images/workshop/workshop_facility_13.jpg",
+      "alt": "Workshop Fabrication Floor and Material Processing Line",
+      "title": "Workshop Fabrication Floor and Assembly Line"
+    },
+    {
+      "id": "fac-14",
+      "src": "images/workshop/workshop_facility_14.jpg",
+      "alt": "Assembled Large-Span Sliding Window and Door Frames Staging Area",
+      "title": "Large-Span Sliding Frames Staging Area"
+    },
+    {
+      "id": "fac-15",
+      "src": "images/workshop/workshop_facility_15.jpg",
+      "alt": "Heavy-Duty Assembly Worktables and Custom Window Sash Production",
+      "title": "Heavy-Duty Assembly Worktables and Sash Production"
+    },
+    {
+      "id": "fac-16",
+      "src": "images/workshop/workshop_facility_16.jpg",
+      "alt": "Technicians Assembling Multi-Chamber Greenfortune uPVC Profiles",
+      "title": "Technicians Assembling Greenfortune uPVC Profiles"
+    },
+    {
+      "id": "fac-17",
+      "src": "images/workshop/workshop_facility_17.jpg",
+      "alt": "SKAY Industries Workshop Frontage and Manufacturing Unit in Mysuru",
+      "title": "SKAY Industries Workshop and Manufacturing Plant, Mysuru"
+    },
+    {
+      "id": "fac-18",
+      "src": "images/workshop/workshop_facility_18.jpg",
+      "alt": "High-Pressure Pneumatic Station with Stacked Window Sashes",
+      "title": "Pneumatic Tool Station and Stacked Window Sashes"
+    },
+    {
+      "id": "fac-19",
+      "src": "images/workshop/workshop_facility_19.jpg",
+      "alt": "Plant Quality Office and Precision Manufactured uPVC Window Storage",
+      "title": "Plant Quality Office and Finished Frame Storage"
     },
     {
       "id": "proj-1",
@@ -440,6 +722,156 @@
       "src": "images/projects/project_site_23.jpg",
       "alt": "Comprehensive Window & Balcony Enclosure Glazing for Gated Complex",
       "title": "Gated Residential Community Window Systems"
+    },
+    {
+      "id": "proj-24",
+      "src": "images/projects/project_site_24.jpg",
+      "alt": "Four-Track White uPVC Sliding Window with Integrated Safety Grills",
+      "title": "Four-Track uPVC Sliding Window System"
+    },
+    {
+      "id": "proj-25",
+      "src": "images/projects/project_site_25.jpg",
+      "alt": "Two-Track uPVC Sliding Window in Red Accent Border Overlooking Staircase",
+      "title": "Two-Track Sliding Window in Feature Wall"
+    },
+    {
+      "id": "proj-26",
+      "src": "images/projects/project_site_26.jpg",
+      "alt": "Vertical Corner Ventilator with Adjustable Glass Louvers and Frosted Pane",
+      "title": "Corner Bathroom Ventilator Window"
+    },
+    {
+      "id": "proj-27",
+      "src": "images/projects/project_site_27.jpg",
+      "alt": "Four-Storey White Residential Building with Modern uPVC Sliding Windows",
+      "title": "Multi-Storey Residential Facade Glazing"
+    },
+    {
+      "id": "proj-28",
+      "src": "images/projects/project_site_28.jpg",
+      "alt": "Close-Up of Multi-Panel Horizontal uPVC Sliding Window System on White Facade",
+      "title": "Continuous Multi-Panel Horizontal Sliding Window"
+    },
+    {
+      "id": "proj-29",
+      "src": "images/projects/project_site_29.jpg",
+      "alt": "Multi-Storey Apartment Complex with Full-Bleed Balconies and uPVC Windows",
+      "title": "Residential Apartment Building Exterior"
+    },
+    {
+      "id": "proj-30",
+      "src": "images/projects/project_site_30.jpg",
+      "alt": "Upper Facade Perspective Showing Symmetrical uPVC Window Alignment",
+      "title": "Upper Elevation Architectural Window Alignment"
+    },
+    {
+      "id": "proj-31",
+      "src": "images/projects/project_site_31.jpg",
+      "alt": "High-Rise Balcony Corner Enclosure with Greenfortune uPVC Profile",
+      "title": "Corner Balcony Enclosure with Safety Mesh"
+    },
+    {
+      "id": "proj-32",
+      "src": "images/projects/project_site_32.jpg",
+      "alt": "Contemporary Multi-Floor Building with Wood Accent Panels and uPVC Windows",
+      "title": "Four-Storey Modern Residential Enclave"
+    },
+    {
+      "id": "proj-33",
+      "src": "images/projects/project_site_33.jpg",
+      "alt": "Square Ventilator Window with Dark Grey Border and Glass Louvers",
+      "title": "Architectural Square Ventilator Window"
+    },
+    {
+      "id": "proj-34",
+      "src": "images/projects/project_site_34.jpg",
+      "alt": "Three-Storey Contemporary Villa with Textured Stone Cladding and uPVC Casements",
+      "title": "Three-Storey Contemporary Villa with Stone Accents"
+    },
+    {
+      "id": "proj-35",
+      "src": "images/projects/project_site_35.jpg",
+      "alt": "Four-Storey Building with Vertical Timber Finish Accents and uPVC Windows",
+      "title": "Modern Four-Storey Apartment Elevation"
+    },
+    {
+      "id": "proj-36",
+      "src": "images/projects/project_site_36.jpg",
+      "alt": "Luxury Multi-Level Balconies Featuring Sliding Glass Doors and False Ceiling Lights",
+      "title": "Luxury Multi-Level Balconies with Glass Railings"
+    },
+    {
+      "id": "proj-37",
+      "src": "images/projects/project_site_37.jpg",
+      "alt": "Contemporary White Facade with Geometric Balconies and Warm Architectural Downlights",
+      "title": "Modern Apartment with Geometric Balconies & Downlights"
+    },
+    {
+      "id": "proj-38",
+      "src": "images/projects/project_site_38.jpg",
+      "alt": "In-House Workshop Assembly of Large Architectural Multi-Bay Window Structure",
+      "title": "In-House Precision Multi-Bay Fabrication"
+    },
+    {
+      "id": "proj-39",
+      "src": "images/projects/project_site_39.jpg",
+      "alt": "Two-Track uPVC Sliding Window with Greenfortune Protective Tape on Grey Exterior",
+      "title": "Two-Track Sliding Window on Grey Exterior Wall"
+    },
+    {
+      "id": "proj-40",
+      "src": "images/projects/project_site_40.jpg",
+      "alt": "Tall Vertical Frosted Ventilator Window in Interior Staircase",
+      "title": "Vertical Architectural Ventilator Window"
+    },
+    {
+      "id": "proj-41",
+      "src": "images/projects/project_site_41.jpg",
+      "alt": "Stairwell Featuring Three Vertical Frosted Windows Providing Natural Daylight",
+      "title": "Triple-Window Stairwell Natural Lighting Array"
+    },
+    {
+      "id": "proj-42",
+      "src": "images/projects/project_site_42.jpg",
+      "alt": "Full-Height uPVC Sliding Balcony Door with Integrated Mosquito Mesh Track",
+      "title": "Full-Height Sliding Balcony Door with Mesh"
+    },
+    {
+      "id": "proj-43",
+      "src": "images/projects/project_site_43.jpg",
+      "alt": "White uPVC Window Unit Installed in Raw Brick Masonry Structure",
+      "title": "Direct Masonry Window Installation in Progress"
+    },
+    {
+      "id": "proj-44",
+      "src": "images/projects/project_site_44.jpg",
+      "alt": "Interior Perspective of Sliding Glass Door Overlooking Balcony with Floral CNC Railing",
+      "title": "Balcony Sliding Glass Door with Laser-Cut CNC Railing"
+    },
+    {
+      "id": "proj-45",
+      "src": "images/projects/project_site_45.jpg",
+      "alt": "High-Gloss Floor Reflection of Multi-Track Balcony Sliding Glass Door System",
+      "title": "Panoramic Sliding Glass Door Reflection"
+    },
+    {
+      "id": "proj-46",
+      "src": "images/projects/project_site_46.jpg",
+      "alt": "Frosted Glass Louver Ventilator with Heavy-Duty Security Grill",
+      "title": "Acoustic Frosted Glass Bathroom Ventilator"
+    },
+    {
+      "id": "proj-47",
+      "src": "images/projects/project_site_47.jpg",
+      "alt": "Five-Storey White Residential Building Featuring Uniform uPVC Sliding Windows",
+      "title": "Five-Storey Residential Complex with Golden Gate"
+    },
+    {
+      "id": "proj-48",
+      "src": "images/projects/project_site_48.jpg",
+      "alt": "Upper Floor Terrace uPVC Casement Window with Evening Sky and Rooftop View",
+      "title": "Upper Terrace Casement Window Overlooking Skyline"
     }
   ]
 }

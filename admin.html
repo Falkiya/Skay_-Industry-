@@ -822,7 +822,7 @@
           </div>
           <div class="form-group">
             <label for="photo-url-input">OR Image URL / Path</label>
-            <input type="text" id="photo-url-input" class="form-input" placeholder="e.g. images/live/DSC2388-300x300.jpg" oninput="updatePhotoImgPreview(this.value)">
+            <input type="text" id="photo-url-input" class="form-input" placeholder="e.g. images/workshop/workshop_facility_1.jpg" oninput="updatePhotoImgPreview(this.value)">
           </div>
           <div class="img-preview-box" id="photo-img-preview-wrap">
             <span style="font-size: 0.8rem; color: var(--text-light);">Image preview will appear here</span>
@@ -1052,8 +1052,12 @@
 
           if (localData) {
             normalizeData(localData);
-            // If local data has at least as many projects as canonical, keep local data
-            if (Array.isArray(localData.projects) && localData.projects.length >= canonical.projects.length) {
+            // If local data has at least as many projects & factory items as canonical and no legacy scraped images, keep local data
+            const hasEnoughProjects = Array.isArray(localData.projects) && localData.projects.length >= canonical.projects.length;
+            const hasEnoughFactory = Array.isArray(localData.factory) && localData.factory.length >= canonical.factory.length;
+            const hasLegacyFactory = Array.isArray(localData.factory) && localData.factory.some(f => f.src && f.src.includes('images/live/'));
+
+            if (hasEnoughProjects && hasEnoughFactory && !hasLegacyFactory) {
               galleryData = localData;
               renderAll();
               return;
@@ -1459,7 +1463,7 @@
     }
 
     function resetFactoryToDefault() {
-      if (defaultBackupData?.factory && confirm('Restore original 8 factory / workshop photos? Any custom photos added will be reset.')) {
+      if (defaultBackupData?.factory && confirm('Restore original 19 factory / workshop photos? Any custom photos added will be reset.')) {
         galleryData.factory = JSON.parse(JSON.stringify(defaultBackupData.factory));
         saveToLocalStorage();
         renderAll();
@@ -1468,7 +1472,7 @@
     }
 
     function resetProjectsToDefault() {
-      if (defaultBackupData?.projects && confirm('Restore original 9 installation project photos? Any custom photos added will be reset.')) {
+      if (defaultBackupData?.projects && confirm('Restore original 48 installation project photos? Any custom photos added will be reset.')) {
         galleryData.projects = JSON.parse(JSON.stringify(defaultBackupData.projects));
         saveToLocalStorage();
         renderAll();
